@@ -1,6 +1,4 @@
 import {
-  people01,
-  people02,
   people03,
   facebook,
   instagram,
@@ -33,17 +31,17 @@ export const navLinks = [
     title: "Portifolio",
   },
   {
-    id:"events",
-    title:"Events & Calender"
+    id: "events",
+    title: "Events & Calender",
   },
   {
-    id:"Projects",
-    title:"Projects"
+    id: "Projects",
+    title: "Projects",
   },
   {
-    id:"contact",
-    title:"Contact"
-  }
+    id: "excome",
+    title: "Excome team ",
+  },
 ];
 
 export const features = [
@@ -71,28 +69,13 @@ export const features = [
 ];
 
 export const feedback = [
-  {
-    id: "feedback-1",
-    content:
-     "Passionate about developing boxing talent and leading the federation with excellence.",
-    name: "Herman Jensen",
-    title: "Presedent",
-    img: people01,
-  },
-  {
-    id: "feedback-2",
-    content:
-      "Expert trainer with over 15 years of experience coaching national champions.",
-    name: "Steve Mark",
-    title: "Founder & Leader",
-    img: people02,
-  },
+
   {
     id: "feedback-3",
     content:
-    "Focused on youth programs and nurturing young boxing talents across Rwanda.",
-    name: "Kenn Gallagher",
-    title: "Founder & Leader",
+      "Focused on youth programs and nurturing young boxing talents across Rwanda.",
+    name: "NTWARI Josue",
+    title: "Managing director",
     img: people03,
   },
 ];
@@ -116,7 +99,6 @@ export const stats = [
 ];
 
 export const footerLinks = [
-
   {
     title: "Community",
     links: [
@@ -145,7 +127,7 @@ export const footerLinks = [
         link: "#",
       },
     ],
-  }
+  },
 ];
 
 export const socialMedia = [

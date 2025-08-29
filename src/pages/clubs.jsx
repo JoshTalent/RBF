@@ -3,6 +3,7 @@ import { Navbar, Footer } from "../components";
 import styles from "../style";
 import { motion } from "framer-motion";
 import { MapPin, Phone, User, Award, Users, Calendar, Facebook, Instagram, Twitter } from "lucide-react";
+import { Link } from "react-router-dom";
 
 // Sample clubs data with images
 const clubsData = [
@@ -184,7 +185,8 @@ const Clubs = () => {
               internationally.
             </p>
             <button className="px-8 py-3 bg-white text-sky-600 font-bold rounded-full hover:bg-gray-100 transition-all">
-              Register Club
+              <Link to="/contact"> Register Club </Link>
+             
             </button>
           </section>
 
