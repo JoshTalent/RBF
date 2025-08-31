@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Navbar, Footer } from "../components";
-import styles from "../style";
 import { motion } from "framer-motion";
 import { Calendar, Clock, BarChart2, X } from "lucide-react";
-import { abcdef , abcdefg , abcdefgh ,abcdefghi} from "../assets";
+import { abcdef, abcdefg, abcdefgh, abcdefghi } from "../assets";
 
-// Sample Projects Data with progress
+// Sample Projects Data
 const projects = [
   {
     id: 1,
@@ -15,8 +14,7 @@ const projects = [
     progress: 40,
     description:
       "Establish a nationwide academy to train young boxing talents in Rwanda, providing modern equipment and expert coaching.",
-    image:
-      abcdef,
+    image: abcdef,
     milestones: ["Site Selection", "Recruit Coaches", "Student Recruitment"],
   },
   {
@@ -27,7 +25,7 @@ const projects = [
     progress: 70,
     description:
       "Organize monthly tournaments to give young boxers competitive experience and recognition across regions.",
-    image: abcdefg ,
+    image: abcdefg,
     milestones: ["Venue Booking", "Match Scheduling", "Award Ceremony"],
   },
   {
@@ -38,7 +36,7 @@ const projects = [
     progress: 90,
     description:
       "Upgrade the federation website to include news, events, projects, and interactive media for fans and members.",
-    image:abcdefgh,
+    image: abcdefgh,
     milestones: ["Design Mockups", "Develop Features", "Testing & Launch"],
   },
   {
@@ -49,7 +47,7 @@ const projects = [
     progress: 30,
     description:
       "Participate in international boxing leagues to elevate the profile of Rwandan boxers and gain global recognition.",
-    image:abcdefghi,
+    image: abcdefghi,
     milestones: ["Team Selection", "Training Camps", "League Matches"],
   },
 ];
@@ -163,72 +161,57 @@ const ProjectsPage = () => {
     filter === "All" ? projects : projects.filter((proj) => proj.type === filter);
 
   return (
-    <div className="bg-primary w-full overflow-hidden">
-      <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-        <div className={`${styles.boxWidth}`}>
-          <Navbar />
-        </div>
-      </div>
+    <div className="flex flex-col min-h-screen bg-primary text-white">
+      {/* Navbar */}
+      <Navbar />
 
       {/* Header */}
-      <div
-        className={`bg-gradient-to-r from-sky-900 via-black to-gray-900 ${styles.paddingX} ${styles.flexStart}`}
-      >
-        <div className={`${styles.boxWidth} py-24`}>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight">
-            Projects
-          </h1>
-          <p className="text-gray-300 text-lg md:text-xl">
-            Explore our long-term and short-term projects for the boxing federation.
-          </p>
-        </div>
+      <div className="bg-gradient-to-r from-sky-900 via-black to-gray-900 py-24 px-6 md:px-12">
+        <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight">
+          Projects
+        </h1>
+        <p className="text-gray-300 text-lg md:text-xl">
+          Explore our long-term and short-term projects for the boxing federation.
+        </p>
       </div>
 
       {/* Filter + Projects */}
-      <div className={`${styles.paddingX} ${styles.flexStart} py-16`}>
-        <div className={`${styles.boxWidth}`}>
-          {/* Filter Buttons */}
-          <div className="flex gap-4 mb-12 justify-center md:justify-start">
-            {["All", "Long-term", "Short-term"].map((type) => (
-              <button
-                key={type}
-                onClick={() => setFilter(type)}
-                className={`px-5 py-2 rounded-full font-semibold transition-colors duration-300 ${
-                  filter === type
-                    ? "bg-sky-600 text-white shadow-lg"
-                    : "bg-gray-800 text-gray-300 hover:bg-sky-600 hover:text-white"
-                }`}
-              >
-                {type}
-              </button>
-            ))}
-          </div>
+      <div className="py-16 px-6 md:px-12">
+        {/* Filter Buttons */}
+        <div className="flex gap-4 mb-12 justify-center md:justify-start">
+          {["All", "Long-term", "Short-term"].map((type) => (
+            <button
+              key={type}
+              onClick={() => setFilter(type)}
+              className={`px-5 py-2 rounded-full font-semibold transition-colors duration-300 ${
+                filter === type
+                  ? "bg-sky-600 text-white shadow-lg"
+                  : "bg-gray-800 text-gray-300 hover:bg-sky-600 hover:text-white"
+              }`}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {filteredProjects.length > 0 ? (
-              filteredProjects.map((proj) => (
-                <ProjectCard
-                  key={proj.id}
-                  project={proj}
-                  onClick={setSelectedProject}
-                />
-              ))
-            ) : (
-              <p className="text-gray-400 text-center text-lg">No projects found.</p>
-            )}
-          </div>
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((proj) => (
+              <ProjectCard key={proj.id} project={proj} onClick={setSelectedProject} />
+            ))
+          ) : (
+            <p className="text-gray-400 text-center text-lg">No projects found.</p>
+          )}
         </div>
       </div>
 
+      {/* Footer */}
       <Footer />
 
       {/* Project Modal */}
       {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
+        <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
       )}
     </div>
   );

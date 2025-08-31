@@ -63,11 +63,7 @@ const Clubs = () => {
   return (
     <div className="bg-primary w-full overflow-hidden min-h-screen">
       {/* Navbar */}
-      <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-        <div className={`${styles.boxWidth}`}>
-          <Navbar />
-        </div>
-      </div>
+      <Navbar />
 
       <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
         <div className={`${styles.boxWidth} py-20`}>
@@ -186,7 +182,6 @@ const Clubs = () => {
             </p>
             <button className="px-8 py-3 bg-white text-sky-600 font-bold rounded-full hover:bg-gray-100 transition-all">
               <Link to="/contact"> Register Club </Link>
-             
             </button>
           </section>
 

@@ -4,7 +4,6 @@ import styles from "../style";
 import { motion } from "framer-motion";
 import { Users, Trophy, Target, Flag, Star } from "lucide-react";
 
-
 // Achievements Stats
 const stats = [
   { id: 1, icon: <Users size={32} />, value: 500, label: "Registered Boxers" },
@@ -58,13 +57,9 @@ const About = () => {
   return (
     <div className="bg-primary w-full overflow-hidden">
       {/* Navbar */}
-      <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-        <div className={`${styles.boxWidth}`}>
-          <Navbar />
-        </div>
-      </div>
+      <Navbar />
 
-      <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
+      <div className={`${styles.paddingX} ${styles.flexStart}`}>
         <div className={`${styles.boxWidth} py-24`}>
 
           {/* Business Overview */}
@@ -82,10 +77,8 @@ const About = () => {
             </p>
           </section>
 
-      
           {/* Testimonials */}
           <Testimonials />
-
 
           {/* Achievements / Statistics */}
           <section className="mb-24 bg-gray-900 rounded-3xl p-12 shadow-lg">

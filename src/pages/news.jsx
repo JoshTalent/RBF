@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Navbar, Footer } from "../components";
-import styles from "../style";
 import { motion } from "framer-motion";
 import { PlayCircle, X } from "lucide-react";
 
@@ -62,7 +61,7 @@ const VideoCard = ({ video, onClick }) => {
 
       <div className="p-6 flex-1 flex flex-col justify-between">
         <div>
-          <h2 className="text-3xl font-extrabold mb-2" style={{ color: "aliceblue" }}>
+          <h2 className="text-3xl font-extrabold mb-2 text-white">
             {video.title}
           </h2>
           <p className="text-gray-400 text-sm mb-4">{video.date}</p>
@@ -80,15 +79,11 @@ const VideoCard = ({ video, onClick }) => {
 
         <div className="flex gap-8 text-center mt-4 md:mt-0">
           <div>
-            <p className="text-xl font-bold" style={{ color: "aliceblue" }}>
-              {video.views}
-            </p>
+            <p className="text-xl font-bold text-white">{video.views}</p>
             <span className="text-gray-400 text-sm">Views</span>
           </div>
           <div>
-            <p className="text-xl font-bold" style={{ color: "aliceblue" }}>
-              {video.likes}
-            </p>
+            <p className="text-xl font-bold text-white">{video.likes}</p>
             <span className="text-gray-400 text-sm">Likes</span>
           </div>
         </div>
@@ -129,19 +124,16 @@ const NewsAndMedia = () => {
   );
 
   return (
-    <div className="bg-primary w-full overflow-hidden">
-      <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-        <div className={`${styles.boxWidth}`}>
-          <Navbar />
-        </div>
-      </div>
+    <div className="bg-primary w-full overflow-hidden min-h-screen">
+      {/* Navbar */}
+      <Navbar />
 
-      <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
-        <div className={`${styles.boxWidth}`}>
-          <section className="bg-black text-white py-20 px-6 md:px-20">
-            {/* Title + Search */}
-            <div className="flex flex-col md:flex-row justify-between items-center mb-12">
-              <h1 className="text-5xl font-extrabold tracking-wide mb-4 md:mb-0" style={{ color: "aliceblue" }}>
+      <div className="bg-primary px-6 md:px-20 flex justify-center">
+        <div className="w-full max-w-6xl py-20">
+          {/* Title + Search */}
+          <section className="bg-black text-white py-10 px-6 md:px-10 rounded-3xl mb-12">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+              <h1 className="text-5xl font-extrabold tracking-wide mb-4 md:mb-0 text-white">
                 News & Media
               </h1>
               <div className="relative w-full md:w-1/3">
@@ -156,16 +148,15 @@ const NewsAndMedia = () => {
             </div>
 
             {/* Video Cards */}
-            <div className="max-w-6xl mx-auto">
-              {filteredVideos.length > 0 ? (
-                filteredVideos.map((video) => (
-                  <VideoCard key={video.id} video={video} onClick={setSelectedVideo} />
-                ))
-              ) : (
-                <p className="text-center text-gray-400 mt-12">No videos found.</p>
-              )}
-            </div>
+            {filteredVideos.length > 0 ? (
+              filteredVideos.map((video) => (
+                <VideoCard key={video.id} video={video} onClick={setSelectedVideo} />
+              ))
+            ) : (
+              <p className="text-center text-gray-400 mt-12">No videos found.</p>
+            )}
           </section>
+
           <Footer />
         </div>
       </div>
