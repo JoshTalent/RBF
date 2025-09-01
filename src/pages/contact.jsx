@@ -15,12 +15,9 @@ const Contact = () => {
   return (
     <div className="bg-primary w-full overflow-hidden min-h-screen">
       {/* Navbar */}
-      <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-        <div className={`${styles.boxWidth}`}>
+   
           <Navbar />
-        </div>
-      </div>
-
+       
       {/* Contact Section */}
       <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
         <div className={`${styles.boxWidth} py-16`}>

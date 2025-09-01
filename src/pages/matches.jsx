@@ -36,8 +36,8 @@ const matchesData = [
 const Matches = () => {
   const [fullscreenVideo, setFullscreenVideo] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
 
-  // Updated download function
   const handleDownload = async (url, title) => {
     try {
       const response = await fetch(url, { mode: "cors" });
@@ -75,17 +75,40 @@ const Matches = () => {
             Watch the latest boxing matches and highlights from the Rwanda Boxing Federation.
           </p>
 
-          {/* Search */}
+          {/* Advanced Search */}
           <div className="flex justify-center mb-12">
-            <div className="relative w-full sm:w-1/2">
-              <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search matches by title..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full p-4 pl-12 rounded-full text-black focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-lg transition placeholder-gray-400"
-              />
+            <div className="relative">
+              {!searchOpen && (
+                <button
+                  onClick={() => setSearchOpen(true)}
+                  className="p-3 bg-gray-800 rounded-full shadow-lg hover:bg-gray-700 transition"
+                >
+                  <FaSearch className="text-gray-400" />
+                </button>
+              )}
+
+              {searchOpen && (
+                <div className="flex items-center bg-gray-800 rounded-full shadow-lg transition-all duration-300 w-64 sm:w-96">
+                  <FaSearch className="ml-4 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search matches by title..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    autoFocus
+                    className="flex-1 bg-transparent px-4 py-3 text-white placeholder-gray-400 focus:outline-none"
+                  />
+                  <button
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSearchOpen(false);
+                    }}
+                    className="p-3"
+                  >
+                    <FaTimes className="text-gray-400 hover:text-red-500 transition" />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 
@@ -97,7 +120,6 @@ const Matches = () => {
                   key={match.id}
                   className="bg-gray-800 rounded-2xl shadow-xl overflow-hidden flex flex-col transition hover:shadow-2xl hover:-translate-y-1"
                 >
-                  {/* Video with fixed height */}
                   <div className="relative w-full h-48 overflow-hidden">
                     <video
                       src={match.video}
@@ -105,7 +127,6 @@ const Matches = () => {
                       controls
                       onClick={() => setFullscreenVideo(match.video)}
                     />
-                    {/* Overlay for fullscreen/download */}
                     <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 flex items-center justify-center gap-4 transition">
                       <button
                         className="bg-black/70 p-2 rounded-full hover:bg-sky-500 transition"
@@ -124,7 +145,6 @@ const Matches = () => {
                     </div>
                   </div>
 
-                  {/* Card content */}
                   <div className="p-5 flex flex-col flex-grow justify-between">
                     <div>
                       <span className="bg-sky-600 text-white px-3 py-1 rounded-full text-xs">
@@ -151,7 +171,6 @@ const Matches = () => {
         </div>
       </main>
 
-      {/* Fullscreen Modal */}
       {fullscreenVideo && (
         <div
           className="fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4 backdrop-blur-sm"

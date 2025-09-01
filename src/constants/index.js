@@ -40,7 +40,7 @@ export const navLinks = [
   },
   {
     id: "excome",
-    title: "Excome team ",
+    title: "Meet us",
   },
 ];
 
@@ -69,7 +69,6 @@ export const features = [
 ];
 
 export const feedback = [
-
   {
     id: "feedback-3",
     content:

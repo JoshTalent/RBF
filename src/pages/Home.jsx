@@ -11,33 +11,32 @@ import {
   Stats,
   Testimonials,
 } from "../components";
+import styles from "../style";
 
 const Home = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-primary text-white">
-      {/* Navbar */}
-      <Navbar />
+    <div className="bg-primary w-full overflow-hidden">
+      <div className="bg-primary w-full overflow-hidden">
+        <Navbar />
 
-      {/* Hero Section */}
-      <main className="flex-grow">
-        <section className="bg-primary">
-          <Hero />
-        </section>
-
-        {/* Stats + Business + Other Sections */}
-        <section className="bg-primary">
-          <Stats />
-          <Business />
-          <Billing />
-          <CardDeal />
-          <Testimonials />
-          <Clients />
-          <CTA />
-        </section>
-      </main>
-
-      {/* Footer */}
-      <Footer />
+        <div className={`bg-primary ${styles.flexStart}`}>
+          <div className={`${styles.boxWidth}`}>
+            <Hero />
+          </div>
+        </div>
+        <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
+          <div className={`${styles.boxWidth}`}>
+            <Stats />
+            <Business />
+            <Billing />
+            <CardDeal />
+            <Testimonials />
+            <Clients />
+            <CTA />
+            <Footer />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
