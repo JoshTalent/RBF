@@ -142,7 +142,7 @@ const Navbar = () => {
                   </button>
                   {dropdown === "portfolio" && (
                     <ul className="ml-4 mt-2 flex flex-col gap-2">
-                      <li><Link to="/Portfolio/" className="text-white hover:text-sky-400 transition" onClick={() => { setDropdown(null); setToggle(false); }}>Boxers Portfolio</Link></li>
+                      <li><Link to="/Portifolio/" className="text-white hover:text-sky-400 transition" onClick={() => { setDropdown(null); setToggle(false); }}>Boxers Portfolio</Link></li>
                       <li><Link to="/news/clubs" className="text-white hover:text-sky-400 transition" onClick={() => { setDropdown(null); setToggle(false); }}>Clubs Portfolio</Link></li>
                     </ul>
                   )}
