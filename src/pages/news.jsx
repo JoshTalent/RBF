@@ -136,7 +136,7 @@ const NewsAndMedia = () => {
               <h1 className="text-5xl font-extrabold tracking-wide mb-4 md:mb-0 text-white">
                 News & Media
               </h1>
-              <div className="relative w-full md:w-1/3">
+              <div className=" w-full md:w-1/3">
                 <input
                   type="text"
                   placeholder="Search videos..."

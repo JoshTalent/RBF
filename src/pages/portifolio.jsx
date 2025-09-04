@@ -80,7 +80,9 @@ const BoxerCard = ({ boxer, index }) => {
       {/* Info */}
       <div className="p-8 flex-1 flex flex-col justify-between">
         <div>
-          <h2 className="text-4xl font-extrabold mb-3 text-white">{boxer.name}</h2>
+          <h2 className="text-4xl font-extrabold mb-3 text-white">
+            {boxer.name}
+          </h2>
           <p className="text-gray-300 text-sm mb-4">{boxer.record}</p>
 
           <p className="text-gray-200 mb-6 leading-relaxed">
@@ -166,15 +168,16 @@ const Portfolio = () => {
             Boxers Portfolio
           </h1>
 
-          <div className="relative w-full md:w-1/3">
+          {/* Professional Search Bar */}
+          <div className="w-full md:w-1/3 flex items-center bg-gray-800 rounded-full shadow-lg overflow-hidden">
             <input
               type="text"
               placeholder="Search boxers..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-5 py-3 rounded-full bg-black/40 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-400 backdrop-blur-sm"
+              className="flex-grow px-4 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-400 transition-all"
             />
-            <Search className="absolute right-4 top-3 text-gray-400" />
+            <Search className="text-gray-400 mx-4 flex-shrink-0" />
           </div>
         </div>
 
@@ -185,7 +188,9 @@ const Portfolio = () => {
               <BoxerCard key={boxer.id} boxer={boxer} index={index} />
             ))
           ) : (
-            <p className="text-center text-gray-400 mt-12 text-lg">No boxers found.</p>
+            <p className="text-center text-gray-400 mt-12 text-lg">
+              No boxers found.
+            </p>
           )}
         </div>
       </div>

@@ -6,6 +6,7 @@ import {
   FaTwitter,
   FaLinkedin,
 } from "react-icons/fa";
+import { people03 } from "../assets";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -15,7 +16,7 @@ const excoMembers = [
     position: "President",
     phone: "+250 788 123 456",
     email: "john@example.com",
-    image: "https://via.placeholder.com/150",
+    image: people03,
     socials: { facebook: "#", twitter: "#", linkedin: "#" },
   },
   {
@@ -23,7 +24,7 @@ const excoMembers = [
     position: "Vice President",
     phone: "+250 788 654 321",
     email: "jane@example.com",
-    image: "https://via.placeholder.com/150",
+    image: people03,
     socials: { facebook: "#", twitter: "#", linkedin: "#" },
   },
   {
@@ -31,7 +32,7 @@ const excoMembers = [
     position: "Secretary General",
     phone: "+250 789 000 111",
     email: "michael@example.com",
-    image: "https://via.placeholder.com/150",
+    image: people03,
     socials: { facebook: "#", twitter: "#", linkedin: "#" },
   },
   {
@@ -39,7 +40,7 @@ const excoMembers = [
     position: "Treasurer",
     phone: "+250 788 654 321",
     email: "ntwari@example.com",
-    image: "https://via.placeholder.com/150",
+    image: people03,
     socials: { facebook: "#", twitter: "#", linkedin: "#" },
   },
   {
@@ -47,7 +48,7 @@ const excoMembers = [
     position: "Secretary",
     phone: "+250 789 000 111",
     email: "olivier@example.com",
-    image: "https://via.placeholder.com/150",
+    image: people03,
     socials: { facebook: "#", twitter: "#", linkedin: "#" },
   },
 ];
@@ -83,7 +84,7 @@ const Excome = () => {
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-32 h-32 rounded-full border-4 border-sky-500 mb-4 object-cover"
+                  className="w-32 h-32 rounded-full border-2 border-sky-500 mb-4 object-cover"
                 />
                 <h3 className="text-xl sm:text-2xl font-semibold text-white">
                   {member.name}

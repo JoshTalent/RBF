@@ -1,15 +1,22 @@
 import React, { useState } from "react";
-import { FaHeart, FaDownload, FaExpand, FaSearch, FaTimes } from "react-icons/fa";
+import {
+  FaHeart,
+  FaDownload,
+  FaExpand,
+  FaSearch,
+  FaTimes,
+} from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-import { robot , bill , abc } from "../assets";
+import { robot, bill, abc } from "../assets";
 
 const postsData = [
   {
     id: 1,
     title: "Boxing Championship Highlights",
-    description: "The final match of the national boxing championship with breathtaking moments.",
+    description:
+      "The final match of the national boxing championship with breathtaking moments.",
     date: "2025-08-28",
     likes: 120,
     image: abc,
@@ -18,7 +25,8 @@ const postsData = [
   {
     id: 2,
     title: "Training Session",
-    description: "Our boxers engage in intensive training to improve their skills.",
+    description:
+      "Our boxers engage in intensive training to improve their skills.",
     date: "2025-08-20",
     likes: 85,
     image: bill,
@@ -27,7 +35,8 @@ const postsData = [
   {
     id: 3,
     title: "Award Ceremony",
-    description: "Celebrating the winners of the boxing season with a grand ceremony.",
+    description:
+      "Celebrating the winners of the boxing season with a grand ceremony.",
     date: "2025-08-15",
     likes: 95,
     image: robot,
@@ -62,19 +71,20 @@ const Posts = () => {
             Latest Posts
           </h1>
           <p className="text-gray-400 text-center mb-10 text-lg sm:text-xl">
-            Stay updated with the latest events, training sessions, and news from the Rwanda Boxing Federation.
+            Stay updated with the latest events, training sessions, and news
+            from the Rwanda Boxing Federation.
           </p>
 
           {/* Search */}
           <div className="flex justify-center mb-12">
-            <div className="relative w-full sm:w-1/2">
-              <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400" />
+            <div className="w-full sm:w-1/2 flex items-center bg-white rounded-full shadow-lg overflow-hidden">
+              <FaSearch className="text-gray-400 mx-4" />
               <input
                 type="text"
                 placeholder="Search posts by title..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full p-4 pl-12 rounded-full text-black focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-lg transition placeholder-gray-400"
+                className="flex-grow p-4 text-black focus:outline-none focus:ring-2 focus:ring-sky-500 transition placeholder-gray-400 rounded-r-full"
               />
             </div>
           </div>
@@ -120,13 +130,18 @@ const Posts = () => {
                       <span className="bg-sky-600 text-white px-3 py-1 rounded-full text-xs">
                         {post.category}
                       </span>
-                      <h2 className="text-xl font-bold text-sky-400 mt-2">{post.title}</h2>
-                      <p className="text-gray-300 text-sm mt-1">{post.description}</p>
+                      <h2 className="text-xl font-bold text-sky-400 mt-2">
+                        {post.title}
+                      </h2>
+                      <p className="text-gray-300 text-sm mt-1">
+                        {post.description}
+                      </p>
                     </div>
                     <div className="flex justify-between items-center mt-4 text-gray-400 text-sm">
                       <span>{post.date}</span>
                       <span className="flex items-center gap-1">
-                        <FaHeart className="text-red-500 animate-pulse" /> {post.likes}
+                        <FaHeart className="text-red-500 animate-pulse" />{" "}
+                        {post.likes}
                       </span>
                     </div>
                   </div>

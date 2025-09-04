@@ -13,7 +13,7 @@ const stats = [
   { id: 5, icon: <Star size={32} />, value: 10, label: "Awards Won" },
 ];
 
-// Timeline
+// Timeline Milestones
 const milestones = [
   { year: 2015, title: "Federation Founded", description: "Rwanda Boxing Federation was officially established to promote boxing nationwide." },
   { year: 2018, title: "First National Championship", description: "Organized first national-level boxing championship with wide participation." },
@@ -21,13 +21,16 @@ const milestones = [
   { year: 2024, title: "International Recognition", description: "Rwandan boxers participated and won medals in international competitions." },
 ];
 
+// Animated Stat Component
 const AnimatedStat = ({ icon, value, label }) => {
   const [count, setCount] = useState(0);
+
   useEffect(() => {
     let start = 0;
     const end = value;
     const duration = 1500;
     const increment = end / (duration / 30);
+
     const counter = setInterval(() => {
       start += increment;
       if (start >= end) {
@@ -36,6 +39,7 @@ const AnimatedStat = ({ icon, value, label }) => {
       }
       setCount(Math.floor(start));
     }, 30);
+
     return () => clearInterval(counter);
   }, [value]);
 
@@ -53,6 +57,7 @@ const AnimatedStat = ({ icon, value, label }) => {
   );
 };
 
+// About Page Component
 const About = () => {
   return (
     <div className="bg-primary w-full overflow-hidden">
@@ -68,13 +73,15 @@ const About = () => {
           {/* Mission & Vision */}
           <section className="mb-24 bg-gradient-to-r from-sky-900 via-gray-900 to-black rounded-3xl p-12 shadow-lg">
             <h2 className="text-4xl font-extrabold text-white mb-6 text-center">Our Mission & Vision</h2>
-            <p className="text-gray-300 text-lg mb-4 text-center">
-              To nurture boxing talent across Rwanda and promote excellence in the sport.
-              We aim to empower youth through discipline, training, and competitive opportunities.
-            </p>
-            <p className="text-gray-300 text-lg text-center">
-              Vision: Become the leading boxing federation in Africa recognized for performance, professionalism, and youth development.
-            </p>
+            <div className="text-center text-gray-300 text-lg space-y-4">
+              <p>
+                To nurture boxing talent across Rwanda and promote excellence in the sport.
+                We aim to empower youth through discipline, training, and competitive opportunities.
+              </p>
+              <p>
+                Vision: Become the leading boxing federation in Africa recognized for performance, professionalism, and youth development.
+              </p>
+            </div>
           </section>
 
           {/* Testimonials */}
@@ -118,7 +125,9 @@ const About = () => {
           {/* Call to Action */}
           <section className="bg-sky-700 rounded-3xl p-12 text-center mb-24 shadow-lg">
             <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6">Join Our Boxing Federation</h2>
-            <p className="text-gray-200 mb-6">Whether you’re an athlete, coach, or supporter, get involved and help us promote boxing in Rwanda!</p>
+            <p className="text-gray-200 mb-6">
+              Whether you’re an athlete, coach, or supporter, get involved and help us promote boxing in Rwanda!
+            </p>
             <button className="px-8 py-3 bg-white text-sky-700 font-bold rounded-full hover:bg-gray-100 transition-all">
               Get Involved
             </button>
@@ -126,6 +135,7 @@ const About = () => {
 
           {/* Footer */}
           <Footer />
+
         </div>
       </div>
     </div>
