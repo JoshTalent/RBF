@@ -10,7 +10,7 @@ const matchesData = [
     description: "Exciting final match of the national boxing championship.",
     date: "2025-08-28",
     likes: 200,
-    video: "https://youtu.be/m8Lepm_X17w?si=Zv5nFFIQickwiAmP",
+    video: "https://www.w3schools.com/html/mov_bbb.mp4",
     category: "Event",
   },
   {
@@ -19,7 +19,7 @@ const matchesData = [
     description: "Intensive training session of the national boxing team.",
     date: "2025-08-20",
     likes: 150,
-    video: "https://youtu.be/m8Lepm_X17w?si=Zv5nFFIQickwiAmP",
+    video: "https://www.w3schools.com/html/mov_bbb.mp4",
     category: "Training",
   },
   {
@@ -28,7 +28,7 @@ const matchesData = [
     description: "Celebrating the winners of the boxing season.",
     date: "2025-08-15",
     likes: 180,
-    video: "https://youtu.be/m8Lepm_X17w?si=Zv5nFFIQickwiAmP",
+    video: "https://www.w3schools.com/html/mov_bbb.mp4",
     category: "Event",
   },
 ];
