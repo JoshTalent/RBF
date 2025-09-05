@@ -19,7 +19,7 @@ import facebook from "./facebook.svg";
 import instagram from "./instagram.svg";
 import linkedin from "./linkedin.svg";
 import twitter from "./twitter.svg";
-import people03 from "./people03.png";
+import people03 from "./people03.jpg";
 import abc from "./abc.png";
 import abcd from "./abcd.png";
 import abcde from "./abcde.png";
