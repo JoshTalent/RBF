@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { close, logo, menu } from "../assets";
+import { close, menu } from "../assets";
 import { navLinks } from "../constants";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const [dropdown, setDropdown] = useState(null); // track which dropdown is open
+  const [dropdown, setDropdown] = useState(null);
 
   const handleDropdown = (menu) => {
     setDropdown(dropdown === menu ? null : menu);
@@ -19,14 +19,13 @@ const Navbar = () => {
       </h1>
 
       {/* Desktop Menu */}
-      <ul className="list-none sm:flex hidden justify-end items-center flex-1 gap-8">
+      <ul className="hidden sm:flex list-none flex-1 justify-end items-center gap-8">
         {navLinks.map((nav) =>
           nav.title === "News & Media" ? (
-            // ✅ News Dropdown
-            <li key={nav.id} className="relative group">
+            <li key={nav.id} className="relative">
               <button
                 onClick={() => handleDropdown("news")}
-                className="font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-sky-400 transition"
+                className="font-poppins text-[16px] text-white hover:text-sky-400 transition"
               >
                 {nav.title} ▾
               </button>
@@ -34,25 +33,41 @@ const Navbar = () => {
                 <div className="absolute top-full mt-2 w-48 bg-black/90 backdrop-blur-lg rounded-lg shadow-lg z-50">
                   <ul className="flex flex-col p-3">
                     <li>
-                      <Link to="/news/posts" className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition" onClick={() => setDropdown(null)}>Posts</Link>
+                      <Link
+                        to="/news/posts"
+                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
+                        onClick={() => setDropdown(null)}
+                      >
+                        Posts
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/news/matches" className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition" onClick={() => setDropdown(null)}>Matches</Link>
+                      <Link
+                        to="/news/matches"
+                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
+                        onClick={() => setDropdown(null)}
+                      >
+                        Matches
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/news/latest" className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition" onClick={() => setDropdown(null)}>News</Link>
+                      <Link
+                        to="/news/latest"
+                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
+                        onClick={() => setDropdown(null)}
+                      >
+                        News
+                      </Link>
                     </li>
-              
                   </ul>
                 </div>
               )}
             </li>
           ) : nav.title === "Portifolio" ? (
-            // ✅ Portfolio Dropdown
-            <li key={nav.id} className="relative group">
+            <li key={nav.id} className="relative">
               <button
                 onClick={() => handleDropdown("portfolio")}
-                className="font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-sky-400 transition"
+                className="font-poppins text-[16px] text-white hover:text-sky-400 transition"
               >
                 {nav.title} ▾
               </button>
@@ -60,21 +75,41 @@ const Navbar = () => {
                 <div className="absolute top-full mt-2 w-56 bg-black/90 backdrop-blur-lg rounded-lg shadow-lg z-50">
                   <ul className="flex flex-col p-3">
                     <li>
-                      <Link to="/Portifolio" className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition" onClick={() => setDropdown(null)}>Boxers Portfolio</Link>
+                      <Link
+                        to="/Portifolio"
+                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
+                        onClick={() => setDropdown(null)}
+                      >
+                        Boxers Portfolio
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/news/clubs" className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition" onClick={() => setDropdown(null)}>Affiliated Clubs</Link>
+                      <Link
+                        to="/news/clubs"
+                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
+                        onClick={() => setDropdown(null)}
+                      >
+                        Affiliated Clubs
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/judges"
+                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
+                        onClick={() => setDropdown(null)}
+                      >
+                        Our judges
+                      </Link>
                     </li>
                   </ul>
                 </div>
               )}
             </li>
           ) : nav.title === "Meet us" ? (
-            // ✅ Meet us Dropdown
-            <li key={nav.id} className="relative group">
+            <li key={nav.id} className="relative">
               <button
                 onClick={() => handleDropdown("meetus")}
-                className="font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-sky-400 transition"
+                className="font-poppins text-[16px] text-white hover:text-sky-400 transition"
               >
                 {nav.title} ▾
               </button>
@@ -82,19 +117,35 @@ const Navbar = () => {
                 <div className="absolute top-full mt-2 w-48 bg-black/90 backdrop-blur-lg rounded-lg shadow-lg z-50">
                   <ul className="flex flex-col p-3">
                     <li>
-                      <Link to="/excome" className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition" onClick={() => setDropdown(null)}>Excom Team</Link>
+                      <Link
+                        to="/excome"
+                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
+                        onClick={() => setDropdown(null)}
+                      >
+                        Excom Team
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/contact" className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition" onClick={() => setDropdown(null)}>Contact</Link>
+                      <Link
+                        to="/contact"
+                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
+                        onClick={() => setDropdown(null)}
+                      >
+                        Contact
+                      </Link>
                     </li>
                   </ul>
                 </div>
               )}
             </li>
           ) : (
-            // Default menu item
-            <li key={nav.id} className="font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-sky-400 transition">
-              <Link to={`/${nav.id}`}>{nav.title}</Link>
+            <li key={nav.id}>
+              <Link
+                to={`/${nav.id}`}
+                className="font-poppins text-[16px] text-white hover:text-sky-400 transition"
+              >
+                {nav.title}
+              </Link>
             </li>
           )
         )}
@@ -109,63 +160,167 @@ const Navbar = () => {
           onClick={() => setToggle((prev) => !prev)}
         />
 
+        {/* Fullscreen Mobile Menu */}
         <div
-          className={`${toggle ? "flex" : "hidden"} p-6 bg-black/95 absolute top-20 right-4 min-w-[220px] rounded-xl sidebar shadow-xl`}
+          className={`${
+            toggle ? "flex" : "hidden"
+          } flex-col justify-start items-center fixed inset-0 bg-black/95 z-50 gap-8 pt-12`}
         >
-          <ul className="list-none flex flex-col justify-end items-start w-full gap-4">
+          {/* Close Icon */}
+          <div className="w-full flex justify-end px-6">
+            <img
+              src={close}
+              alt="close"
+              className="w-8 h-8 object-contain cursor-pointer"
+              onClick={() => setToggle(false)}
+            />
+          </div>
+
+          {/* Menu Items */}
+          <ul className="list-none flex flex-col justify-center items-center w-full gap-6 text-center mt-4">
             {navLinks.map((nav) =>
               nav.title === "News & Media" ? (
-                // ✅ News dropdown mobile
                 <li key={nav.id} className="w-full">
                   <button
                     onClick={() => handleDropdown("news")}
-                    className="w-full text-left font-poppins text-[16px] text-white hover:text-sky-400 transition"
+                    className="w-full text-center font-poppins text-[20px] text-white hover:text-sky-400 transition"
                   >
                     {nav.title} ▾
                   </button>
                   {dropdown === "news" && (
-                    <ul className="ml-4 mt-2 flex flex-col gap-2">
-                      <li><Link to="/news/posts" className="text-white hover:text-sky-400 transition" onClick={() => { setDropdown(null); setToggle(false); }}>Posts</Link></li>
-                      <li><Link to="/news/matches" className="text-white hover:text-sky-400 transition" onClick={() => { setDropdown(null); setToggle(false); }}>Matches</Link></li>
-                      <li><Link to="/news/latest" className="text-white hover:text-sky-400 transition" onClick={() => { setDropdown(null); setToggle(false); }}>News</Link></li>
+                    <ul className="mt-4 flex flex-col gap-4 text-center">
+                      <li>
+                        <Link
+                          to="/news/posts"
+                          className="text-white hover:text-sky-400 transition"
+                          onClick={() => {
+                            setDropdown(null);
+                            setToggle(false);
+                          }}
+                        >
+                          Posts
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/news/matches"
+                          className="text-white hover:text-sky-400 transition"
+                          onClick={() => {
+                            setDropdown(null);
+                            setToggle(false);
+                          }}
+                        >
+                          Matches
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/news/latest"
+                          className="text-white hover:text-sky-400 transition"
+                          onClick={() => {
+                            setDropdown(null);
+                            setToggle(false);
+                          }}
+                        >
+                          News
+                        </Link>
+                      </li>
                     </ul>
                   )}
                 </li>
               ) : nav.title === "Portifolio" ? (
-                // ✅ Portfolio dropdown mobile
                 <li key={nav.id} className="w-full">
                   <button
                     onClick={() => handleDropdown("portfolio")}
-                    className="w-full text-left font-poppins text-[16px] text-white hover:text-sky-400 transition"
+                    className="w-full text-center font-poppins text-[20px] text-white hover:text-sky-400 transition"
                   >
                     {nav.title} ▾
                   </button>
                   {dropdown === "portfolio" && (
-                    <ul className="ml-4 mt-2 flex flex-col gap-2">
-                      <li><Link to="/Portifolio/" className="text-white hover:text-sky-400 transition" onClick={() => { setDropdown(null); setToggle(false); }}>Boxers Portfolio</Link></li>
-                      <li><Link to="/news/clubs" className="text-white hover:text-sky-400 transition" onClick={() => { setDropdown(null); setToggle(false); }}>Clubs Portfolio</Link></li>
+                    <ul className="mt-4 flex flex-col gap-4 text-center">
+                      <li>
+                        <Link
+                          to="/Portifolio/"
+                          className="text-white hover:text-sky-400 transition"
+                          onClick={() => {
+                            setDropdown(null);
+                            setToggle(false);
+                          }}
+                        >
+                          Boxers Portfolio
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/news/clubs"
+                          className="text-white hover:text-sky-400 transition"
+                          onClick={() => {
+                            setDropdown(null);
+                            setToggle(false);
+                          }}
+                        >
+                          Clubs Portfolio
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/judges"
+                          className="text-white hover:text-sky-400 transition"
+                          onClick={() => {
+                            setDropdown(null);
+                            setToggle(false);
+                          }}
+                        >
+                          Our judges
+                        </Link>
+                      </li>
                     </ul>
                   )}
                 </li>
               ) : nav.title === "Meet us" ? (
-                // ✅ Meet us dropdown mobile
                 <li key={nav.id} className="w-full">
                   <button
                     onClick={() => handleDropdown("meetus")}
-                    className="w-full text-left font-poppins text-[16px] text-white hover:text-sky-400 transition"
+                    className="w-full text-center font-poppins text-[20px] text-white hover:text-sky-400 transition"
                   >
                     {nav.title} ▾
                   </button>
                   {dropdown === "meetus" && (
-                    <ul className="ml-4 mt-2 flex flex-col gap-2">
-                      <li><Link to="/excome" className="text-white hover:text-sky-400 transition" onClick={() => { setDropdown(null); setToggle(false); }}>Excom Team</Link></li>
-                      <li><Link to="/contact" className="text-white hover:text-sky-400 transition" onClick={() => { setDropdown(null); setToggle(false); }}>Contact</Link></li>
+                    <ul className="mt-4 flex flex-col gap-4 text-center">
+                      <li>
+                        <Link
+                          to="/excome"
+                          className="text-white hover:text-sky-400 transition"
+                          onClick={() => {
+                            setDropdown(null);
+                            setToggle(false);
+                          }}
+                        >
+                          Excom Team
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/contact"
+                          className="text-white hover:text-sky-400 transition"
+                          onClick={() => {
+                            setDropdown(null);
+                            setToggle(false);
+                          }}
+                        >
+                          Contact
+                        </Link>
+                      </li>
                     </ul>
                   )}
                 </li>
               ) : (
                 <li key={nav.id}>
-                  <Link to={`/${nav.id}`} className="font-poppins font-normal text-[16px] text-white hover:text-sky-400 transition" onClick={() => setToggle(false)}>
+                  <Link
+                    to={`/${nav.id}`}
+                    className="font-poppins text-[20px] text-white hover:text-sky-400 transition"
+                    onClick={() => setToggle(false)}
+                  >
                     {nav.title}
                   </Link>
                 </li>

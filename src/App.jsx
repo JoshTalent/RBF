@@ -11,7 +11,7 @@ import Project from "./pages/project";
 import Clubs from "./pages/clubs";
 import Contact from "./pages/contact"
 import Excome from "./pages/excome";
-
+import Judges from "./pages/judges";
 import Matches from "./pages/matches";
 import Posts from "./pages/posts";
 
@@ -30,6 +30,7 @@ const App = () => {
           <Route path="/news/latest" element={<News />} ></Route>
           <Route path="/news/posts" element={<Posts />} ></Route>
           <Route path="/news/matches" element={<Matches />} ></Route>
+          <Route path="/judges" element={<Judges />} ></Route>
         </Routes>
     </>
   );

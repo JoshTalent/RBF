@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { FaHeart, FaDownload, FaExpand, FaSearch, FaTimes } from "react-icons/fa";
+import { FaHeart, FaDownload, FaExpand, FaTimes } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-import { robot , bill , abc } from "../assets";
+import { robot, bill, abc } from "../assets";
 
 const postsData = [
   {
     id: 1,
     title: "Boxing Championship Highlights",
-    description: "The final match of the national boxing championship with breathtaking moments.",
+    description:
+      "The final match of the national boxing championship with breathtaking moments.",
     date: "2025-08-28",
     likes: 120,
     image: abc,
@@ -58,44 +59,44 @@ const Posts = () => {
 
       <main className="flex-grow py-16 px-6 sm:px-12">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold text-center text-sky-500 mb-4">
-            Latest Posts
-          </h1>
-          <p className="text-gray-400 text-center mb-10 text-lg sm:text-xl">
-            Stay updated with the latest events, training sessions, and news from the Rwanda Boxing Federation.
-          </p>
+          {/* Header */}
+          <div className="mb-12 max-w-4xl">
+            <h1 className="text-4xl sm:text-5xl font-bold text-sky-500 mb-4 text-left">
+              Latest Posts
+            </h1>
+            <p className="text-gray-400 text-lg sm:text-xl mb-6 text-left">
+              Stay updated with the latest events, training sessions, and news
+              from the Rwanda Boxing Federation.
+            </p>
 
-          {/* Search */}
-          <div className="flex justify-center mb-12">
-            <div className="relative w-full sm:w-1/2">
-              <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400" />
+            {/* Search */}
+            <div className="w-full sm:w-1/2">
               <input
                 type="text"
-                placeholder="Search posts by title..."
+                placeholder="Search posts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full p-4 pl-12 rounded-full text-black focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-lg transition placeholder-gray-400"
+                className="w-full px-4 py-3 rounded-full bg-black/40 placeholder-gray-400 text-white focus:outline-none focus:ring-2 focus:ring-sky-400 backdrop-blur-sm shadow-lg transition"
               />
             </div>
           </div>
 
-          {/* Uniform Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Posts Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.length > 0 ? (
               filteredPosts.map((post) => (
                 <div
                   key={post.id}
-                  className="bg-gray-800 rounded-2xl shadow-xl overflow-hidden flex flex-col transition hover:shadow-2xl hover:-translate-y-1"
+                  className="relative bg-gray-900/30 backdrop-blur-lg border border-gray-700 rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_25px_rgb(14,165,233)]"
                 >
-                  {/* Image with fixed height */}
-                  <div className="relative w-full h-48 overflow-hidden">
+                  {/* Image */}
+                  <div className="relative w-full h-48 rounded-t-2xl overflow-hidden border-b-2 border-gray-700">
                     <img
                       src={post.image}
                       alt={post.title}
                       className="w-full h-full object-cover cursor-pointer"
                       onClick={() => setFullscreenImage(post.image)}
                     />
-                    {/* Overlay on hover */}
                     <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 flex items-center justify-center gap-4 transition">
                       <button
                         className="bg-black/70 p-2 rounded-full hover:bg-sky-500 transition"
@@ -114,15 +115,14 @@ const Posts = () => {
                     </div>
                   </div>
 
-                  {/* Card content */}
-                  <div className="p-5 flex flex-col flex-grow justify-between">
-                    <div>
-                      <span className="bg-sky-600 text-white px-3 py-1 rounded-full text-xs">
-                        {post.category}
-                      </span>
-                      <h2 className="text-xl font-bold text-sky-400 mt-2">{post.title}</h2>
-                      <p className="text-gray-300 text-sm mt-1">{post.description}</p>
-                    </div>
+                  {/* Card Content */}
+                  <div className="p-5 flex flex-col gap-3">
+                    <span className="bg-gray-800 text-sky-500 px-3 py-1 rounded-full text-sm font-semibold shadow-md">
+                      {post.category}
+                    </span>
+                    <h2 className="text-xl font-bold text-sky-400">{post.title}</h2>
+                    <p className="text-gray-300 text-sm">{post.description}</p>
+
                     <div className="flex justify-between items-center mt-4 text-gray-400 text-sm">
                       <span>{post.date}</span>
                       <span className="flex items-center gap-1">
@@ -130,10 +130,13 @@ const Posts = () => {
                       </span>
                     </div>
                   </div>
+
+                  {/* Floating Glow */}
+                  <div className="absolute -inset-0.5 rounded-3xl bg-sky-500/20 blur-2xl opacity-20 animate-pulse-slow"></div>
                 </div>
               ))
             ) : (
-              <p className="text-center col-span-full text-gray-400">
+              <p className="text-gray-400 col-span-full text-center">
                 No posts found.
               </p>
             )}
