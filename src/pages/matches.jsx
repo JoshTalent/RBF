@@ -1,7 +1,11 @@
+"use client";
 import React, { useState } from "react";
-import { FaHeart, FaDownload, FaExpand, FaSearch, FaTimes } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { Play, Heart, X, Search, Download, Expand } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+
+const filters = ["All", "Amateur", "Professional"];
 
 const matchesData = [
   {
@@ -10,8 +14,8 @@ const matchesData = [
     description: "Exciting final match of the national boxing championship.",
     date: "2025-08-28",
     likes: 200,
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
-    category: "Event",
+    type: "Professional",
+    src: "https://www.w3schools.com/html/mov_bbb.mp4",
   },
   {
     id: 2,
@@ -19,8 +23,8 @@ const matchesData = [
     description: "Intensive training session of the national boxing team.",
     date: "2025-08-20",
     likes: 150,
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
-    category: "Training",
+    type: "Amateur",
+    src: "https://images.unsplash.com/photo-1602482067705-d6f0a7e796f8?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: 3,
@@ -28,15 +32,25 @@ const matchesData = [
     description: "Celebrating the winners of the boxing season.",
     date: "2025-08-15",
     likes: 180,
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
-    category: "Event",
+    type: "Professional",
+    src: "https://www.w3schools.com/html/mov_bbb.mp4",
   },
 ];
 
 const Matches = () => {
-  const [fullscreenVideo, setFullscreenVideo] = useState(null);
+  const [filter, setFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [selected, setSelected] = useState(null);
+
+  const filteredMatches = matchesData.filter((match) => {
+    const matchesFilter = filter === "All" ? true : match.type === filter;
+    const matchesSearch = match.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    return matchesFilter && matchesSearch;
+  });
+
+  const particles = Array.from({ length: 25 });
 
   const handleDownload = async (url, title) => {
     try {
@@ -50,149 +64,234 @@ const Matches = () => {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-
       window.URL.revokeObjectURL(blobUrl);
     } catch (error) {
       console.error("Download failed", error);
-      alert("Download failed. Try again later or use a different browser.");
+      alert("Download failed. Try again later.");
     }
   };
 
-  const filteredMatches = matchesData.filter((match) =>
-    match.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+    <>
       <Navbar />
 
-      <main className="flex-grow py-16 px-6 sm:px-12">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold text-center text-sky-500 mb-4">
-            Boxing Matches
-          </h1>
-          <p className="text-gray-400 text-center mb-10 text-lg sm:text-xl">
-            Watch the latest boxing matches and highlights from the Rwanda Boxing Federation.
-          </p>
+      <section className="relative py-24 bg-black text-white overflow-hidden">
+        {/* Background Particles */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-90" />
+          {particles.map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full bg-sky-500/20 blur-xl opacity-40"
+              style={{
+                width: `${6 + Math.random() * 18}px`,
+                height: `${6 + Math.random() * 18}px`,
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, 20 + Math.random() * 20, 0],
+                x: [0, 15 + Math.random() * 15, 0],
+                opacity: [0.2, 0.6, 0.2],
+              }}
+              transition={{
+                duration: 10 + Math.random() * 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 4,
+              }}
+            />
+          ))}
+        </div>
 
-          {/* Advanced Search */}
-          <div className="flex justify-center mb-12">
-            <div className="relative">
-              {!searchOpen && (
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          {/* Section Title */}
+          <motion.div
+            className="text-center mb-12"
+            initial={{ y: -20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-extrabold text-sky-400 uppercase">
+              Boxing Matches
+            </h2>
+            <div className="w-24 h-1 bg-sky-500 rounded-full mx-auto mt-2"></div>
+            <p className="text-gray-300 mt-4 max-w-xl mx-auto text-lg">
+              Watch the latest amateur and professional boxing matches.
+            </p>
+          </motion.div>
+
+          {/* Search + Filters */}
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-6 mb-12 bg-white/5 backdrop-blur-xl p-6 rounded-2xl shadow-lg border border-white/10">
+            <div className="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl w-full lg:w-1/3 shadow-inner transition-all duration-300 focus-within:ring-2 focus-within:ring-sky-500">
+              <Search size={20} className="text-gray-300" />
+              <input
+                type="text"
+                placeholder="Search matches..."
+                className="ml-3 bg-transparent outline-none text-white placeholder-gray-400 w-full text-sm"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+
+            <div className="flex flex-wrap justify-center lg:justify-end gap-3 w-full lg:w-auto">
+              {filters.map((f) => (
                 <button
-                  onClick={() => setSearchOpen(true)}
-                  className="p-3 bg-gray-800 rounded-full shadow-lg hover:bg-gray-700 transition"
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  className={`px-6 py-2 font-semibold rounded-full transition-all duration-300 shadow-md ${
+                    filter === f
+                      ? "bg-gradient-to-r from-sky-400 to-blue-500 text-black shadow-lg scale-105"
+                      : "bg-white/10 border border-gray-600 text-gray-200 hover:bg-sky-500/20 hover:text-sky-400 hover:scale-105"
+                  }`}
                 >
-                  <FaSearch className="text-gray-400" />
+                  {f}
                 </button>
-              )}
-
-              {searchOpen && (
-                <div className="flex items-center bg-gray-800 rounded-full shadow-lg transition-all duration-300 w-64 sm:w-96">
-                  <FaSearch className="ml-4 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Search matches by title..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    autoFocus
-                    className="flex-1 bg-transparent px-4 py-3 text-white placeholder-gray-400 focus:outline-none"
-                  />
-                  <button
-                    onClick={() => {
-                      setSearchQuery("");
-                      setSearchOpen(false);
-                    }}
-                    className="p-3"
-                  >
-                    <FaTimes className="text-gray-400 hover:text-red-500 transition" />
-                  </button>
-                </div>
-              )}
+              ))}
             </div>
           </div>
 
           {/* Matches Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredMatches.length > 0 ? (
-              filteredMatches.map((match) => (
-                <div
-                  key={match.id}
-                  className="bg-gray-800 rounded-2xl shadow-xl overflow-hidden flex flex-col transition hover:shadow-2xl hover:-translate-y-1"
+          {filteredMatches.length === 0 ? (
+            <p className="text-center text-gray-400">No matches found.</p>
+          ) : (
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+              <AnimatePresence>
+                {filteredMatches.map((match, idx) => (
+                  <motion.div
+                    key={match.id}
+                    className="relative rounded-3xl shadow-xl overflow-hidden break-inside-avoid border border-gray-800 bg-white/5 backdrop-blur-lg cursor-pointer"
+                    layout
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 50 }}
+                    whileHover={{ scale: 1.05, rotate: idx % 2 === 0 ? 1 : -1 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <div className="relative w-full h-64 bg-black rounded-3xl overflow-hidden group">
+                      {match.type === "image" ? (
+                        <img
+                          src={match.src}
+                          alt={match.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          onClick={() => setSelected(match)}
+                        />
+                      ) : (
+                        <div className="relative w-full h-full">
+                          <video
+                            src={match.src}
+                            muted
+                            loop
+                            className="w-full h-full object-cover"
+                          />
+                          <Play className="absolute inset-0 m-auto w-12 h-12 text-white opacity-70 pointer-events-none" />
+                          {/* Overlay buttons */}
+                          <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition">
+                            <button
+                              className="bg-black/70 p-2 rounded-full hover:bg-sky-500 transition"
+                              onClick={() =>
+                                handleDownload(match.src, match.title)
+                              }
+                              title="Download"
+                            >
+                              <Download className="text-white" />
+                            </button>
+                            <button
+                              className="bg-black/70 p-2 rounded-full hover:bg-sky-500 transition"
+                              onClick={() => setSelected(match)}
+                              title="Fullscreen"
+                            >
+                              <Expand className="text-white" />
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="p-5 flex flex-col flex-grow justify-between">
+                      <div>
+                        <span className="bg-sky-600 text-white px-3 py-1 rounded-full text-xs">
+                          {match.type}
+                        </span>
+                        <h2 className="text-xl font-bold text-sky-400 mt-2">
+                          {match.title}
+                        </h2>
+                        <p className="text-gray-300 text-sm mt-1">
+                          {match.description}
+                        </p>
+                      </div>
+                      <div className="flex justify-between items-center mt-4 text-gray-400 text-sm">
+                        <span>{match.date}</span>
+                        <span className="flex items-center gap-1">
+                          <Heart className="text-red-500" /> {match.likes}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+          )}
+        </div>
+
+        {/* Modal / Lightbox */}
+        <AnimatePresence>
+          {selected && (
+            <motion.div
+              className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelected(null)}
+            >
+              <motion.div
+                className="relative w-full max-w-3xl bg-gray-900 rounded-2xl p-6 shadow-2xl"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.9 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  className="absolute top-4 right-4 text-white text-2xl"
+                  onClick={() => setSelected(null)}
                 >
-                  <div className="relative w-full h-48 overflow-hidden">
-                    <video
-                      src={match.video}
-                      className="w-full h-full object-cover cursor-pointer"
-                      controls
-                      onClick={() => setFullscreenVideo(match.video)}
-                    />
-                    <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 flex items-center justify-center gap-4 transition">
-                      <button
-                        className="bg-black/70 p-2 rounded-full hover:bg-sky-500 transition"
-                        onClick={() => handleDownload(match.video, match.title)}
-                        title="Download"
-                      >
-                        <FaDownload className="text-white" />
-                      </button>
-                      <button
-                        className="bg-black/70 p-2 rounded-full hover:bg-sky-500 transition"
-                        onClick={() => setFullscreenVideo(match.video)}
-                        title="Fullscreen"
-                      >
-                        <FaExpand className="text-white" />
-                      </button>
-                    </div>
-                  </div>
+                  <X />
+                </button>
 
-                  <div className="p-5 flex flex-col flex-grow justify-between">
-                    <div>
-                      <span className="bg-sky-600 text-white px-3 py-1 rounded-full text-xs">
-                        {match.category}
-                      </span>
-                      <h2 className="text-xl font-bold text-sky-400 mt-2">{match.title}</h2>
-                      <p className="text-gray-300 text-sm mt-1">{match.description}</p>
-                    </div>
-                    <div className="flex justify-between items-center mt-4 text-gray-400 text-sm">
-                      <span>{match.date}</span>
-                      <span className="flex items-center gap-1">
-                        <FaHeart className="text-red-500 animate-pulse" /> {match.likes}
-                      </span>
-                    </div>
-                  </div>
+                {selected.type === "image" ? (
+                  <img
+                    src={selected.src}
+                    alt={selected.title}
+                    className="w-full h-auto rounded-xl mb-4"
+                  />
+                ) : (
+                  <video
+                    src={selected.src}
+                    controls
+                    autoPlay
+                    className="w-full h-auto rounded-xl mb-4"
+                  />
+                )}
+
+                <h2 className="text-2xl font-bold text-sky-400 mb-2">
+                  {selected.title}
+                </h2>
+                <p className="text-gray-300 mb-3">{selected.description}</p>
+                <div className="flex justify-between items-center text-gray-400 text-sm">
+                  <span>{selected.date}</span>
+                  <span className="flex items-center gap-1">
+                    <Heart className="text-red-500" /> {selected.likes}
+                  </span>
                 </div>
-              ))
-            ) : (
-              <p className="text-center col-span-full text-gray-400">
-                No matches found.
-              </p>
-            )}
-          </div>
-        </div>
-      </main>
-
-      {fullscreenVideo && (
-        <div
-          className="fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4 backdrop-blur-sm"
-          onClick={() => setFullscreenVideo(null)}
-        >
-          <button
-            className="absolute top-6 right-6 text-white text-3xl p-3 rounded-full hover:bg-gray-800 transition"
-            onClick={() => setFullscreenVideo(null)}
-          >
-            <FaTimes />
-          </button>
-          <video
-            src={fullscreenVideo}
-            controls
-            autoPlay
-            className="max-h-full max-w-full rounded-2xl shadow-2xl"
-          />
-        </div>
-      )}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </section>
 
       <Footer />
-    </div>
+    </>
   );
 };
 

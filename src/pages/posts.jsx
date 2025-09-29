@@ -1,9 +1,19 @@
+"use client";
 import React, { useState } from "react";
-import { FaHeart, FaDownload, FaExpand, FaTimes } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { Play, Heart, X, Search } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { Image, Video, Layers } from "lucide-react";
 
+const filterIcons = {
+  All: <Layers size={16} />,
+  Images: <Image size={16} />,
+  Videos: <Video size={16} />,
+};
 import { robot, bill, abc } from "../assets";
+
+const filters = ["All", "Images", "Videos"];
 
 const postsData = [
   {
@@ -14,158 +24,242 @@ const postsData = [
     date: "2025-08-28",
     likes: 120,
     image: abc,
-    category: "Event",
+    type: "image",
   },
   {
     id: 2,
     title: "Training Session",
-    description: "Our boxers engage in intensive training to improve their skills.",
+    description:
+      "Our boxers engage in intensive training to improve their skills.",
     date: "2025-08-20",
     likes: 85,
     image: bill,
-    category: "Training",
+    type: "video",
+    src: "https://www.w3schools.com/html/mov_bbb.mp4",
   },
   {
     id: 3,
     title: "Award Ceremony",
-    description: "Celebrating the winners of the boxing season with a grand ceremony.",
+    description:
+      "Celebrating the winners of the boxing season with a grand ceremony.",
     date: "2025-08-15",
     likes: 95,
     image: robot,
-    category: "Event",
+    type: "image",
   },
 ];
 
 const Posts = () => {
-  const [fullscreenImage, setFullscreenImage] = useState(null);
+  const [filter, setFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selected, setSelected] = useState(null);
 
-  const handleDownload = (url, title) => {
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = title;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // ✅ Filtering with search
+  const filteredPosts = postsData.filter((post) => {
+    const matchesFilter =
+      filter === "All"
+        ? true
+        : filter === "Images"
+        ? post.type === "image"
+        : post.type === "video";
 
-  const filteredPosts = postsData.filter((post) =>
-    post.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+    const matchesSearch = post.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+
+    return matchesFilter && matchesSearch;
+  });
+
+  const particles = Array.from({ length: 25 });
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+    <>
       <Navbar />
 
-      <main className="flex-grow py-16 px-6 sm:px-12">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="mb-12 max-w-4xl">
-            <h1 className="text-4xl sm:text-5xl font-bold text-sky-500 mb-4 text-left">
-              Latest Posts
-            </h1>
-            <p className="text-gray-400 text-lg sm:text-xl mb-6 text-left">
-              Stay updated with the latest events, training sessions, and news
-              from the Rwanda Boxing Federation.
-            </p>
+      <section className="relative py-24 bg-black text-white overflow-hidden">
+        {/* Background Particles */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-90" />
+          {particles.map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full bg-sky-500/20 blur-xl opacity-40"
+              style={{
+                width: `${6 + Math.random() * 18}px`,
+                height: `${6 + Math.random() * 18}px`,
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, 20 + Math.random() * 20, 0],
+                x: [0, 15 + Math.random() * 15, 0],
+                opacity: [0.2, 0.6, 0.2],
+              }}
+              transition={{
+                duration: 10 + Math.random() * 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 4,
+              }}
+            />
+          ))}
+        </div>
 
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          {/* Section Title */}
+          <motion.div
+            className="text-center mb-12"
+            initial={{ y: -20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-extrabold text-sky-400 uppercase">
+              Latest Posts
+            </h2>
+            <div className="w-24 h-1 bg-sky-500 rounded-full mx-auto mt-2"></div>
+            <p className="text-gray-300 mt-4 max-w-xl mx-auto text-lg">
+              Stay updated with the latest boxing news, events & training
+              highlights.
+            </p>
+          </motion.div>
+
+          {/* Search + Filters */}
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-6 mb-12 bg-white/5 backdrop-blur-xl p-6 rounded-2xl shadow-lg border border-white/10">
             {/* Search */}
-            <div className="w-full sm:w-1/2">
+            <div className="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl w-full lg:w-1/3 shadow-inner transition-all duration-300 focus-within:ring-2 focus-within:ring-sky-500">
+              <Search size={20} className="text-gray-300" />
               <input
                 type="text"
                 placeholder="Search posts..."
+                className="ml-3 bg-transparent outline-none text-white placeholder-gray-400 w-full text-sm"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-3 rounded-full bg-black/40 placeholder-gray-400 text-white focus:outline-none focus:ring-2 focus:ring-sky-400 backdrop-blur-sm shadow-lg transition"
               />
             </div>
-          </div>
 
-          {/* Posts Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.length > 0 ? (
-              filteredPosts.map((post) => (
-                <div
-                  key={post.id}
-                  className="relative bg-gray-900/30 backdrop-blur-lg border border-gray-700 rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_25px_rgb(14,165,233)]"
+            {/* Filter Buttons */}
+            <div className="flex flex-wrap justify-center lg:justify-end gap-3 w-full lg:w-auto">
+              {filters.map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  className={`flex items-center gap-2 px-6 py-2 font-semibold rounded-full transition-all duration-300 shadow-md ${
+                    filter === f
+                      ? "bg-gradient-to-r from-sky-400 to-blue-500 text-black shadow-lg scale-105"
+                      : "bg-white/10 border border-gray-600 text-gray-200 hover:bg-sky-500/20 hover:text-sky-400 hover:scale-105"
+                  }`}
                 >
-                  {/* Image */}
-                  <div className="relative w-full h-48 rounded-t-2xl overflow-hidden border-b-2 border-gray-700">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover cursor-pointer"
-                      onClick={() => setFullscreenImage(post.image)}
-                    />
-                    <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 flex items-center justify-center gap-4 transition">
-                      <button
-                        className="bg-black/70 p-2 rounded-full hover:bg-sky-500 transition"
-                        onClick={() => handleDownload(post.image, post.title)}
-                        title="Download"
-                      >
-                        <FaDownload className="text-white" />
-                      </button>
-                      <button
-                        className="bg-black/70 p-2 rounded-full hover:bg-sky-500 transition"
-                        onClick={() => setFullscreenImage(post.image)}
-                        title="Fullscreen"
-                      >
-                        <FaExpand className="text-white" />
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-5 flex flex-col gap-3">
-                    <span className="bg-gray-800 text-sky-500 px-3 py-1 rounded-full text-sm font-semibold shadow-md">
-                      {post.category}
-                    </span>
-                    <h2 className="text-xl font-bold text-sky-400">{post.title}</h2>
-                    <p className="text-gray-300 text-sm">{post.description}</p>
-
-                    <div className="flex justify-between items-center mt-4 text-gray-400 text-sm">
-                      <span>{post.date}</span>
-                      <span className="flex items-center gap-1">
-                        <FaHeart className="text-red-500 animate-pulse" /> {post.likes}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Floating Glow */}
-                  <div className="absolute -inset-0.5 rounded-3xl bg-sky-500/20 blur-2xl opacity-20 animate-pulse-slow"></div>
-                </div>
-              ))
-            ) : (
-              <p className="text-gray-400 col-span-full text-center">
-                No posts found.
-              </p>
-            )}
+                  {filterIcons[f]} {f}
+                </button>
+              ))}
+            </div>
           </div>
+          {/* Posts Grid */}
+          {filteredPosts.length === 0 ? (
+            <p className="text-center text-gray-400">No posts found.</p>
+          ) : (
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+              <AnimatePresence>
+                {filteredPosts.map((post, idx) => (
+                  <motion.div
+                    key={post.id}
+                    className="relative rounded-3xl shadow-xl overflow-hidden break-inside-avoid border border-gray-800 bg-white/5 backdrop-blur-lg cursor-pointer"
+                    layout
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 50 }}
+                    whileHover={{
+                      scale: 1.05,
+                      rotate: idx % 2 === 0 ? 1 : -1,
+                    }}
+                    transition={{ duration: 0.6 }}
+                    onClick={() => setSelected(post)}
+                  >
+                    <div className="relative w-full h-full bg-black rounded-3xl overflow-hidden">
+                      {post.type === "image" ? (
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        />
+                      ) : (
+                        <div className="relative w-full h-full">
+                          <video
+                            src={post.src}
+                            muted
+                            loop
+                            className="w-full h-full object-cover"
+                          />
+                          <Play className="absolute inset-0 m-auto w-12 h-12 text-white opacity-70 pointer-events-none" />
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+          )}
         </div>
-      </main>
 
-      {/* Fullscreen Modal */}
-      {fullscreenImage && (
-        <div
-          className="fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4 backdrop-blur-sm"
-          onClick={() => setFullscreenImage(null)}
-        >
-          <button
-            className="absolute top-6 right-6 text-white text-3xl p-3 rounded-full hover:bg-gray-800 transition"
-            onClick={() => setFullscreenImage(null)}
-          >
-            <FaTimes />
-          </button>
-          <img
-            src={fullscreenImage}
-            alt="Full Screen"
-            className="max-h-full max-w-full rounded-2xl shadow-2xl"
-          />
-        </div>
-      )}
+        {/* Modal / Lightbox */}
+        <AnimatePresence>
+          {selected && (
+            <motion.div
+              className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelected(null)}
+            >
+              <motion.div
+                className="relative w-full max-w-3xl bg-gray-900 rounded-2xl p-6 shadow-2xl"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.9 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  className="absolute top-4 right-4 text-white text-2xl"
+                  onClick={() => setSelected(null)}
+                >
+                  <X />
+                </button>
 
+                {selected.type === "image" ? (
+                  <img
+                    src={selected.image}
+                    alt={selected.title}
+                    className="w-full h-auto rounded-xl mb-4"
+                  />
+                ) : (
+                  <video
+                    src={selected.src}
+                    controls
+                    autoPlay
+                    className="w-full h-auto rounded-xl mb-4"
+                  />
+                )}
+
+                <h2 className="text-2xl font-bold text-sky-400 mb-2">
+                  {selected.title}
+                </h2>
+                <p className="text-gray-300 mb-3">{selected.description}</p>
+                <div className="flex justify-between items-center text-gray-400 text-sm">
+                  <span>{selected.date}</span>
+                  <span className="flex items-center gap-1">
+                    <Heart className="text-red-500" /> {selected.likes}
+                  </span>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </section>
+
+      {/* ✅ Footer is now outside the section */}
       <Footer />
-    </div>
+    </>
   );
 };
 
