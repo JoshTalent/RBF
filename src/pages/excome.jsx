@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -53,9 +54,23 @@ const excoMembers = [
   },
 ];
 
+// Framer Motion container variants for stagger
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
 const Excome = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-900 to-black">
+    <div className="flex flex-col min-h-screen bg-black text-white">
       <Navbar />
 
       {/* Header Section */}
@@ -71,25 +86,35 @@ const Excome = () => {
 
       {/* Main Content */}
       <main className="flex-grow py-16 px-6 sm:px-12">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <motion.div
+          className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {excoMembers.map((member, index) => (
-            <div
+            <motion.div
               key={index}
-              className="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-3 bg-gray-800/60 backdrop-blur-md"
+              variants={cardVariants}
+              className="relative group overflow-hidden rounded-3xl shadow-2xl bg-gray-900/60 backdrop-blur-lg border border-gray-700 hover:border-sky-500 transition-all duration-500 hover:shadow-[0_0_40px_#1DA1F2] hover:-translate-y-3"
             >
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-10"></div>
+              {/* Neon Glow Overlay */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-sky-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-              <div className="p-6 relative z-20 flex flex-col items-center text-center">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-32 h-32 rounded-full border-4 border-sky-500 mb-4 object-cover"
-                />
-                <h3 className="text-xl sm:text-2xl font-semibold text-white">
+              <div className="relative z-10 p-6 flex flex-col items-center text-center">
+                <div className="relative">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-32 h-32 rounded-full border-4 border-sky-500 mb-4 object-cover shadow-lg transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 rounded-full border-2 border-sky-400 animate-ping opacity-50"></div>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-bold text-white mt-2">
                   {member.name}
                 </h3>
-                <p className="text-sky-400 mb-4">{member.position}</p>
+                <p className="text-sky-400 font-semibold mb-4">{member.position}</p>
 
                 <div className="text-gray-300 text-sm space-y-2">
                   <p className="flex items-center justify-center gap-2">
@@ -101,20 +126,29 @@ const Excome = () => {
                 </div>
 
                 <div className="flex justify-center gap-5 mt-5">
-                  <a href={member.socials.facebook} className="text-white hover:text-sky-400 transition-transform hover:scale-110">
+                  <a
+                    href={member.socials.facebook}
+                    className="text-white hover:text-sky-400 transition-transform hover:scale-125"
+                  >
                     <FaFacebook size={22} />
                   </a>
-                  <a href={member.socials.twitter} className="text-white hover:text-sky-400 transition-transform hover:scale-110">
+                  <a
+                    href={member.socials.twitter}
+                    className="text-white hover:text-sky-400 transition-transform hover:scale-125"
+                  >
                     <FaTwitter size={22} />
                   </a>
-                  <a href={member.socials.linkedin} className="text-white hover:text-sky-400 transition-transform hover:scale-110">
+                  <a
+                    href={member.socials.linkedin}
+                    className="text-white hover:text-sky-400 transition-transform hover:scale-125"
+                  >
                     <FaLinkedin size={22} />
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </main>
 
       <Footer />

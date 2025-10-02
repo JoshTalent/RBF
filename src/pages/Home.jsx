@@ -1,8 +1,8 @@
 import React from "react";
 import {
-  Billing,
+  HomeSection,
   Business,
-  CardDeal,
+  HomeSection2,
   Clients,
   CTA,
   Footer,
@@ -28,8 +28,8 @@ const Home = () => {
           <div className={`${styles.boxWidth}`}>
             <Stats />
             <Business />
-            <Billing />
-            <CardDeal />
+            <HomeSection />
+            <HomeSection2 />
             <Testimonials />
             <Clients />
             <CTA />

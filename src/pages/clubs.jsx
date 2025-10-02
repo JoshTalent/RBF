@@ -1,11 +1,24 @@
+"use client";
 import React, { useState } from "react";
 import { Navbar, Footer } from "../components";
 import styles from "../style";
-import { motion } from "framer-motion";
-import { MapPin, Phone, User, Award, Users, Calendar, Facebook, Instagram, Twitter } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  MapPin,
+  Phone,
+  User,
+  Award,
+  Users,
+  Calendar,
+  Facebook,
+  Instagram,
+  Twitter,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
-// Sample clubs data with images
+// Sample clubs data
 const clubsData = [
   {
     id: 1,
@@ -16,6 +29,8 @@ const clubsData = [
     achievements: "5 National Titles",
     founded: 2005,
     members: 120,
+    description:
+      "Kigali Boxing Club is one of the oldest and most successful boxing clubs in Rwanda, producing champions who represent the country internationally.",
     image:
       "https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=800&q=80",
     socials: { facebook: "#", instagram: "#", twitter: "#" },
@@ -29,6 +44,8 @@ const clubsData = [
     achievements: "3 Youth Programs",
     founded: 2010,
     members: 80,
+    description:
+      "Muhanga Boxing Academy focuses on developing youth talent, offering structured programs to train future champions.",
     image:
       "https://images.unsplash.com/photo-1608889175123-8a947c2f92d3?auto=format&fit=crop&w=800&q=80",
     socials: { facebook: "#", instagram: "#", twitter: "#" },
@@ -42,6 +59,8 @@ const clubsData = [
     achievements: "2 International Participants",
     founded: 2015,
     members: 65,
+    description:
+      "Rubavu Boxing Center promotes boxing along Lake Kivu and has produced boxers competing on international stages.",
     image:
       "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80",
     socials: { facebook: "#", instagram: "#", twitter: "#" },
@@ -51,6 +70,11 @@ const clubsData = [
 const Clubs = () => {
   const [search, setSearch] = useState("");
   const [provinceFilter, setProvinceFilter] = useState("All");
+  const [expandedClub, setExpandedClub] = useState(null);
+
+  const toggleExpand = (id) => {
+    setExpandedClub(expandedClub === id ? null : id);
+  };
 
   const filteredClubs = clubsData.filter((club) => {
     const matchesSearch = club.name.toLowerCase().includes(search.toLowerCase());
@@ -61,21 +85,29 @@ const Clubs = () => {
   });
 
   return (
-    <div className="bg-primary w-full overflow-hidden min-h-screen">
+    <div className="bg-black w-full overflow-hidden min-h-screen">
       {/* Navbar */}
       <Navbar />
 
-      <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
+      <div className={`bg-black ${styles.paddingX} ${styles.flexStart}`}>
         <div className={`${styles.boxWidth} py-20`}>
           {/* Page Header */}
           <section className="text-center mb-12">
-            <h1 className="text-5xl font-extrabold text-white mb-4 tracking-tight">
+            <motion.h1
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-5xl font-extrabold text-white mb-4 tracking-tight"
+            >
               Our Boxing Clubs
-            </h1>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-gray-400 max-w-2xl mx-auto"
+            >
               Discover all registered boxing clubs across Rwanda, their coaches,
               achievements, and how to get in touch.
-            </p>
+            </motion.p>
 
             {/* Search + Filter */}
             <div className="flex flex-col md:flex-row justify-center gap-4 mt-6">
@@ -84,12 +116,12 @@ const Clubs = () => {
                 placeholder="Search clubs by name..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="px-5 py-3 w-full md:w-96 rounded-xl border border-gray-600 bg-gray-900 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                className="px-5 py-3 w-full md:w-96 rounded-xl border border-gray-700 bg-gray-900/80 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500"
               />
               <select
                 value={provinceFilter}
                 onChange={(e) => setProvinceFilter(e.target.value)}
-                className="px-5 py-3 rounded-xl border border-gray-600 bg-gray-900 text-gray-200 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                className="px-5 py-3 rounded-xl border border-gray-700 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-sky-500"
               >
                 <option value="All">All Provinces</option>
                 <option value="Kigali">Kigali</option>
@@ -105,67 +137,107 @@ const Clubs = () => {
               filteredClubs.map((club) => (
                 <motion.div
                   key={club.id}
-                  className="bg-gray-900/70 backdrop-blur-xl rounded-2xl overflow-hidden shadow-lg border border-gray-700 hover:shadow-[0_0_40px_#0ea5e9] transition-all duration-300"
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.05, rotate: -1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="bg-gray-950/80 backdrop-blur-lg rounded-2xl overflow-hidden border border-gray-800 hover:border-sky-500 hover:shadow-[0_0_40px_#0ea5e9] transition-all duration-500"
                 >
                   {/* Club Image */}
-                  <div className="h-56 w-full overflow-hidden">
+                  <div className="relative h-56 overflow-hidden">
                     <img
                       src={club.image}
                       alt={club.name}
-                      className="h-full w-full object-cover hover:scale-110 transition-transform duration-500"
+                      className="h-full w-full object-cover hover:scale-110 transition-transform duration-700"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                   </div>
 
                   {/* Club Info */}
                   <div className="p-6 space-y-3">
-                    <h2 className="text-2xl font-bold text-white">
-                      {club.name}
-                    </h2>
-                    <div className="flex items-center text-gray-300">
+                    <h2 className="text-2xl font-bold text-white">{club.name}</h2>
+                    <div className="flex items-center text-gray-400">
                       <MapPin className="w-5 h-5 text-sky-500 mr-2" />
                       {club.location}
                     </div>
-                    <div className="flex items-center text-gray-300">
+                    <div className="flex items-center text-gray-400">
                       <User className="w-5 h-5 text-sky-500 mr-2" />
                       Coach: {club.coach}
                     </div>
-                    <div className="flex items-center text-gray-300">
+                    <div className="flex items-center text-gray-400">
                       <Phone className="w-5 h-5 text-sky-500 mr-2" />
                       {club.phone}
                     </div>
-                    <div className="flex items-center text-gray-300">
-                      <Award className="w-5 h-5 text-sky-500 mr-2" />
-                      {club.achievements}
-                    </div>
-                    <div className="flex items-center text-gray-300">
-                      <Calendar className="w-5 h-5 text-sky-500 mr-2" />
-                      Founded: {club.founded}
-                    </div>
-                    <div className="flex items-center text-gray-300">
-                      <Users className="w-5 h-5 text-sky-500 mr-2" />
-                      Members: {club.members}
-                    </div>
 
-                    {/* Social Links */}
-                    <div className="flex space-x-4 mt-4">
-                      <a href={club.socials.facebook} className="text-gray-400 hover:text-blue-500">
-                        <Facebook />
-                      </a>
-                      <a href={club.socials.instagram} className="text-gray-400 hover:text-pink-500">
-                        <Instagram />
-                      </a>
-                      <a href={club.socials.twitter} className="text-gray-400 hover:text-sky-400">
-                        <Twitter />
-                      </a>
-                    </div>
+                    {/* Expand Toggle */}
+                    <button
+                      onClick={() => toggleExpand(club.id)}
+                      className="flex items-center gap-2 text-sky-400 mt-4 hover:text-sky-300 transition"
+                    >
+                      {expandedClub === club.id ? (
+                        <>
+                          <ChevronUp className="w-5 h-5" /> Hide Details
+                        </>
+                      ) : (
+                        <>
+                          <ChevronDown className="w-5 h-5" /> View More
+                        </>
+                      )}
+                    </button>
+
+                    {/* Expandable Content */}
+                    <AnimatePresence>
+                      {expandedClub === club.id && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="mt-4 space-y-3 text-gray-400"
+                        >
+                          <div className="flex items-center">
+                            <Award className="w-5 h-5 text-sky-500 mr-2" />
+                            {club.achievements}
+                          </div>
+                          <div className="flex items-center">
+                            <Calendar className="w-5 h-5 text-sky-500 mr-2" />
+                            Founded: {club.founded}
+                          </div>
+                          <div className="flex items-center">
+                            <Users className="w-5 h-5 text-sky-500 mr-2" />
+                            Members: {club.members}
+                          </div>
+                          <p className="text-sm">{club.description}</p>
+
+                          {/* Social Links */}
+                          <div className="flex space-x-4 mt-4">
+                            <motion.a
+                              whileHover={{ scale: 1.2, rotate: 10 }}
+                              href={club.socials.facebook}
+                              className="text-gray-500 hover:text-blue-500"
+                            >
+                              <Facebook />
+                            </motion.a>
+                            <motion.a
+                              whileHover={{ scale: 1.2, rotate: 10 }}
+                              href={club.socials.instagram}
+                              className="text-gray-500 hover:text-pink-500"
+                            >
+                              <Instagram />
+                            </motion.a>
+                            <motion.a
+                              whileHover={{ scale: 1.2, rotate: 10 }}
+                              href={club.socials.twitter}
+                              className="text-gray-500 hover:text-sky-400"
+                            >
+                              <Twitter />
+                            </motion.a>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </motion.div>
               ))
             ) : (
-              <p className="text-gray-400 text-center col-span-3">
+              <p className="text-gray-500 text-center col-span-3">
                 No clubs found.
               </p>
             )}

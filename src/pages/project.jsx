@@ -12,8 +12,7 @@ const projects = [
     type: "Long-term",
     duration: "2025 - 2030",
     progress: 40,
-    description:
-      "Establish a nationwide academy to train young boxing talents in Rwanda, providing modern equipment and expert coaching.",
+    description: "Establish a nationwide academy to train young boxing talents in Rwanda, providing modern equipment and expert coaching.",
     image: abcdef,
     milestones: ["Site Selection", "Recruit Coaches", "Student Recruitment"],
   },
@@ -23,8 +22,7 @@ const projects = [
     type: "Short-term",
     duration: "Monthly",
     progress: 70,
-    description:
-      "Organize monthly tournaments to give young boxers competitive experience and recognition across regions.",
+    description: "Organize monthly tournaments to give young boxers competitive experience and recognition across regions.",
     image: abcdefg,
     milestones: ["Venue Booking", "Match Scheduling", "Award Ceremony"],
   },
@@ -34,8 +32,7 @@ const projects = [
     type: "Short-term",
     duration: "3 Months",
     progress: 90,
-    description:
-      "Upgrade the federation website to include news, events, projects, and interactive media for fans and members.",
+    description: "Upgrade the federation website to include news, events, projects, and interactive media for fans and members.",
     image: abcdefgh,
     milestones: ["Design Mockups", "Develop Features", "Testing & Launch"],
   },
@@ -45,8 +42,7 @@ const projects = [
     type: "Long-term",
     duration: "2025 - 2028",
     progress: 30,
-    description:
-      "Participate in international boxing leagues to elevate the profile of Rwandan boxers and gain global recognition.",
+    description: "Participate in international boxing leagues to elevate the profile of Rwandan boxers and gain global recognition.",
     image: abcdefghi,
     milestones: ["Team Selection", "Training Camps", "League Matches"],
   },
@@ -55,13 +51,13 @@ const projects = [
 // Project Modal Component
 const ProjectModal = ({ project, onClose }) => (
   <motion.div
-    className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
   >
     <motion.div
-      className="bg-gray-900 rounded-3xl max-w-4xl w-full overflow-y-auto max-h-[90vh] shadow-2xl relative"
+      className="bg-gray-900 rounded-3xl max-w-4xl w-full overflow-y-auto max-h-[90vh] shadow-2xl relative border border-sky-500/20"
       initial={{ scale: 0.8 }}
       animate={{ scale: 1 }}
       exit={{ scale: 0.8 }}
@@ -75,35 +71,33 @@ const ProjectModal = ({ project, onClose }) => (
       <img
         src={project.image}
         alt={project.title}
-        className="w-full h-64 object-cover rounded-t-3xl"
+        className="w-full h-64 object-cover rounded-t-3xl border-b border-sky-600/20 shadow-lg"
       />
-      <div className="p-6">
-        <h2 className="text-3xl font-bold text-white mb-2">{project.title}</h2>
-        <p className="text-gray-400 mb-2">{project.duration}</p>
-        <div className="flex items-center gap-2 mb-4">
-          {project.type === "Long-term" ? (
-            <Calendar className="text-sky-600" />
-          ) : (
-            <Clock className="text-sky-600" />
-          )}
-          <span className="text-sky-600 font-semibold">{project.type}</span>
-        </div>
-        <p className="text-gray-300 mb-4">{project.description}</p>
+      <div className="p-6 space-y-4">
+        <h2 className="text-3xl font-extrabold text-white">{project.title}</h2>
+        <p className="text-gray-400 font-semibold">{project.duration}</p>
 
-        <div className="w-full bg-gray-800 rounded-full h-4 mb-4">
+        <div className="flex items-center gap-3 mb-2">
+          {project.type === "Long-term" ? <Calendar className="text-sky-500" /> : <Clock className="text-sky-500" />}
+          <span className="text-sky-500 font-semibold">{project.type}</span>
+        </div>
+
+        <p className="text-gray-300">{project.description}</p>
+
+        <div className="w-full h-4 bg-gray-800 rounded-full overflow-hidden mb-3">
           <div
-            className="bg-sky-600 h-4 rounded-full transition-all duration-500"
+            className="h-4 bg-gradient-to-r from-sky-500 to-blue-600 rounded-full animate-pulse"
             style={{ width: `${project.progress}%` }}
           ></div>
         </div>
-        <p className="text-gray-400 mb-4 flex items-center gap-1">
+        <p className="text-gray-400 font-medium flex items-center gap-2">
           <BarChart2 size={16} /> Progress: {project.progress}%
         </p>
 
-        <h3 className="text-white text-xl font-semibold mb-2">Milestones</h3>
-        <ul className="list-disc list-inside text-gray-300">
+        <h3 className="text-white text-xl font-semibold mt-4 mb-2">Milestones</h3>
+        <ul className="list-disc list-inside text-gray-300 space-y-1">
           {project.milestones.map((m, i) => (
-            <li key={i}>{m}</li>
+            <li key={i} className="hover:text-sky-400 transition-colors">{m}</li>
           ))}
         </ul>
       </div>
@@ -114,7 +108,7 @@ const ProjectModal = ({ project, onClose }) => (
 // Project Card Component
 const ProjectCard = ({ project, onClick }) => (
   <motion.div
-    className="bg-gray-900 rounded-3xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-[0_0_60px_#1DA1F2] transition-all duration-500 relative"
+    className="bg-gray-900 rounded-3xl shadow-2xl overflow-hidden cursor-pointer group hover:shadow-[0_0_60px_#1DA1F2] transition-all duration-500 border border-gray-700 relative"
     onClick={() => onClick(project)}
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -127,22 +121,22 @@ const ProjectCard = ({ project, onClick }) => (
         className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
-        <button className="px-5 py-2 bg-sky-600 text-white rounded-full font-semibold shadow-lg hover:bg-sky-500">
+        <button className="px-6 py-3 bg-sky-600 text-white rounded-full font-semibold shadow-lg hover:bg-sky-500">
           View Details
         </button>
       </div>
-      <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-sky-600 text-white text-sm font-semibold flex items-center gap-2 shadow-lg">
+      <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-gradient-to-r from-sky-500 to-blue-500 text-white text-sm font-semibold flex items-center gap-2 shadow-lg">
         {project.type === "Long-term" ? <Calendar size={16} /> : <Clock size={16} />}
         {project.type}
       </div>
     </div>
-    <div className="p-6">
-      <h2 className="text-2xl font-bold text-white mb-2">{project.title}</h2>
-      <p className="text-gray-400 text-sm mb-3">{project.duration}</p>
-      <p className="text-gray-300 mb-3">{project.description}</p>
-      <div className="w-full bg-gray-800 rounded-full h-3 mb-2">
+    <div className="p-6 space-y-3">
+      <h2 className="text-2xl font-bold text-white">{project.title}</h2>
+      <p className="text-gray-400 text-sm font-medium">{project.duration}</p>
+      <p className="text-gray-300">{project.description}</p>
+      <div className="w-full bg-gray-800 rounded-full h-3 overflow-hidden">
         <div
-          className="bg-sky-600 h-3 rounded-full transition-all duration-500"
+          className="h-3 bg-gradient-to-r from-sky-500 to-blue-500 rounded-full animate-pulse transition-all duration-500"
           style={{ width: `${project.progress}%` }}
         ></div>
       </div>
@@ -161,22 +155,22 @@ const ProjectsPage = () => {
     filter === "All" ? projects : projects.filter((proj) => proj.type === filter);
 
   return (
-    <div className="flex flex-col min-h-screen bg-primary text-white">
+    <div className="flex flex-col min-h-screen bg-black text-white">
       {/* Navbar */}
       <Navbar />
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-sky-900 via-black to-gray-900 py-24 px-6 md:px-12">
+      <div className="bg-black/90 py-24 px-6 md:px-12 text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight">
           Projects
         </h1>
-        <p className="text-gray-300 text-lg md:text-xl">
+        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
           Explore our long-term and short-term projects for the boxing federation.
         </p>
       </div>
 
       {/* Filter + Projects */}
-      <div className="py-16 px-6 md:px-12">
+      <div className="py-16 px-6 md:px-12 max-w-7xl mx-auto">
         {/* Filter Buttons */}
         <div className="flex gap-4 mb-12 justify-center md:justify-start">
           {["All", "Long-term", "Short-term"].map((type) => (
@@ -185,8 +179,8 @@ const ProjectsPage = () => {
               onClick={() => setFilter(type)}
               className={`px-5 py-2 rounded-full font-semibold transition-colors duration-300 ${
                 filter === type
-                  ? "bg-sky-600 text-white shadow-lg"
-                  : "bg-gray-800 text-gray-300 hover:bg-sky-600 hover:text-white"
+                  ? "bg-gradient-to-r from-sky-500 to-blue-500 text-white shadow-lg"
+                  : "bg-gray-800 text-gray-300 hover:bg-gradient-to-r hover:from-sky-500 hover:to-blue-500 hover:text-white"
               }`}
             >
               {type}

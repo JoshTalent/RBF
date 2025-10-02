@@ -296,7 +296,7 @@ const Navbar = () => {
                             setToggle(false);
                           }}
                         >
-                          Excom Team
+                          Excome Team
                         </Link>
                       </li>
                       <li>
