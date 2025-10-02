@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className={`relative flex md:flex-row flex-col ${styles.paddingY} h-screen overflow-hidden`}
+      className={`relative flex md:flex-row flex-col ${styles.paddingY} overflow-hidden`}
     >
       {/* Left Content */}
       <div
