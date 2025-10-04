@@ -122,7 +122,7 @@ const Navbar = () => {
                         className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
                         onClick={() => setDropdown(null)}
                       >
-                        Excom Team
+                        Excome Team
                       </Link>
                     </li>
                     <li>
