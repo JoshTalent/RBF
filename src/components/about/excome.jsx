@@ -7,9 +7,9 @@ import {
   FaTwitter,
   FaLinkedin,
 } from "react-icons/fa";
-import { people03 } from "../assets";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import { people03 } from "../../assets";
+import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 const excoMembers = [
   {

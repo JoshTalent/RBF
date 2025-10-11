@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { Navbar, Footer } from "../components";
-import styles from "../style";
+import { Navbar, Footer } from "../../components";
+import styles from "../../style";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,

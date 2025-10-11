@@ -1,14 +1,82 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { close, menu } from "../assets";
-import { navLinks } from "../constants";
+
+const menuItems = [
+  { title: "Home", to: "/" },
+
+  {
+    title: "About",
+    key: "about",
+    children: [
+      { title: "Who We Are", to: "/about" },
+      { title: "Excom Team", to: "/about/excome" },
+      { title: "Judges Team", to: "/about/Judges" },
+      { title: "Projects", to: "/about/projects" },
+      { title: "History & Hall of Fame", to: "/about/history" },
+      { title: "Transparency & Reports", to: "/about/reports" },
+      { title: "Partners & Sponsors", to: "/about/partners" },
+    ],
+  },
+
+  {
+    title: "Athletes",
+    key: "athletes",
+    children: [
+      { title: "National Team", to: "/athletes/national-team" },
+      { title: "Athlete Profiles", to: "/athletes/profiles" },
+      { title: "National Rankings", to: "/athletes/rankings" },
+    ],
+  },
+
+  {
+    title: "Competitions",
+    key: "competitions",
+    children: [
+      { title: "Upcoming Events & Matches", to: "/competitions/upcoming" },
+      { title: "Results & Standings", to: "/competitions/results" },
+    ],
+  },
+
+  {
+    title: "Get Involved",
+    key: "involved",
+    children: [
+      { title: "Find a Club", to: "/clubs" },
+      { title: "Become a Member", to: "/membership" },
+      { title: "Coach Education", to: "/coach-education" },
+      { title: "Promoter Sanctioning", to: "/promoter" },
+    ],
+  },
+
+  {
+    title: "Media",
+    key: "media",
+    children: [
+      { title: "Gallery", to: "/media/photos" },
+      { title: "Matches", to: "/media/videos" },
+      { title: "Press Kit / Media Resources", to: "/media/press-kit" },
+    ],
+  },
+  {
+    title: "Resources",
+    key: "resources",
+    children: [
+      { title: "Documents & Forms", to: "/resources/documents" },
+      { title: "Rules & Regulations", to: "/resources/rules" },
+      { title: "Anti-Doping", to: "/resources/anti-doping" },
+    ],
+  },
+
+  { title: "Contact", to: "/contact" },
+];
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [dropdown, setDropdown] = useState(null);
 
-  const handleDropdown = (menu) => {
-    setDropdown(dropdown === menu ? null : menu);
+  const handleDropdown = (key) => {
+    setDropdown((prev) => (prev === key ? null : key));
   };
 
   return (
@@ -20,131 +88,42 @@ const Navbar = () => {
 
       {/* Desktop Menu */}
       <ul className="hidden sm:flex list-none flex-1 justify-end items-center gap-8">
-        {navLinks.map((nav) =>
-          nav.title === "News & Media" ? (
-            <li key={nav.id} className="relative">
+        {menuItems.map((item) =>
+          item.children ? (
+            <li key={item.key} className="relative">
               <button
-                onClick={() => handleDropdown("news")}
+                onClick={() => handleDropdown(item.key)}
                 className="font-poppins text-[16px] text-white hover:text-sky-400 transition"
+                aria-expanded={dropdown === item.key}
               >
-                {nav.title} ▾
+                {item.title} ▾
               </button>
-              {dropdown === "news" && (
-                <div className="absolute top-full mt-2 w-48 bg-black/90 backdrop-blur-lg rounded-lg shadow-lg z-50">
+
+              {dropdown === item.key && (
+                <div className="absolute top-full mt-2 w-60 bg-black/90 backdrop-blur-lg rounded-lg shadow-lg z-50">
                   <ul className="flex flex-col p-3">
-                    <li>
-                      <Link
-                        to="/news/posts"
-                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
-                        onClick={() => setDropdown(null)}
-                      >
-                        Posts
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/news/matches"
-                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
-                        onClick={() => setDropdown(null)}
-                      >
-                        Matches
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/news/latest"
-                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
-                        onClick={() => setDropdown(null)}
-                      >
-                        News
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </li>
-          ) : nav.title === "Portifolio" ? (
-            <li key={nav.id} className="relative">
-              <button
-                onClick={() => handleDropdown("portfolio")}
-                className="font-poppins text-[16px] text-white hover:text-sky-400 transition"
-              >
-                {nav.title} ▾
-              </button>
-              {dropdown === "portfolio" && (
-                <div className="absolute top-full mt-2 w-56 bg-black/90 backdrop-blur-lg rounded-lg shadow-lg z-50">
-                  <ul className="flex flex-col p-3">
-                    <li>
-                      <Link
-                        to="/Portifolio"
-                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
-                        onClick={() => setDropdown(null)}
-                      >
-                        Boxers Portfolio
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/news/clubs"
-                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
-                        onClick={() => setDropdown(null)}
-                      >
-                        Affiliated Clubs
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/judges"
-                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
-                        onClick={() => setDropdown(null)}
-                      >
-                        Our judges
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </li>
-          ) : nav.title === "Meet us" ? (
-            <li key={nav.id} className="relative">
-              <button
-                onClick={() => handleDropdown("meetus")}
-                className="font-poppins text-[16px] text-white hover:text-sky-400 transition"
-              >
-                {nav.title} ▾
-              </button>
-              {dropdown === "meetus" && (
-                <div className="absolute top-full mt-2 w-48 bg-black/90 backdrop-blur-lg rounded-lg shadow-lg z-50">
-                  <ul className="flex flex-col p-3">
-                    <li>
-                      <Link
-                        to="/excome"
-                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
-                        onClick={() => setDropdown(null)}
-                      >
-                        Excome Team
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/contact"
-                        className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
-                        onClick={() => setDropdown(null)}
-                      >
-                        Contact
-                      </Link>
-                    </li>
+                    {item.children.map((c) => (
+                      <li key={c.to}>
+                        <Link
+                          to={c.to}
+                          className="block px-4 py-2 text-white hover:bg-sky-500/30 rounded-md transition"
+                          onClick={() => setDropdown(null)}
+                        >
+                          {c.title}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               )}
             </li>
           ) : (
-            <li key={nav.id}>
+            <li key={item.title}>
               <Link
-                to={`/${nav.id}`}
+                to={item.to}
                 className="font-poppins text-[16px] text-white hover:text-sky-400 transition"
               >
-                {nav.title}
+                {item.title}
               </Link>
             </li>
           )
@@ -157,14 +136,18 @@ const Navbar = () => {
           src={toggle ? close : menu}
           alt="menu"
           className="w-[28px] h-[28px] object-contain cursor-pointer"
-          onClick={() => setToggle((prev) => !prev)}
+          onClick={() => {
+            setToggle((prev) => !prev);
+            // close any open dropdown when closing mobile menu
+            if (toggle) setDropdown(null);
+          }}
         />
 
         {/* Fullscreen Mobile Menu */}
         <div
           className={`${
             toggle ? "flex" : "hidden"
-          } flex-col justify-start items-center fixed inset-0 bg-black/95 z-50 gap-8 pt-12`}
+          } flex-col justify-start items-center fixed inset-0 bg-black/95 z-50 gap-8 pt-12 overflow-y-auto`}
         >
           {/* Close Icon */}
           <div className="w-full flex justify-end px-6">
@@ -172,156 +155,59 @@ const Navbar = () => {
               src={close}
               alt="close"
               className="w-8 h-8 object-contain cursor-pointer"
-              onClick={() => setToggle(false)}
+              onClick={() => {
+                setToggle(false);
+                setDropdown(null);
+              }}
             />
           </div>
 
           {/* Menu Items */}
-          <ul className="list-none flex flex-col justify-center items-center w-full gap-6 text-center mt-4">
-            {navLinks.map((nav) =>
-              nav.title === "News & Media" ? (
-                <li key={nav.id} className="w-full">
+          <ul className="list-none flex flex-col justify-center items-center w-full gap-6 text-center mt-4 px-6">
+            {menuItems.map((item) =>
+              item.children ? (
+                <li key={item.key} className="w-full">
                   <button
-                    onClick={() => handleDropdown("news")}
-                    className="w-full text-center font-poppins text-[20px] text-white hover:text-sky-400 transition"
+                    onClick={() => handleDropdown(item.key)}
+                    className="w-full text-left font-poppins text-[20px] text-white hover:text-sky-400 transition flex justify-between items-center px-2 py-2"
+                    aria-expanded={dropdown === item.key}
                   >
-                    {nav.title} ▾
+                    <span className="ml-2">{item.title}</span>
+                    <span className="mr-2">
+                      {dropdown === item.key ? "▴" : "▾"}
+                    </span>
                   </button>
-                  {dropdown === "news" && (
-                    <ul className="mt-4 flex flex-col gap-4 text-center">
-                      <li>
-                        <Link
-                          to="/news/posts"
-                          className="text-white hover:text-sky-400 transition"
-                          onClick={() => {
-                            setDropdown(null);
-                            setToggle(false);
-                          }}
-                        >
-                          Posts
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/news/matches"
-                          className="text-white hover:text-sky-400 transition"
-                          onClick={() => {
-                            setDropdown(null);
-                            setToggle(false);
-                          }}
-                        >
-                          Matches
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/news/latest"
-                          className="text-white hover:text-sky-400 transition"
-                          onClick={() => {
-                            setDropdown(null);
-                            setToggle(false);
-                          }}
-                        >
-                          News
-                        </Link>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-              ) : nav.title === "Portifolio" ? (
-                <li key={nav.id} className="w-full">
-                  <button
-                    onClick={() => handleDropdown("portfolio")}
-                    className="w-full text-center font-poppins text-[20px] text-white hover:text-sky-400 transition"
-                  >
-                    {nav.title} ▾
-                  </button>
-                  {dropdown === "portfolio" && (
-                    <ul className="mt-4 flex flex-col gap-4 text-center">
-                      <li>
-                        <Link
-                          to="/Portifolio/"
-                          className="text-white hover:text-sky-400 transition"
-                          onClick={() => {
-                            setDropdown(null);
-                            setToggle(false);
-                          }}
-                        >
-                          Boxers Portfolio
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/news/clubs"
-                          className="text-white hover:text-sky-400 transition"
-                          onClick={() => {
-                            setDropdown(null);
-                            setToggle(false);
-                          }}
-                        >
-                          Clubs Portfolio
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/judges"
-                          className="text-white hover:text-sky-400 transition"
-                          onClick={() => {
-                            setDropdown(null);
-                            setToggle(false);
-                          }}
-                        >
-                          Our judges
-                        </Link>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-              ) : nav.title === "Meet us" ? (
-                <li key={nav.id} className="w-full">
-                  <button
-                    onClick={() => handleDropdown("meetus")}
-                    className="w-full text-center font-poppins text-[20px] text-white hover:text-sky-400 transition"
-                  >
-                    {nav.title} ▾
-                  </button>
-                  {dropdown === "meetus" && (
-                    <ul className="mt-4 flex flex-col gap-4 text-center">
-                      <li>
-                        <Link
-                          to="/excome"
-                          className="text-white hover:text-sky-400 transition"
-                          onClick={() => {
-                            setDropdown(null);
-                            setToggle(false);
-                          }}
-                        >
-                          Excome Team
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/contact"
-                          className="text-white hover:text-sky-400 transition"
-                          onClick={() => {
-                            setDropdown(null);
-                            setToggle(false);
-                          }}
-                        >
-                          Contact
-                        </Link>
-                      </li>
+
+                  {dropdown === item.key && (
+                    <ul className="mt-2 flex flex-col gap-3 text-center px-4 pb-4">
+                      {item.children.map((c) => (
+                        <li key={c.to} className="w-full">
+                          <Link
+                            to={c.to}
+                            className="block w-full text-white font-medium text-[18px] py-2 hover:text-sky-400 transition"
+                            onClick={() => {
+                              setDropdown(null);
+                              setToggle(false); // close mobile overlay after navigation
+                            }}
+                          >
+                            {c.title}
+                          </Link>
+                        </li>
+                      ))}
                     </ul>
                   )}
                 </li>
               ) : (
-                <li key={nav.id}>
+                <li key={item.title} className="w-full">
                   <Link
-                    to={`/${nav.id}`}
-                    className="font-poppins text-[20px] text-white hover:text-sky-400 transition"
-                    onClick={() => setToggle(false)}
+                    to={item.to}
+                    className="block w-full text-white font-poppins text-[20px] text-center py-2 hover:text-sky-400 transition"
+                    onClick={() => {
+                      setToggle(false);
+                      setDropdown(null);
+                    }}
                   >
-                    {nav.title}
+                    {item.title}
                   </Link>
                 </li>
               )

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Navbar, Footer } from "../components";
+import { Navbar, Footer } from "../../components";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import { Mail, Phone } from "lucide-react";
-import { robot, bill, abc } from "../assets";
+import {abc } from "../../assets";
 
 const boxers = [
   {
@@ -138,7 +138,7 @@ const BoxerCard = ({ boxer, index }) => {
   );
 };
 
-const Portfolio = () => {
+const Others = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const filteredBoxers = boxers.filter((boxer) =>
     boxer.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -153,7 +153,7 @@ const Portfolio = () => {
       <div className="py-20 px-6 md:px-12 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center mb-16">
           <h1 className="text-5xl md:text-6xl font-extrabold tracking-wide mb-6 md:mb-0 drop-shadow-lg">
-            Boxers Portfolio
+            Boxers Profiles
           </h1>
           <div className="relative w-full md:w-1/3">
             <input
@@ -182,4 +182,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default Others;

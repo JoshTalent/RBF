@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Navbar, Footer } from "../components";
+import { Navbar, Footer } from "..";
 import { motion } from "framer-motion";
 import { Calendar, Clock, BarChart2, X } from "lucide-react";
-import { abcdef, abcdefg, abcdefgh, abcdefghi } from "../assets";
+import { abcdef, abcdefg, abcdefgh, abcdefghi } from "../../assets";
 
 // Sample Projects Data
 const projects = [
@@ -12,7 +12,8 @@ const projects = [
     type: "Long-term",
     duration: "2025 - 2030",
     progress: 40,
-    description: "Establish a nationwide academy to train young boxing talents in Rwanda, providing modern equipment and expert coaching.",
+    description:
+      "Establish a nationwide academy to train young boxing talents in Rwanda, providing modern equipment and expert coaching.",
     image: abcdef,
     milestones: ["Site Selection", "Recruit Coaches", "Student Recruitment"],
   },
@@ -22,7 +23,8 @@ const projects = [
     type: "Short-term",
     duration: "Monthly",
     progress: 70,
-    description: "Organize monthly tournaments to give young boxers competitive experience and recognition across regions.",
+    description:
+      "Organize monthly tournaments to give young boxers competitive experience and recognition across regions.",
     image: abcdefg,
     milestones: ["Venue Booking", "Match Scheduling", "Award Ceremony"],
   },
@@ -32,7 +34,8 @@ const projects = [
     type: "Short-term",
     duration: "3 Months",
     progress: 90,
-    description: "Upgrade the federation website to include news, events, projects, and interactive media for fans and members.",
+    description:
+      "Upgrade the federation website to include news, events, projects, and interactive media for fans and members.",
     image: abcdefgh,
     milestones: ["Design Mockups", "Develop Features", "Testing & Launch"],
   },
@@ -42,7 +45,8 @@ const projects = [
     type: "Long-term",
     duration: "2025 - 2028",
     progress: 30,
-    description: "Participate in international boxing leagues to elevate the profile of Rwandan boxers and gain global recognition.",
+    description:
+      "Participate in international boxing leagues to elevate the profile of Rwandan boxers and gain global recognition.",
     image: abcdefghi,
     milestones: ["Team Selection", "Training Camps", "League Matches"],
   },
@@ -78,7 +82,11 @@ const ProjectModal = ({ project, onClose }) => (
         <p className="text-gray-400 font-semibold">{project.duration}</p>
 
         <div className="flex items-center gap-3 mb-2">
-          {project.type === "Long-term" ? <Calendar className="text-sky-500" /> : <Clock className="text-sky-500" />}
+          {project.type === "Long-term" ? (
+            <Calendar className="text-sky-500" />
+          ) : (
+            <Clock className="text-sky-500" />
+          )}
           <span className="text-sky-500 font-semibold">{project.type}</span>
         </div>
 
@@ -94,10 +102,14 @@ const ProjectModal = ({ project, onClose }) => (
           <BarChart2 size={16} /> Progress: {project.progress}%
         </p>
 
-        <h3 className="text-white text-xl font-semibold mt-4 mb-2">Milestones</h3>
+        <h3 className="text-white text-xl font-semibold mt-4 mb-2">
+          Milestones
+        </h3>
         <ul className="list-disc list-inside text-gray-300 space-y-1">
           {project.milestones.map((m, i) => (
-            <li key={i} className="hover:text-sky-400 transition-colors">{m}</li>
+            <li key={i} className="hover:text-sky-400 transition-colors">
+              {m}
+            </li>
           ))}
         </ul>
       </div>
@@ -126,7 +138,11 @@ const ProjectCard = ({ project, onClick }) => (
         </button>
       </div>
       <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-gradient-to-r from-sky-500 to-blue-500 text-white text-sm font-semibold flex items-center gap-2 shadow-lg">
-        {project.type === "Long-term" ? <Calendar size={16} /> : <Clock size={16} />}
+        {project.type === "Long-term" ? (
+          <Calendar size={16} />
+        ) : (
+          <Clock size={16} />
+        )}
         {project.type}
       </div>
     </div>
@@ -152,7 +168,9 @@ const ProjectsPage = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const filteredProjects =
-    filter === "All" ? projects : projects.filter((proj) => proj.type === filter);
+    filter === "All"
+      ? projects
+      : projects.filter((proj) => proj.type === filter);
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
@@ -165,7 +183,8 @@ const ProjectsPage = () => {
           Projects
         </h1>
         <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
-          Explore our long-term and short-term projects for the boxing federation.
+          Explore our long-term and short-term projects for the boxing
+          federation.
         </p>
       </div>
 
@@ -192,10 +211,16 @@ const ProjectsPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((proj) => (
-              <ProjectCard key={proj.id} project={proj} onClick={setSelectedProject} />
+              <ProjectCard
+                key={proj.id}
+                project={proj}
+                onClick={setSelectedProject}
+              />
             ))
           ) : (
-            <p className="text-gray-400 text-center text-lg">No projects found.</p>
+            <p className="text-gray-400 text-center text-lg">
+              No projects found.
+            </p>
           )}
         </div>
       </div>
@@ -205,7 +230,10 @@ const ProjectsPage = () => {
 
       {/* Project Modal */}
       {selectedProject && (
-        <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
       )}
     </div>
   );

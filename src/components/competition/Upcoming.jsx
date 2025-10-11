@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navbar, Footer } from "../components";
+import { Navbar, Footer } from "../../components";
 import { motion } from "framer-motion";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
@@ -29,7 +29,7 @@ const EventCard = ({ event }) => (
   </motion.div>
 );
 
-const EventsCalendar = () => {
+const Upcoming = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -133,4 +133,4 @@ const EventsCalendar = () => {
   );
 };
 
-export default EventsCalendar;
+export default Upcoming;

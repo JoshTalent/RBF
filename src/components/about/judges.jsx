@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Navbar, Footer } from "../components";
+import { Navbar, Footer } from "../../components";
 import { Mail, Phone, SearchX } from "lucide-react";
 
 // Sample Judges Data

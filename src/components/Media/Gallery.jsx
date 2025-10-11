@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Heart, X, Search } from "lucide-react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../Navbar";
+import Footer from "../Footer";
 import { Image, Video, Layers } from "lucide-react";
 
 const filterIcons = {
@@ -11,7 +11,7 @@ const filterIcons = {
   Images: <Image size={16} />,
   Videos: <Video size={16} />,
 };
-import { robot, bill, abc } from "../assets";
+import { robot, bill, abc } from "../../assets";
 
 const filters = ["All", "Images", "Videos"];
 
@@ -49,7 +49,7 @@ const postsData = [
   },
 ];
 
-const Posts = () => {
+const Gallery = () => {
   const [filter, setFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [selected, setSelected] = useState(null);
@@ -263,4 +263,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default Gallery;

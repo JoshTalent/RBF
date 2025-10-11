@@ -13,37 +13,6 @@ import {
   star,
 } from "../assets";
 
-export const navLinks = [
-  {
-    id: "",
-    title: "Home",
-  },
-  {
-    id: "about",
-    title: "About",
-  },
-  {
-    id: "news",
-    title: "News & Media",
-  },
-  {
-    id: "Portifolio",
-    title: "Portifolio",
-  },
-  {
-    id: "events",
-    title: "Events & Calender",
-  },
-  {
-    id: "Projects",
-    title: "Projects",
-  },
-  {
-    id: "excome",
-    title: "Meet us",
-  },
-];
-
 export const features = [
   {
     id: "feature-1",
