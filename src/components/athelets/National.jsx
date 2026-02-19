@@ -24,8 +24,8 @@ import { abc } from "../../assets";
 const boxers = [
   {
     id: 1,
-    name: "John 'The Lion' Gatera",
-    image: "https://i.imgur.com/wYOjC8z.jpeg",
+    name: "Valentin NTABANGANYIMANA",
+    image: "https://i.postimg.cc/RFV2npxF/valentin2.jpg",
     record: "20W - 2L - 1D",
     wins: 20,
     kos: 15,
@@ -59,8 +59,8 @@ const boxers = [
   },
   {
     id: 2,
-    name: "Michael 'The Rock' Smith",
-    image: "https://i.postimg.cc/857zgCw7/kanyarwanda-7.jpg",
+    name: "Frank KALISA",
+    image: "https://i.postimg.cc/3wZPN5V3/frank.jpg",
     record: "15W - 3L - 0D",
     wins: 15,
     kos: 9,

@@ -18,15 +18,12 @@ import {
   Clock,
   User,
   Bookmark,
-  ChevronLeft,
-  ChevronRight,
   Grid3X3,
   List,
   Star // Fixed: Added Star import
 } from "lucide-react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import { robot, bill, abc } from "../../assets";
 
 const filterIcons = {
   All: <Layers size={18} />,
@@ -40,93 +37,99 @@ const postsData = [
   {
     id: 1,
     title: "National Boxing Championship 2025 Finals",
-    description: "The electrifying final match of the national boxing championship featuring Rwanda's top contenders in an unforgettable display of skill and determination.",
+    description:
+      "The electrifying final match of the national boxing championship featuring Rwanda's top contenders in an unforgettable display of skill and determination.",
     date: "2025-08-28",
     likes: 245,
     views: 1250,
-    image: abc,
+    image: "https://i.postimg.cc/268gB9Nn/valentin3.jpg",
     type: "image",
     category: "Championship",
     tags: ["Finals", "National", "Championship", "Elite"],
     photographer: "James Photography",
     location: "Kigali Arena",
-    featured: true
+    featured: true,
   },
   {
     id: 2,
     title: "Elite Training Camp Highlights",
-    description: "Behind the scenes of our intensive training camp where national team boxers prepare for international competitions with world-class coaching.",
+    description:
+      "Behind the scenes of our intensive training camp where national team boxers prepare for international competitions with world-class coaching.",
     date: "2025-08-20",
     likes: 187,
     views: 890,
-    image: bill,
+    image: "https://i.postimg.cc/CK4W5TX5/frank2.jpg",
     type: "video",
     src: "https://www.w3schools.com/html/mov_bbb.mp4",
     category: "Training",
     tags: ["Training", "Technique", "Fitness", "Coaching"],
     duration: "2:45",
-    featured: false
+    featured: false,
   },
   {
     id: 3,
     title: "Champions Award Ceremony Gala",
-    description: "Celebrating the outstanding achievements of our boxing champions in a grand ceremony attended by sports dignitaries and fans.",
+    description:
+      "Celebrating the outstanding achievements of our boxing champions in a grand ceremony attended by sports dignitaries and fans.",
     date: "2025-08-15",
     likes: 312,
     views: 2100,
-    image: robot,
+    image: "https://i.postimg.cc/vBHC62wH/valentin.jpg",
     type: "image",
     category: "Ceremony",
     tags: ["Awards", "Celebration", "Champions", "Gala"],
     photographer: "Sarah Visuals",
     location: "Kigali Convention Center",
-    featured: true
+    featured: true,
   },
   {
     id: 4,
     title: "Youth Development Program Session",
-    description: "Young aspiring boxers learning fundamental skills in our youth development program, shaping the future of Rwandan boxing.",
+    description:
+      "Young aspiring boxers learning fundamental skills in our youth development program, shaping the future of Rwandan boxing.",
     date: "2025-08-10",
     likes: 134,
     views: 670,
-    image: abc,
+    image: "https://i.postimg.cc/RFV2npxf/valentin4.jpg",
     type: "image",
     category: "Youth",
     tags: ["Youth", "Development", "Future", "Training"],
     photographer: "Mike Studios",
     location: "Rubavu Sports Complex",
-    featured: false
+    featured: false,
   },
   {
     id: 5,
     title: "International Sparring Session",
-    description: "Rwandan boxers sparring with international partners, showcasing technical exchange and cultural collaboration in sports.",
+    description:
+      "Rwandan boxers sparring with international partners, showcasing technical exchange and cultural collaboration in sports.",
     date: "2025-08-05",
     likes: 198,
     views: 1100,
-    image: bill,
+    image: "https://i.postimg.cc/RFV2npxf/valentin.jpg",
     type: "video",
     src: "https://www.w3schools.com/html/mov_bbb.mp4",
     category: "International",
     tags: ["International", "Sparring", "Technique", "Partnership"],
     duration: "4:20",
-    featured: true
+    featured: true,
   },
   {
     id: 6,
     title: "Women's Boxing Championship",
-    description: "Empowering women in sports through competitive boxing. Showcasing talent and determination in the women's championship series.",
+    description:
+      "Empowering women in sports through competitive boxing. Showcasing talent and determination in the women's championship series.",
     date: "2025-07-28",
     likes: 276,
     views: 1580,
-    image: robot,
+    image:"https://i.postimg.cc/7h5cKC6w/Heros3.jpg",
     type: "image",
     category: "Women",
     tags: ["Women", "Empowerment", "Championship", "Sports"],
     photographer: "Grace Photography",
     location: "Amahoro Stadium",
-    featured: true
-  }
+    featured: true,
+  },
 ];
 
 const categories = ["All", "Championship", "Training", "Ceremony", "Youth", "International", "Women"];

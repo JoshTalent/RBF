@@ -128,7 +128,7 @@ const Contact = () => {
       <Navbar />
 
       <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
-        <div className={`${styles.boxWidth} py-16`}>
+        <div className={`${styles.boxWidth} py-16 p12 lg:p-52`}>
           {/* Enhanced Header */}
           <motion.div
             className="text-center mb-16"

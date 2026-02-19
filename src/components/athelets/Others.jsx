@@ -39,8 +39,9 @@ const boxers = [
     id: 1,
     name: "John 'The Lion' Gatera",
     nickname: "The Lion",
-    image: "https://i.imgur.com/wYOjC8z.jpeg",
-    video: "https://assets.mixkit.co/videos/preview/mixkit-boxer-training-with-punching-bag-123-large.mp4",
+    image: "https://i.postimg.cc/RFV2npxf/valentin4.jpg",
+    video:
+      "https://assets.mixkit.co/videos/preview/mixkit-boxer-training-with-punching-bag-123-large.mp4",
     record: "20-2-1",
     wins: 20,
     kos: 15,
@@ -52,16 +53,16 @@ const boxers = [
     flag: "🇷🇼",
     age: 28,
     height: "5'9\"",
-    reach: "72\"",
+    reach: '72"',
     stance: "Orthodox",
     yearsPro: 6,
     trainingGym: "Kigali Elite Boxing",
     bio: "Lightweight boxer known for speed and powerful knockouts. Current world champion with exceptional technical skills and devastating punching power.",
-    manager: { 
-      name: "Alex Mwangi", 
-      email: "alex.mwangi@example.com", 
+    manager: {
+      name: "Alex Mwangi",
+      email: "alex.mwangi@example.com",
       phone: "+250 788 123 456",
-      experience: "15 years"
+      experience: "15 years",
     },
     stats: {
       power: 92,
@@ -69,31 +70,32 @@ const boxers = [
       defense: 85,
       stamina: 87,
       technique: 90,
-      agility: 86
+      agility: 86,
     },
     achievements: [
       "World Boxing Champion 2023",
       "African Boxing Union Title",
       "Golden Gloves Award",
       "KO of the Year 2022",
-      "Undefeated in last 12 fights"
+      "Undefeated in last 12 fights",
     ],
     nextFight: "2024-03-15",
     opponent: "Carlos Martinez",
     social: {
       instagram: "@john_the_lion",
       twitter: "@john_gatera",
-      youtube: "John Gatera Official"
+      youtube: "John Gatera Official",
     },
     fightStyle: "Aggressive pressure fighter",
-    signatureMove: "Left hook to body"
+    signatureMove: "Left hook to body",
   },
   {
     id: 2,
     name: "Michael 'The Rock' Smith",
     nickname: "The Rock",
-    image: "https://i.postimg.cc/857zgCw7/kanyarwanda-7.jpg",
-    video: "https://assets.mixkit.co/videos/preview/mixkit-athlete-doing-boxing-training-123-large.mp4",
+    image: "https://i.postimg.cc/CK4W5TX5/frank2.jpg",
+    video:
+      "https://assets.mixkit.co/videos/preview/mixkit-athlete-doing-boxing-training-123-large.mp4",
     record: "15-3-0",
     wins: 15,
     kos: 9,
@@ -105,16 +107,16 @@ const boxers = [
     flag: "🇰🇪",
     age: 26,
     height: "6'1\"",
-    reach: "76\"",
+    reach: '76"',
     stance: "Southpaw",
     yearsPro: 4,
     trainingGym: "Nairobi Fight Club",
     bio: "Middleweight champion with incredible stamina and defense. Known for strategic fights and impeccable footwork.",
-    manager: { 
-      name: "Sarah Kimani", 
-      email: "sarah.kimani@example.com", 
+    manager: {
+      name: "Sarah Kimani",
+      email: "sarah.kimani@example.com",
       phone: "+250 789 654 321",
-      experience: "12 years"
+      experience: "12 years",
     },
     stats: {
       power: 85,
@@ -122,30 +124,30 @@ const boxers = [
       defense: 95,
       stamina: 90,
       technique: 88,
-      agility: 80
+      agility: 80,
     },
     achievements: [
       "Continental Champion",
       "National Boxing Title",
       "Most Improved Fighter 2023",
-      "Defensive Fighter of the Year"
+      "Defensive Fighter of the Year",
     ],
     nextFight: "2024-04-02",
     opponent: "James Rodriguez",
     social: {
       instagram: "@mike_the_rock",
       twitter: "@michael_smith",
-      youtube: "Michael Smith Boxing"
+      youtube: "Michael Smith Boxing",
     },
     fightStyle: "Technical counter-puncher",
-    signatureMove: "Straight left counter"
+    signatureMove: "Straight left counter",
   },
   {
     id: 3,
     name: "David 'Thunder' Johnson",
     nickname: "Thunder",
     image: abc,
-    video: "https://assets.mixkit.co/videos/preview/mixkit-boxer-training-in-the-ring-123-large.mp4",
+    video: "https://i.postimg.cc/vBHC62wH/valentin.jpg",
     record: "18-1-0",
     wins: 18,
     kos: 12,
@@ -157,16 +159,16 @@ const boxers = [
     flag: "🇳🇬",
     age: 24,
     height: "5'7\"",
-    reach: "70\"",
+    reach: '70"',
     stance: "Orthodox",
     yearsPro: 3,
     trainingGym: "Lagos Speed Academy",
     bio: "Featherweight fighter famous for lightning-fast punches and unmatched agility in the ring. Youngest champion in promotion history.",
-    manager: { 
-      name: "John Doe", 
-      email: "john.doe@example.com", 
+    manager: {
+      name: "John Doe",
+      email: "john.doe@example.com",
       phone: "+250 777 888 999",
-      experience: "10 years"
+      experience: "10 years",
     },
     stats: {
       power: 78,
@@ -174,23 +176,23 @@ const boxers = [
       defense: 88,
       stamina: 85,
       technique: 92,
-      agility: 96
+      agility: 96,
     },
     achievements: [
       "International Boxing Title",
       "Speed Demon Award",
       "Rookie of the Year 2021",
-      "Fastest KO Record (0:28)"
+      "Fastest KO Record (0:28)",
     ],
     nextFight: "2024-03-28",
     opponent: "Miguel Santos",
     social: {
       instagram: "@david_thunder",
       twitter: "@david_johnson",
-      youtube: "David Thunder Highlights"
+      youtube: "David Thunder Highlights",
     },
     fightStyle: "Speed-based volume puncher",
-    signatureMove: "Lightning jab combinations"
+    signatureMove: "Lightning jab combinations",
   },
 ];
 

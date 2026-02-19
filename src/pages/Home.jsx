@@ -1,8 +1,6 @@
 import React from "react";
 import {
   HomeSection,
-  Business,
-  HomeSection2,
   Clients,
   CTA,
   Footer,
@@ -24,12 +22,10 @@ const Home = () => {
             <Hero />
           </div>
         </div>
-        <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
+        <div className={`bg-primary  `}>
           <div className={`${styles.boxWidth}`}>
             <Stats />
-            <Business />
             <HomeSection />
-            <HomeSection2 />
             <Testimonials />
             <Clients />
             <CTA />

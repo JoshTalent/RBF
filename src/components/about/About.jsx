@@ -1,8 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Business, Footer, Navbar, Testimonials } from "..";
+import {  Footer, Navbar, Testimonials } from "..";
 import styles from "../../style";
 import { motion } from "framer-motion";
-import { Users, Trophy, Target, Flag, Star } from "lucide-react";
+import {
+  Users,
+  Trophy,
+  Target,
+  Flag,
+  Star,
+  ArrowRight,
+  Award, // Added missing Award import
+  Calendar,
+  MapPin,
+  ExternalLink,
+  X,
+  TrendingUp,
+  Shield,
+  Mail,
+  Phone,
+  Search,
+  Filter,
+} from "lucide-react";
 
 // Achievements Stats
 const stats = [
@@ -51,12 +69,244 @@ const About = () => {
       {/* Navbar */}
       <Navbar />
 
+      {/* Hero Section */}
+      <section className="relative py-32 bg-gradient-to-br from-sky-900/80 via-black to-slate-900 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(56,189,248,0.1),transparent_70%)]" />
+        <div className="absolute top-0 left-0 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+          {/* Badge */}
+          <motion.div
+            className="inline-flex items-center gap-3 px-6 py-3 bg-sky-500/20 backdrop-blur-sm rounded-full border border-sky-400/30 mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Trophy className="text-sky-400" size={20} />
+            <span className="text-sky-400 font-semibold text-sm tracking-wider uppercase">
+              ABOUT THE FEDERATION
+            </span>
+          </motion.div>
+
+          {/* Main Title */}
+          <motion.h1
+            className="text-5xl sm:text-7xl font-black mb-6 tracking-tight bg-gradient-to-r from-white to-sky-200 bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            Shaping Rwanda's <br />
+            Boxing Future
+          </motion.h1>
+
+          {/* Description */}
+          <motion.p
+            className="text-slate-300 text-xl sm:text-2xl max-w-4xl mx-auto leading-relaxed mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            The Rwanda Boxing Federation (RBF) is the governing body for amateur
+            and professional boxing in Rwanda. We are committed to developing
+            the sport at all levels, from grassroots initiatives to elite
+            international competitions.
+          </motion.p>
+
+          <motion.p
+            className="text-slate-400 text-lg max-w-3xl mx-auto leading-relaxed mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            Through comprehensive programs, we build strong fundamentals,
+            promote core values of discipline and sportsmanship, and create
+            clear pathways for young boxers to thrive both in and out of the
+            ring.
+          </motion.p>
+
+          {/* Stats Row */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+          >
+            {/* Stat 1 */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <div className="text-4xl font-bold text-sky-400 mb-2">50+</div>
+              <div className="text-white text-lg font-semibold">
+                Active Clubs
+              </div>
+              <div className="text-slate-400 text-sm mt-2">
+                Nationwide network
+              </div>
+            </div>
+
+            {/* Stat 2 */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <div className="text-4xl font-bold text-sky-400 mb-2">200+</div>
+              <div className="text-white text-lg font-semibold">
+                Trained Athletes
+              </div>
+              <div className="text-slate-400 text-sm mt-2">
+                Professional development
+              </div>
+            </div>
+
+            {/* Stat 3 */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <div className="text-4xl font-bold text-sky-400 mb-2">25+</div>
+              <div className="text-white text-lg font-semibold">
+                International Events
+              </div>
+              <div className="text-slate-400 text-sm mt-2">
+                Global experience
+              </div>
+            </div>
+          </motion.div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.8 }}
+          >
+            <button className="group px-10 py-4 bg-gradient-to-r from-sky-500 to-blue-600 rounded-xl text-white font-bold text-lg shadow-2xl shadow-sky-500/25 hover:shadow-blue-500/40 hover:scale-105 hover:from-sky-400 hover:to-blue-500 transition-all duration-300 flex items-center gap-2 mx-auto">
+              Join Now
+              <ArrowRight
+                className="group-hover:translate-x-1 transition-transform"
+                size={20}
+              />
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 px-6 bg-gradient-to-b from-black to-slate-900">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <motion.div
+              className="group relative p-8 rounded-2xl backdrop-blur-sm bg-gradient-to-br from-white/5 to-white/2 border border-white/10 hover:border-sky-400/30 transition-all duration-500 overflow-hidden"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-sky-500/0 via-sky-500/5 to-sky-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Number Badge */}
+              <div className="absolute top-4 right-4 w-8 h-8 bg-sky-500 rounded-full flex items-center justify-center text-white font-bold">
+                1
+              </div>
+
+              <div className="w-16 h-16 bg-gradient-to-br from-sky-400 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                <Users className="text-white" size={32} />
+              </div>
+
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Youth Development
+              </h3>
+              <p className="text-slate-400 leading-relaxed mb-6">
+                Grassroots training for ages 10-18 focusing on fundamentals and
+                safety.
+              </p>
+
+              <div className="flex items-center gap-2 text-sky-400 group-hover:gap-4 transition-all duration-300">
+                <span className="text-sm font-semibold">Learn More</span>
+                <ArrowRight size={16} />
+              </div>
+
+              <div className="absolute bottom-4 right-4 text-sky-400/20 text-6xl font-black">
+                →
+              </div>
+            </motion.div>
+
+            {/* Feature 2 */}
+            <motion.div
+              className="group relative p-8 rounded-2xl backdrop-blur-sm bg-gradient-to-br from-white/5 to-white/2 border border-white/10 hover:border-sky-400/30 transition-all duration-500 overflow-hidden"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-sky-500/0 via-sky-500/5 to-sky-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Number Badge */}
+              <div className="absolute top-4 right-4 w-8 h-8 bg-sky-500 rounded-full flex items-center justify-center text-white font-bold">
+                2
+              </div>
+
+              <div className="w-16 h-16 bg-gradient-to-br from-sky-400 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                <Target className="text-white" size={32} />
+              </div>
+
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Elite Training
+              </h3>
+              <p className="text-slate-400 leading-relaxed mb-6">
+                High-performance coaching for competitive boxers aiming for
+                national team.
+              </p>
+
+              <div className="flex items-center gap-2 text-sky-400 group-hover:gap-4 transition-all duration-300">
+                <span className="text-sm font-semibold">Learn More</span>
+                <ArrowRight size={16} />
+              </div>
+
+              <div className="absolute bottom-4 right-4 text-sky-400/20 text-6xl font-black">
+                →
+              </div>
+            </motion.div>
+
+            {/* Feature 3 */}
+            <motion.div
+              className="group relative p-8 rounded-2xl backdrop-blur-sm bg-gradient-to-br from-white/5 to-white/2 border border-white/10 hover:border-sky-400/30 transition-all duration-500 overflow-hidden"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-sky-500/0 via-sky-500/5 to-sky-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Number Badge */}
+              <div className="absolute top-4 right-4 w-8 h-8 bg-sky-500 rounded-full flex items-center justify-center text-white font-bold">
+                3
+              </div>
+
+              <div className="w-16 h-16 bg-gradient-to-br from-sky-400 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                <Award className="text-white" size={32} />
+              </div>
+
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Coaches & Officials
+              </h3>
+              <p className="text-slate-400 leading-relaxed mb-6">
+                Certification and continuous education for coaches, referees and
+                judges.
+              </p>
+
+              <div className="flex items-center gap-2 text-sky-400 group-hover:gap-4 transition-all duration-300">
+                <span className="text-sm font-semibold">Learn More</span>
+                <ArrowRight size={16} />
+              </div>
+
+              <div className="absolute bottom-4 right-4 text-sky-400/20 text-6xl font-black">
+                →
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Rest of your existing content */}
       <div className={`${styles.paddingX} ${styles.flexStart}`}>
         <div className={`${styles.boxWidth} py-24`}>
-          {/* Business Overview */}
-          <Business />
-
-          {/* Mission & Vision - Enhanced */}
+          {/* Mission & Vision Section */}
           <section className="relative mb-24 rounded-3xl p-12 shadow-2xl overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-800 -z-10" />
@@ -150,7 +400,7 @@ const About = () => {
             </div>
           </section>
 
-          {/* Achievements / Statistics - Enhanced */}
+          {/* Achievements Section */}
           <section className="relative mb-24 rounded-3xl p-12 shadow-2xl overflow-hidden">
             {/* Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-800 -z-10" />
@@ -196,9 +446,7 @@ const About = () => {
 
                     {/* Icon Container */}
                     <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-500 flex items-center justify-center relative shadow-2xl shadow-sky-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                      <div className="text-white">
-                        {stat.icon}
-                      </div>
+                      <div className="text-white">{stat.icon}</div>
                       {/* Icon Glow */}
                       <div className="absolute inset-0 rounded-2xl bg-sky-400/20 blur-md group-hover:blur-xl transition-all duration-500" />
                     </div>
@@ -271,7 +519,7 @@ const About = () => {
 
           {/* Testimonials */}
           <Testimonials />
-          
+
           {/* Footer */}
           <Footer />
         </div>

@@ -1,6 +1,4 @@
 import HomeSection from "./HomeSection";
-import Business from "./Business";
-import HomeSection2 from "./HomeSection2";
 import Clients from "./Clients";
 import CTA from "./CTA";
 import Feedback from "./Feedback";
@@ -12,8 +10,6 @@ import Testimonials from "./Testimonials";
 
 export {
   HomeSection,
-  Business,
-  HomeSection2,
   Clients,
   CTA,
   Feedback,
