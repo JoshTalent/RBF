@@ -165,7 +165,7 @@ const Hero = () => {
     <section
       ref={sectionRef}
       id="home"
-      className="relative w-full min-h-screen overflow-hidden pt-20 bg-black"
+      className="relative w-full min-h-screen overflow-hidden sm:pt-10 lg:pt-20 bg-black"
       onMouseMove={handleMouseMove}
     >
       {/* Full-width background with overlay */}
