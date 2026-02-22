@@ -304,8 +304,8 @@ const About = () => {
       </section>
 
       {/* Rest of your existing content */}
-      <div className={`${styles.paddingX} ${styles.flexStart}`}>
-        <div className={`${styles.boxWidth} py-24`}>
+      <div className="">
+        <div className="">
           {/* Mission & Vision Section */}
           <section className="relative mb-24 rounded-3xl p-12 shadow-2xl overflow-hidden">
             {/* Background Elements */}
