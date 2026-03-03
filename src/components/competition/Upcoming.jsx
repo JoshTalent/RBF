@@ -3,19 +3,7 @@ import { Navbar, Footer } from "../../components";
 import { motion, AnimatePresence } from "framer-motion";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
-import { 
-  FaMapMarkerAlt, 
-  FaClock, 
-  FaUsers, 
-  FaTicketAlt,
-  FaFilter,
-  FaSearch, // Fixed: Added FaSearch import
-  FaCalendarAlt,
-  FaStar,
-  FaCrown,
-  FaShare,
-  FaBookmark
-} from "react-icons/fa";
+
 import { 
   Calendar as CalendarIcon,
   MapPin,
