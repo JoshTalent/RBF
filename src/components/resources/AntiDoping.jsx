@@ -6,76 +6,18 @@ import { ShieldAlert, Eye, Download, Search, Calendar, Filter, ChevronDown, File
 const antiDopingResources = [
   {
     id: 1,
-    title: "Anti-Doping Policy 2025",
-    description: "Official policy of the Rwanda Boxing Federation outlining anti-doping procedures, responsibilities, and sanctions in compliance with WADA regulations.",
+    title: "ANTIDOPING POLICY (FULL)",
+    description:
+      "A comprehensive document outlining the rules, testing procedures, prohibited substances, and disciplinary measures aimed at preventing doping and ensuring fair competition in boxing. 🥊🚫💊",
     date: "2025-01-05",
-    fileUrl: "https://example.com/anti-doping-policy-2025.pdf",
+    fileUrl:
+      "https://drive.google.com/file/d/1QlmlfEQnOc_cjMxvPQtNZZKX6-foPvbh/view?usp=sharing",
     category: "policy",
     fileSize: "2.1 MB",
     pages: 34,
     importance: "critical",
-    updateFrequency: "Annual"
+    updateFrequency: "Annual",
   },
-  {
-    id: 2,
-    title: "Prohibited Substances List (WADA 2025)",
-    description: "Comprehensive list of banned substances and methods for 2025. All athletes are required to familiarize themselves with this list to avoid violations.",
-    date: "2025-01-15",
-    fileUrl: "https://example.com/wada-prohibited-list-2025.pdf",
-    category: "reference",
-    fileSize: "3.8 MB",
-    pages: 72,
-    importance: "critical",
-    updateFrequency: "Quarterly"
-  },
-  {
-    id: 3,
-    title: "Therapeutic Use Exemption (TUE) Guidelines",
-    description: "Information and application process for athletes requiring therapeutic use exemptions for prescribed medications under medical supervision.",
-    date: "2025-02-01",
-    fileUrl: "https://example.com/tue-guidelines.pdf",
-    category: "medical",
-    fileSize: "1.5 MB",
-    pages: 28,
-    importance: "high",
-    updateFrequency: "As Needed"
-  },
-  {
-    id: 4,
-    title: "Testing Procedures and Athlete Rights",
-    description: "Detailed explanation of anti-doping testing procedures, athlete rights, and responsibilities during sample collection and analysis.",
-    date: "2025-02-20",
-    fileUrl: "https://example.com/testing-procedures.pdf",
-    category: "procedural",
-    fileSize: "2.3 MB",
-    pages: 45,
-    importance: "high",
-    updateFrequency: "Annual"
-  },
-  {
-    id: 5,
-    title: "Athlete Anti-Doping Education Manual",
-    description: "Comprehensive educational resource covering all aspects of anti-doping awareness, responsibilities, and clean sport principles.",
-    date: "2025-03-10",
-    fileUrl: "https://example.com/education-manual.pdf",
-    category: "educational",
-    fileSize: "4.2 MB",
-    pages: 88,
-    importance: "medium",
-    updateFrequency: "Annual"
-  },
-  {
-    id: 6,
-    title: "Supplement Risk Assessment Guide",
-    description: "Guidelines for evaluating dietary supplements and understanding contamination risks that could lead to anti-doping violations.",
-    date: "2025-03-25",
-    fileUrl: "https://example.com/supplement-guide.pdf",
-    category: "safety",
-    fileSize: "1.9 MB",
-    pages: 36,
-    importance: "high",
-    updateFrequency: "Semi-Annual"
-  }
 ];
 
 const categoryIcons = {
