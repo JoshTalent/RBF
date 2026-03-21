@@ -24,7 +24,7 @@ const judges = [
     experience: "15 years",
     email: "gakunzitheo@gmail.com",
     contact: "+250788472154",
-    image: "https://via.placeholder.com/200",
+    image: "https://i.postimg.cc/xjFLDSZs/Whats-App-Image-2026-03-21-at-9-36-06-PM.jpg",
     certifications: ["IBA 1-star RnJ"],
     specialties: [
       "Amateur Boxing",
@@ -32,7 +32,7 @@ const judges = [
       "Youth Development",
     ],
     languages: ["English", "Kinyarwanda" , "French "],
-    events: ["Africa zone boxing championships", " national championship "],
+    events: ["Africa zone boxing championships", " national championship " , " Kigali Fight Night"],
     rating: 4.9,
     matchesJudged: 50,
   }
