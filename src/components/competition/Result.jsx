@@ -48,7 +48,23 @@ const resultsData = [
     description:
       "WEEK 1 - RWANDA BOXING CHAMPIONSHIP 🇷🇼🥊The journey begins. 14 explosive bouts.8 different weight classes.One ring. One mission.Rwanda’s finest fighters step into the ring to prove who belongs at the top.",
     winners: [
-  
+      {
+        name: "Iyanone Jean Claude",
+        category: "FLY WEIGHT",
+        club: "APR Boxing Club",
+        points: 0 ,
+        image: "/api/placeholder/100/100",
+        country: "Rwanda",
+      },
+      {
+        name: "N, Ibrahim",
+        category: "FLY WEIGHT",
+        club: "Police Boxing Club",
+        points: 0 ,
+        image: "/api/placeholder/100/100",
+        country: "Rwanda",
+      },
+      
     ],
   },
 ];

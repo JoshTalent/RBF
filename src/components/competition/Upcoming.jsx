@@ -35,7 +35,325 @@ const events = [
   {
     id: 1,
     name: "RWANDA NATIONAL MENS BOXING CHAMPIONSHIP 2026",
-    date: new Date(2026, 3, 8),
+    date: new Date(2026, 2, 29),
+    time: "14:00 - 19:00",
+    location: "HILL TOP HOTEL REMERA",
+    category: "Championship",
+    status: "upcoming",
+    priority: "featured",
+    participants: 32,
+    description:
+      "WEEK 3 - RWANDA BOXING CHAMPIONSHIP 🇷🇼🥊The journey begins. 14 explosive bouts.8 different weight classes.One ring. One mission.Rwanda’s finest fighters step into the ring to prove who belongs at the top.",
+    image: "https://i.postimg.cc/63n8t70g/Screenshot_2026_03_04_111120.png",
+    organizer: "Rwanda Boxing Federation",
+    venue: "HILL TOP HOTEL REMERA",
+    tickets: {
+      categories: [
+        {
+          id: "vip",
+          name: "VIP Premium",
+          price: 10000,
+          currency: "RWF",
+          available: 50,
+          total: 30,
+          seats: ["A1-A10", "B1-B10", "C1-C10", "D1-D10", "E1-E10"],
+        },
+        {
+          id: "gold",
+          name: "Gold Category",
+          price: 5000,
+          currency: "RWF",
+          available: 100,
+          total: 100,
+          seats: ["F1-F20", "G1-G20", "H1-H20", "I1-I20", "J1-J20"],
+        },
+        {
+          id: "silver",
+          name: "Silver Category",
+          price: 2000,
+          currency: "RWF",
+          available: 300,
+          total: 400,
+          seats: ["K1-K40", "L1-L40", "M1-M40", "N1-N40", "O1-O40"],
+        },
+      ],
+    },
+    draws: [
+      {
+        weightClass: "FLY WEIGHT",
+        bouts: [
+          {
+            fighter1: "Iyanone Jean Claude",
+            fighter2: "N, Ibrahim",
+            time: "14:00",
+          },
+          {
+            fighter1: "Muhamad Said Abdalla",
+            fighter2: "Muhire Leon",
+            time: "14:30",
+          },
+          {
+            fighter1: "Hatangimana Amani",
+            fighter2: "Nshimiye Omal",
+            time: "15:00",
+          },
+        ],
+      },
+      {
+        weightClass: "BANTAM WEIGHT",
+        bouts: [
+          {
+            fighter1: "H, Fabrice",
+            fighter2: "N, Valentin",
+            time: "19:00",
+          },
+        ],
+      },
+      {
+        weightClass: "FEATHER WEIGHT",
+        bouts: [
+          {
+            fighter1: "Mazimpaka Vedaste ",
+            fighter2: "Iranezeza Aime",
+            time: "19:30",
+          },
+          {
+            fighter1: "Irasubiza joshua",
+            fighter2: "cyizere emmanuel",
+            time: "19:30",
+          },
+          {
+            fighter1: "Byukusenge Eric",
+            fighter2: "H, abdul",
+            time: "19:30",
+          },
+        ],
+      },
+      {
+        weightClass: "LIGHT WEIGHT",
+        bouts: [
+          {
+            fighter1: "iradukunda Bruce ",
+            fighter2: "Rubamba Iguru",
+            time: "19:30",
+          },
+          {
+            fighter1: "munyehirwe kenny",
+            fighter2: "tuyizere halid",
+            time: "19:30",
+          },
+          {
+            fighter1: "gisubizo justin ",
+            fighter2: "izabayo placide",
+            time: "19:30",
+          },
+        ],
+      },
+      {
+        weightClass: "LIGHT WELTERWEIGHT",
+        bouts: [
+          {
+            fighter1: "Mugisha Kawembe ",
+            fighter2: "Niyonzima Pacifique",
+            time: "19:30",
+          },
+        ],
+      },
+      {
+        weightClass: "WELTERWEIGHT",
+        bouts: [
+          {
+            fighter1: "D, jean batiste ",
+            fighter2: "M, Errisa",
+            time: "19:30",
+          },
+        ],
+      },
+      {
+        weightClass: "LIGHTWEIGHT MIDDLEWEIGHT",
+        bouts: [
+          {
+            fighter1: "H, kalisa olivier ",
+            fighter2: "mboumba Debouba",
+            time: "19:30",
+          },
+        ],
+      },
+      {
+        weightClass: "MIDDLEWEIGHT",
+        bouts: [
+          {
+            fighter1: "N, pqtric",
+            fighter2: " innocent",
+            time: "19:30",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 1,
+    name: "RWANDA NATIONAL MENS BOXING CHAMPIONSHIP 2026",
+    date: new Date(2026, 2, 15),
+    time: "14:00 - 19:00",
+    location: "HILL TOP HOTEL REMERA",
+    category: "Championship",
+    status: "upcoming",
+    priority: "featured",
+    participants: 32,
+    description:
+      "WEEK 2 - RWANDA BOXING CHAMPIONSHIP 🇷🇼🥊The journey begins. 14 explosive bouts.8 different weight classes.One ring. One mission.Rwanda’s finest fighters step into the ring to prove who belongs at the top.",
+    image: "https://i.postimg.cc/63n8t70g/Screenshot_2026_03_04_111120.png",
+    organizer: "Rwanda Boxing Federation",
+    venue: "HILL TOP HOTEL REMERA",
+    tickets: {
+      categories: [
+        {
+          id: "vip",
+          name: "VIP Premium",
+          price: 10000,
+          currency: "RWF",
+          available: 50,
+          total: 30,
+          seats: ["A1-A10", "B1-B10", "C1-C10", "D1-D10", "E1-E10"],
+        },
+        {
+          id: "gold",
+          name: "Gold Category",
+          price: 5000,
+          currency: "RWF",
+          available: 100,
+          total: 100,
+          seats: ["F1-F20", "G1-G20", "H1-H20", "I1-I20", "J1-J20"],
+        },
+        {
+          id: "silver",
+          name: "Silver Category",
+          price: 2000,
+          currency: "RWF",
+          available: 300,
+          total: 400,
+          seats: ["K1-K40", "L1-L40", "M1-M40", "N1-N40", "O1-O40"],
+        },
+      ],
+    },
+    draws: [
+      {
+        weightClass: "FLY WEIGHT",
+        bouts: [
+          {
+            fighter1: "Iyanone Jean Claude",
+            fighter2: "N, Ibrahim",
+            time: "14:00",
+          },
+          {
+            fighter1: "Muhamad Said Abdalla",
+            fighter2: "Muhire Leon",
+            time: "14:30",
+          },
+          {
+            fighter1: "Hatangimana Amani",
+            fighter2: "Nshimiye Omal",
+            time: "15:00",
+          },
+        ],
+      },
+      {
+        weightClass: "BANTAM WEIGHT",
+        bouts: [
+          {
+            fighter1: "H, Fabrice",
+            fighter2: "N, Valentin",
+            time: "19:00",
+          },
+        ],
+      },
+      {
+        weightClass: "FEATHER WEIGHT",
+        bouts: [
+          {
+            fighter1: "Mazimpaka Vedaste ",
+            fighter2: "Iranezeza Aime",
+            time: "19:30",
+          },
+          {
+            fighter1: "Irasubiza joshua",
+            fighter2: "cyizere emmanuel",
+            time: "19:30",
+          },
+          {
+            fighter1: "Byukusenge Eric",
+            fighter2: "H, abdul",
+            time: "19:30",
+          },
+        ],
+      },
+      {
+        weightClass: "LIGHT WEIGHT",
+        bouts: [
+          {
+            fighter1: "iradukunda Bruce ",
+            fighter2: "Rubamba Iguru",
+            time: "19:30",
+          },
+          {
+            fighter1: "munyehirwe kenny",
+            fighter2: "tuyizere halid",
+            time: "19:30",
+          },
+          {
+            fighter1: "gisubizo justin ",
+            fighter2: "izabayo placide",
+            time: "19:30",
+          },
+        ],
+      },
+      {
+        weightClass: "LIGHT WELTERWEIGHT",
+        bouts: [
+          {
+            fighter1: "Mugisha Kawembe ",
+            fighter2: "Niyonzima Pacifique",
+            time: "19:30",
+          },
+        ],
+      },
+      {
+        weightClass: "WELTERWEIGHT",
+        bouts: [
+          {
+            fighter1: "D, jean batiste ",
+            fighter2: "M, Errisa",
+            time: "19:30",
+          },
+        ],
+      },
+      {
+        weightClass: "LIGHTWEIGHT MIDDLEWEIGHT",
+        bouts: [
+          {
+            fighter1: "H, kalisa olivier ",
+            fighter2: "mboumba Debouba",
+            time: "19:30",
+          },
+        ],
+      },
+      {
+        weightClass: "MIDDLEWEIGHT",
+        bouts: [
+          {
+            fighter1: "N, pqtric",
+            fighter2: " innocent",
+            time: "19:30",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 1,
+    name: "RWANDA NATIONAL MENS BOXING CHAMPIONSHIP 2026",
+    date: new Date(2026, 2, 8),
     time: "14:00 - 19:00",
     location: "Kimisagara, maison des jenne",
     category: "Championship",
@@ -166,7 +484,7 @@ const events = [
             fighter2: "Niyonzima Pacifique",
             time: "19:30",
           },
-        ]
+        ],
       },
       {
         weightClass: "WELTERWEIGHT",
@@ -176,7 +494,7 @@ const events = [
             fighter2: "M, Errisa",
             time: "19:30",
           },
-        ]
+        ],
       },
       {
         weightClass: "LIGHTWEIGHT MIDDLEWEIGHT",
@@ -186,7 +504,7 @@ const events = [
             fighter2: "mboumba Debouba",
             time: "19:30",
           },
-        ]
+        ],
       },
       {
         weightClass: "MIDDLEWEIGHT",
@@ -196,11 +514,11 @@ const events = [
             fighter2: " innocent",
             time: "19:30",
           },
-        ]
+        ],
       },
     ],
   },
-]
+];
 
 const categories = [
   "All",
