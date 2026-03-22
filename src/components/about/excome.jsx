@@ -1,11 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  FaPhoneAlt,
+  FaPhoneAlt,FaInstagram,
   FaEnvelope,
   FaFacebook,
   FaTwitter,
-  FaLinkedin,
+  Fainstagram,
   FaMapMarkerAlt,
   FaCrown,
   FaAward,
@@ -22,19 +22,27 @@ const excoMembers = [
     phone: "+250 788 123 456",
     email: "john@example.com",
     image: people03,
-    socials: { facebook: "#", twitter: "#", linkedin: "#" },
+    socials: { facebook: "#", twitter: "#", instagram: "#" },
     tenure: "2022 - Present",
-    achievements: ["15+ Years Experience", "National Champion 2015", "IABA Certified"]
+    achievements: [
+      "15+ Years Experience",
+      "National Champion 2015",
+      "IABA Certified",
+    ],
   },
   {
-    name: "Jane Smith",
-    position: "Vice President",
-    phone: "+250 788 654 321",
-    email: "jane@example.com",
-    image: people03,
-    socials: { facebook: "#", twitter: "#", linkedin: "#" },
-    tenure: "2021 - Present",
-    achievements: ["Sports Management Degree", "Youth Development Specialist"]
+    name: "Asmini Emma",
+    position: "1 Vice President ",
+    phone: "+250 788 434 486",
+    email: "asminimamytha@gmail.com ",
+    image: "https://i.postimg.cc/QdtNf420/Whats-App-Image-2026-03-22-at-9-49-20-PM.jpg",
+    socials: { facebook: "#", twitter: "#", instagram: "#" },
+    tenure: " 2022 - Present",
+    achievements: [
+      "Sports Management Degree",
+      "Youth Development Specialist",
+      "fitness specialist",
+    ],
   },
   {
     name: "Michael Lee",
@@ -42,9 +50,9 @@ const excoMembers = [
     phone: "+250 789 000 111",
     email: "michael@example.com",
     image: people03,
-    socials: { facebook: "#", twitter: "#", linkedin: "#" },
+    socials: { facebook: "#", twitter: "#", instagram: "#" },
     tenure: "2023 - Present",
-    achievements: ["International Relations", "Event Management Expert"]
+    achievements: ["International Relations", "Event Management Expert"],
   },
   {
     name: "Ntwari Josue",
@@ -52,9 +60,9 @@ const excoMembers = [
     phone: "+250 788 654 321",
     email: "ntwari@example.com",
     image: people03,
-    socials: { facebook: "#", twitter: "#", linkedin: "#" },
+    socials: { facebook: "#", twitter: "#", instagram: "#" },
     tenure: "2020 - Present",
-    achievements: ["CPA Certified", "Financial Strategist"]
+    achievements: ["CPA Certified", "Financial Strategist"],
   },
   {
     name: "Olivier Niyigena",
@@ -62,9 +70,9 @@ const excoMembers = [
     phone: "+250 789 000 111",
     email: "olivier@example.com",
     image: people03,
-    socials: { facebook: "#", twitter: "#", linkedin: "#" },
+    socials: { facebook: "#", twitter: "#", instagram: "#" },
     tenure: "2019 - Present",
-    achievements: ["Elite Coach Certified", "5 National Titles"]
+    achievements: ["Elite Coach Certified", "5 National Titles"],
   },
   {
     name: "Sarah Uwase",
@@ -72,10 +80,10 @@ const excoMembers = [
     phone: "+250 788 333 444",
     email: "sarah@example.com",
     image: people03,
-    socials: { facebook: "#", twitter: "#", linkedin: "#" },
+    socials: { facebook: "#", twitter: "#", instagram: "#" },
     tenure: "2022 - Present",
-    achievements: ["Digital Marketing Pro", "Brand Development"]
-  }
+    achievements: ["Digital Marketing Pro", "Brand Development"],
+  },
 ];
 
 // Framer Motion variants
@@ -280,7 +288,7 @@ const Excome = () => {
                       {[
                         { icon: FaFacebook, href: member.socials.facebook },
                         { icon: FaTwitter, href: member.socials.twitter },
-                        { icon: FaLinkedin, href: member.socials.linkedin }
+                        { icon: FaInstagram, href: member.socials.instagram }
                       ].map((social, idx) => (
                         <motion.a
                           key={idx}
