@@ -5,7 +5,6 @@ import {
   FaEnvelope,
   FaFacebook,
   FaTwitter,
-  Fainstagram,
   FaMapMarkerAlt,
   FaCrown,
   FaAward,

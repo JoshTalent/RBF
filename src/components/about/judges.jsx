@@ -24,18 +24,47 @@ const judges = [
     experience: "15 years",
     email: "gakunzitheo@gmail.com",
     contact: "+250788472154",
-    image: "https://i.postimg.cc/xjFLDSZs/Whats-App-Image-2026-03-21-at-9-36-06-PM.jpg",
+    image:
+      "https://i.postimg.cc/xjFLDSZs/Whats-App-Image-2026-03-21-at-9-36-06-PM.jpg",
     certifications: ["IBA 1-star RnJ"],
     specialties: [
       "Amateur Boxing",
       "Professional Matches",
       "Youth Development",
     ],
-    languages: ["English", "Kinyarwanda" , "French "],
-    events: ["Africa zone boxing championships", " national championship " , " Kigali Fight Night"],
+    languages: ["English", "Kinyarwanda", "French "],
+    events: [
+      "Africa zone boxing championships",
+      " national championship ",
+      " Kigali Fight Night",
+    ],
     rating: 4.9,
     matchesJudged: 50,
-  }
+  },
+  {
+    id: 2,
+    name: "MUVUNYI Charles",
+    country: "RWANDA",
+    experience: "20 years",
+    email: "kigalilifeboxingclub2@gmail.com",
+    contact: "+250 783 833 293",
+    image:
+      "https://i.postimg.cc/3Nmzbndt/Whats-App-Image-2026-03-23-at-12-21-34-PM.jpg",
+    certifications: ["IBA 1-star RnJ"],
+    specialties: [
+      "Amateur Boxing",
+      "Professional Matches",
+      "Youth Development",
+    ],
+    languages: ["English", "Kiswahili", "French "],
+    events: [
+      " Kigali Fight Night",
+      "Africa zone 3 boxing championships",
+      " national championship ",
+    ],
+    rating: 4.9,
+    matchesJudged: 90,
+  },
 ];
 
 const Judges = () => {

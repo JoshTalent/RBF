@@ -19,82 +19,109 @@ import {
 const partnersList = [
   {
     id: 1,
-    name: "Rwanda Development Board",
-    logo: "https://via.placeholder.com/200x120?text=RDB",
+    name: "SOHO",
+    logo: "https://i.postimg.cc/xjwjdZQk/image.png",
     website: "https://www.rdb.rw",
-    description: "Official government partner supporting sports development and youth empowerment programs across Rwanda.",
+    description:
+      "Official government partner supporting sports development and youth empowerment programs across Rwanda.",
     category: "Government",
     partnership: "Strategic Partner",
     since: 2018,
     tier: "Platinum",
-    initiatives: ["Youth Development", "Infrastructure", "International Events"],
-    impact: "Supported 15+ national tournaments and athlete development programs"
+    initiatives: [
+      "Youth Development",
+      "Infrastructure",
+      "International Events",
+    ],
+    impact:
+      "Supported 15+ national tournaments and athlete development programs",
   },
   {
     id: 2,
     name: "Bank of Kigali",
     logo: "https://via.placeholder.com/200x120?text=BoK",
     website: "https://www.bk.rw",
-    description: "Leading financial institution and main sponsor for national boxing championships and athlete scholarships.",
+    description:
+      "Leading financial institution and main sponsor for national boxing championships and athlete scholarships.",
     category: "Corporate",
     partnership: "Title Sponsor",
     since: 2020,
     tier: "Platinum",
-    initiatives: ["Championship Sponsorship", "Athlete Scholarships", "Equipment Funding"],
-    impact: "Sponsored 5 national championships and 20+ athlete scholarships"
+    initiatives: [
+      "Championship Sponsorship",
+      "Athlete Scholarships",
+      "Equipment Funding",
+    ],
+    impact: "Sponsored 5 national championships and 20+ athlete scholarships",
   },
   {
     id: 3,
     name: "MTN Rwanda",
     logo: "https://via.placeholder.com/200x120?text=MTN",
     website: "https://www.mtn.co.rw",
-    description: "Telecommunications giant providing digital coverage, promotion, and technological support for boxing events.",
+    description:
+      "Telecommunications giant providing digital coverage, promotion, and technological support for boxing events.",
     category: "Technology",
     partnership: "Digital Partner",
     since: 2019,
     tier: "Gold",
     initiatives: ["Digital Promotion", "Live Streaming", "Fan Engagement"],
-    impact: "Reached 2M+ viewers through digital platforms and live streams"
+    impact: "Reached 2M+ viewers through digital platforms and live streams",
   },
   {
     id: 4,
     name: "Airtel Rwanda",
     logo: "https://via.placeholder.com/200x120?text=Airtel",
     website: "https://www.airtel.co.rw",
-    description: "Mobile network operator supporting grassroots boxing programs and community outreach initiatives.",
+    description:
+      "Mobile network operator supporting grassroots boxing programs and community outreach initiatives.",
     category: "Corporate",
     partnership: "Community Partner",
     since: 2021,
     tier: "Silver",
-    initiatives: ["Grassroots Programs", "Community Outreach", "Talent Identification"],
-    impact: "Supported 50+ community boxing programs across Rwanda"
+    initiatives: [
+      "Grassroots Programs",
+      "Community Outreach",
+      "Talent Identification",
+    ],
+    impact: "Supported 50+ community boxing programs across Rwanda",
   },
   {
     id: 5,
     name: "Inyange Industries",
     logo: "https://via.placeholder.com/200x120?text=Inyange",
     website: "https://www.inyange.com",
-    description: "Leading beverage company providing hydration support and nutritional products for athletes.",
+    description:
+      "Leading beverage company providing hydration support and nutritional products for athletes.",
     category: "Nutrition",
     partnership: "Wellness Partner",
     since: 2022,
     tier: "Silver",
-    initiatives: ["Athlete Nutrition", "Hydration Support", "Recovery Programs"],
-    impact: "Provided nutritional support for 200+ athletes annually"
+    initiatives: [
+      "Athlete Nutrition",
+      "Hydration Support",
+      "Recovery Programs",
+    ],
+    impact: "Provided nutritional support for 200+ athletes annually",
   },
   {
     id: 6,
     name: "Rwanda Airlines",
     logo: "https://via.placeholder.com/200x120?text=RwandaAir",
     website: "https://www.rwandair.com",
-    description: "National carrier supporting international travel for athletes competing in global tournaments.",
+    description:
+      "National carrier supporting international travel for athletes competing in global tournaments.",
     category: "Travel",
     partnership: "Travel Partner",
     since: 2020,
     tier: "Gold",
-    initiatives: ["International Travel", "Athlete Logistics", "Competition Support"],
-    impact: "Enabled 100+ international competition participations"
-  }
+    initiatives: [
+      "International Travel",
+      "Athlete Logistics",
+      "Competition Support",
+    ],
+    impact: "Enabled 100+ international competition participations",
+  },
 ];
 
 const PartnersSponsors = () => {
