@@ -5,7 +5,7 @@ import {
   FaEnvelope,
   FaFacebook,
   FaTwitter,
-  FaMapMarkerAlt,
+  FaMapMarkerAlt,FaLinkedin,
   FaCrown,
   FaAward,
   FaUsers,
@@ -34,7 +34,8 @@ const excoMembers = [
     position: "1 Vice President ",
     phone: "+250 788 434 486",
     email: "asminimamytha@gmail.com ",
-    image: "https://i.postimg.cc/QdtNf420/Whats-App-Image-2026-03-22-at-9-49-20-PM.jpg",
+    image:
+      "https://i.postimg.cc/QdtNf420/Whats-App-Image-2026-03-22-at-9-49-20-PM.jpg",
     socials: { facebook: "#", twitter: "#", instagram: "#" },
     tenure: " 2022 - Present",
     achievements: [
@@ -44,11 +45,24 @@ const excoMembers = [
     ],
   },
   {
-    name: "Michael Lee",
+    name: "Ntwali Fabrice",
+    position: "2 Vice President ",
+    phone: "+250 788 325 959",
+    email: "ntwalifabrice@hotmail.com",
+    image:
+      "https://i.postimg.cc/XJ8fRN26/Whats-App-Image-2026-03-24-at-4-51-21-PM.jpg",
+    socials: {
+      linkedin: " https://www.linkedin.com/in/fabrice-ntwali-004b761b3/",
+    },
+    tenure: " 2022 - Present",
+    achievements: ["5+ Years Experience", "Youth Development Specialist"],
+  },
+  {
+    name: "Deograstias Wasswa",
     position: "Secretary General",
-    phone: "+250 789 000 111",
-    email: "michael@example.com",
-    image: people03,
+    phone: "+250 789 535 957",
+    email: "wasswadeo1@gmail.com",
+    image: "https://i.postimg.cc/t4jMGJky/Screenshot-2026-03-24-232506.png",
     socials: { facebook: "#", twitter: "#", instagram: "#" },
     tenure: "2023 - Present",
     achievements: ["International Relations", "Event Management Expert"],
@@ -285,9 +299,8 @@ const Excome = () => {
                     {/* Social Links */}
                     <div className="flex justify-center gap-4 pt-4 border-t border-white/10">
                       {[
-                        { icon: FaFacebook, href: member.socials.facebook },
-                        { icon: FaTwitter, href: member.socials.twitter },
-                        { icon: FaInstagram, href: member.socials.instagram }
+                        { icon: FaInstagram, href: member.socials.instagram },
+                        { icon: FaLinkedin, href: member.socials.linkedin }
                       ].map((social, idx) => (
                         <motion.a
                           key={idx}
