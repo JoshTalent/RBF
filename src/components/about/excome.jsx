@@ -16,13 +16,13 @@ import Footer from "../Footer";
 
 const excoMembers = [
   {
-    name: "John Doe",
+    name: "Bashir NTWARI",
     position: "President",
-    phone: "+250 788 123 456",
-    email: "john@example.com",
-    image: people03,
+    phone: "+250 787 048 410",
+    email: "bashir.ntwari@gmail.com",
+    image: "",
     socials: { facebook: "#", twitter: "#", instagram: "#" },
-    tenure: "2022 - Present",
+    tenure: "2025 - Present",
     achievements: [
       "15+ Years Experience",
       "National Champion 2015",
