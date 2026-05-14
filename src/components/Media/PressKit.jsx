@@ -580,28 +580,35 @@ const VideoModal = ({ videoUrl, onClose }) => {
 const ResourceCard = ({ resource }) => {
   return (
     <motion.div
-      className="bg-gradient-to-br from-gray-900 to-black rounded-xl border border-gray-800 p-6 hover:border-sky-500/50 transition-all"
-      whileHover={{ y: -5, scale: 1.02 }}
+      className="group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03] p-6 backdrop-blur-xl transition-all duration-500 hover:border-sky-500/30 hover:bg-white/[0.05]"
+      whileHover={{ y: -8 }}
     >
-      <div className="flex items-start justify-between mb-4">
-        <div className="p-3 bg-sky-500/20 rounded-xl">
+      <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-sky-500/10 blur-2xl transition-opacity group-hover:opacity-100 opacity-0" />
+      
+      <div className="flex items-start justify-between mb-6">
+        <div className="p-3 bg-sky-500/10 rounded-2xl border border-sky-500/20 group-hover:border-sky-500/40 transition-colors">
           <FileText className="w-6 h-6 text-sky-400" />
         </div>
-        <span className="px-2 py-1 bg-gray-800 text-xs text-gray-300 rounded-full">
+        <span className="px-3 py-1 bg-white/5 text-[10px] uppercase tracking-wider text-gray-400 rounded-full border border-white/5 font-medium">
           {resource.category}
         </span>
       </div>
-      <h3 className="font-bold text-white mb-2">{resource.title}</h3>
-      <p className="text-sm text-gray-400 mb-4">{resource.description}</p>
-      <div className="flex items-center justify-between">
-        <span className="text-xs text-gray-500">{resource.fileSize}</span>
+      
+      <h3 className="text-lg font-bold text-white mb-2 group-hover:text-sky-300 transition-colors">{resource.title}</h3>
+      <p className="text-sm text-gray-400 mb-6 leading-relaxed line-clamp-2">{resource.description}</p>
+      
+      <div className="flex items-center justify-between mt-auto">
+        <div className="flex flex-col">
+          <span className="text-[10px] text-gray-500 uppercase tracking-tighter">Size</span>
+          <span className="text-xs font-semibold text-gray-400">{resource.fileSize}</span>
+        </div>
         <motion.button
-          className="flex items-center gap-2 px-4 py-2 bg-sky-600 text-white rounded-lg text-sm font-semibold hover:bg-sky-700 transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 bg-sky-500 text-white rounded-xl text-sm font-bold shadow-lg shadow-sky-500/20 hover:bg-sky-400 hover:shadow-sky-500/40 transition-all"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           <Download size={16} />
-          Download
+          Get File
         </motion.button>
       </div>
     </motion.div>
@@ -612,45 +619,63 @@ const ResourceCard = ({ resource }) => {
 const FeaturedArticle = ({ article, onReadMore, onShare }) => {
   return (
     <motion.div
-      className="relative bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-gray-800 overflow-hidden"
+      className="relative group overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/[0.02] backdrop-blur-3xl"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
     >
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="p-8">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="px-3 py-1 bg-sky-500/20 text-sky-400 text-sm rounded-full">
-              Featured
+      <div className="absolute inset-0 bg-gradient-to-r from-sky-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+      
+      <div className="grid md:grid-cols-2 items-center">
+        <div className="p-10 lg:p-16 space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 px-3 py-1 bg-sky-500/20 rounded-full border border-sky-500/30">
+              <Sparkles className="w-3 h-3 text-sky-400" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-sky-400">
+                Featured
+              </span>
+            </div>
+            <span className="text-gray-500 text-xs font-medium uppercase tracking-widest">
+              {article.category}
             </span>
-            <span className="text-gray-400 text-sm">{article.category}</span>
           </div>
-          <h2 className="text-3xl font-bold text-white mb-4">{article.title}</h2>
-          <p className="text-gray-300 mb-6">{article.excerpt}</p>
-          <div className="flex items-center gap-4">
+          
+          <h2 className="text-4xl lg:text-5xl font-black text-white leading-tight">
+            {article.title}
+          </h2>
+          
+          <p className="text-lg text-gray-400 leading-relaxed max-w-xl">
+            {article.excerpt}
+          </p>
+          
+          <div className="flex items-center gap-6 pt-4">
             <motion.button
-              className="px-6 py-3 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-xl font-semibold hover:from-sky-600 hover:to-blue-700 transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-white text-black rounded-2xl font-bold hover:bg-sky-400 transition-colors flex items-center gap-2 shadow-2xl shadow-white/5"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => onReadMore(article)}
             >
-              Read Full Article
+              Start Reading
+              <ChevronRight size={18} />
             </motion.button>
             <motion.button
-              className="p-3 text-gray-400 hover:text-sky-400 rounded-xl hover:bg-gray-800 transition-all"
-              whileHover={{ scale: 1.1 }}
+              className="p-4 text-gray-400 hover:text-white rounded-2xl bg-white/5 border border-white/10 transition-all"
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)" }}
               whileTap={{ scale: 0.9 }}
               onClick={() => onShare(article)}
             >
-              <Share2 size={20} />
+              <Share2 size={22} />
             </motion.button>
           </div>
         </div>
-        <div className="relative h-full min-h-[300px]">
-          <img 
+        
+        <div className="relative h-full min-h-[400px] overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-10 md:hidden" />
+          <motion.img 
             src={article.image} 
             alt={article.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
         </div>
       </div>
     </motion.div>
@@ -661,51 +686,67 @@ const FeaturedArticle = ({ article, onReadMore, onShare }) => {
 const NewsCard = ({ item, onClick, onLike, isLiked, onBookmark, isBookmarked }) => {
   return (
     <motion.div
-      className="bg-gradient-to-br from-gray-900 to-black rounded-xl border border-gray-800 overflow-hidden hover:border-sky-500/50 transition-all cursor-pointer"
-      whileHover={{ y: -5, scale: 1.02 }}
+      className="group flex flex-col h-full bg-white/[0.03] rounded-3xl border border-white/5 overflow-hidden hover:border-sky-500/30 transition-all duration-500"
+      whileHover={{ y: -8 }}
       onClick={() => onClick(item)}
     >
-      {item.image && (
-        <div className="relative h-48 overflow-hidden">
-          <img 
-            src={item.image} 
-            alt={item.title}
-            className="w-full h-full object-cover"
-          />
-          {item.type === 'video' && (
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-              <div className="w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center">
-                <Play className="w-6 h-6 text-white ml-1" />
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-      <div className="p-4">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="px-2 py-1 bg-gray-800 text-xs text-gray-300 rounded-full">
+      <div className="relative h-56 overflow-hidden">
+        <img 
+          src={item.image} 
+          alt={item.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+        
+        {item.type === 'video' && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.div 
+              className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20"
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.2)" }}
+            >
+              <Play className="w-6 h-6 text-white fill-white ml-1" />
+            </motion.div>
+          </div>
+        )}
+        
+        <div className="absolute top-4 left-4 flex gap-2">
+          <span className="px-3 py-1 bg-black/50 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-white rounded-lg border border-white/10">
             {item.category}
           </span>
-          <span className="text-xs text-gray-500">{item.date}</span>
         </div>
-        <h3 className="font-bold text-white mb-2 line-clamp-2">{item.title}</h3>
-        <p className="text-sm text-gray-400 mb-4 line-clamp-2">{item.excerpt}</p>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+      </div>
+      
+      <div className="p-6 flex flex-col flex-1">
+        <div className="flex items-center gap-3 mb-3">
+          <Clock className="w-3 h-3 text-gray-500" />
+          <span className="text-[10px] font-medium text-gray-500 uppercase tracking-widest">{item.date}</span>
+        </div>
+        
+        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-sky-300 transition-colors line-clamp-2 leading-tight">
+          {item.title}
+        </h3>
+        
+        <p className="text-sm text-gray-400 mb-6 line-clamp-2 leading-relaxed">
+          {item.excerpt}
+        </p>
+        
+        <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+          <div className="flex items-center gap-4">
             <button 
-              className={`flex items-center gap-1 text-sm ${isLiked ? 'text-red-400' : 'text-gray-500 hover:text-red-400'}`}
+              className={`flex items-center gap-1.5 text-xs font-semibold transition-colors ${isLiked ? 'text-red-400' : 'text-gray-500 hover:text-red-400'}`}
               onClick={(e) => { e.stopPropagation(); onLike(item.id); }}
             >
-              <Heart size={16} className={isLiked ? "fill-current" : ""} />
+              <Heart size={14} className={isLiked ? "fill-current" : ""} />
               <span>{item.likes || 0}</span>
             </button>
-            <button className="flex items-center gap-1 text-sm text-gray-500 hover:text-sky-400">
-              <MessageCircle size={16} />
+            <button className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-sky-400">
+              <MessageCircle size={14} />
               <span>{item.comments || 0}</span>
             </button>
           </div>
+          
           <button 
-            className={`text-gray-500 hover:text-yellow-400 ${isBookmarked ? 'text-yellow-400' : ''}`}
+            className={`p-2 rounded-lg transition-colors ${isBookmarked ? 'bg-yellow-500/10 text-yellow-400' : 'text-gray-500 hover:text-yellow-400 hover:bg-yellow-500/5'}`}
             onClick={(e) => { e.stopPropagation(); onBookmark(item.id); }}
           >
             <Bookmark size={16} className={isBookmarked ? "fill-current" : ""} />
@@ -1014,11 +1055,6 @@ const PostCard = ({ post, onLike, onComment, onShare, onSave, onReact }) => {
     return `${Math.floor(diffInSeconds / 86400)}d`;
   };
 
-  // Smile and Frown components (since they're not imported)
-  const Smile = (props) => <span {...props}>😊</span>;
-  const Frown = (props) => <span {...props}>😞</span>;
-  const Angry = (props) => <span {...props}>😠</span>;
-
   return (
     <motion.div
       className="relative group"
@@ -1028,31 +1064,23 @@ const PostCard = ({ post, onLike, onComment, onShare, onSave, onReact }) => {
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      {/* Glow effect for pinned posts */}
-      {post.isPinned && (
-        <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-yellow-500/30 to-amber-500/30 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500"></div>
-      )}
-      
-      <div className={`relative bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl border ${
-        post.isPinned ? 'border-yellow-500/50' : 'border-gray-800'
-      } overflow-hidden transition-all duration-500 group-hover:border-sky-500/50 group-hover:shadow-2xl group-hover:shadow-sky-500/20`}>
+      <div className={`relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl border ${
+        post.isPinned ? 'border-sky-500/30 bg-sky-500/[0.02]' : 'border-white/5'
+      } overflow-hidden transition-all duration-500 hover:border-sky-500/20 hover:shadow-2xl hover:shadow-sky-500/10`}>
         
-        {/* Pinned Badge */}
         {post.isPinned && (
-          <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-yellow-500 to-amber-600 text-white text-xs font-bold backdrop-blur-sm">
-            <Rocket size={12} />
+          <div className="absolute top-6 right-6 z-20 px-3 py-1 bg-sky-500/20 text-sky-400 text-[10px] font-black uppercase tracking-widest rounded-full border border-sky-500/30">
+            Pinned
           </div>
         )}
 
-        {/* Post Header */}
-        <div className="p-6 pb-4">
-          <div className="flex items-start gap-3">
-            {/* Author Avatar */}
+        <div className="p-8">
+          <div className="flex items-center gap-4 mb-6">
             <div className="relative">
               <img 
                 src={post.author.avatar} 
                 alt={post.author.name}
-                className="w-12 h-12 rounded-full object-cover border-2 border-sky-500"
+                className="w-14 h-14 rounded-2xl object-cover ring-2 ring-white/5"
               />
               {post.author.verified && (
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-sky-500 rounded-full flex items-center justify-center border-2 border-black">
@@ -1061,52 +1089,31 @@ const PostCard = ({ post, onLike, onComment, onShare, onSave, onReact }) => {
               )}
             </div>
 
-            {/* Author Info */}
-            <div className="flex-1">
-              <div className="flex items-center gap-2 flex-wrap">
-                <h3 className="font-bold text-white group-hover:text-sky-300 transition-colors">
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="font-bold text-white text-lg tracking-tight">
                   {post.author.name}
                 </h3>
-                {post.author.verified && (
-                  <Check className="w-4 h-4 text-sky-400" />
-                )}
-                <span className="text-gray-500 text-sm">{post.author.username}</span>
-                <span className="text-gray-600 text-sm">·</span>
-                <span className="text-gray-500 text-sm">{getTimeAgo(post.timestamp)}</span>
+                <span className="text-gray-500 text-sm font-medium">· {getTimeAgo(post.timestamp)}</span>
               </div>
-              <p className="text-sm text-gray-400">{post.author.role}</p>
+              <p className="text-xs text-gray-500 font-semibold uppercase tracking-widest">{post.author.role}</p>
             </div>
-
-            {/* Follow Button */}
-            <motion.button
-              className="px-4 py-1.5 bg-sky-500/20 text-sky-400 rounded-full text-sm font-semibold hover:bg-sky-500/30 transition-colors border border-sky-500/30"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Follow
-            </motion.button>
           </div>
 
-          {/* Post Content */}
-          <div className="mt-4">
-            <p className="text-gray-200 whitespace-pre-wrap">{post.content}</p>
+          <div className="space-y-4">
+            <p className="text-gray-200 text-lg leading-relaxed font-medium">
+              {post.content}
+            </p>
             
-            {/* Tags */}
-            {post.tags && post.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-2">
-                {post.tags.map((tag, idx) => (
-                  <span key={idx} className="text-sky-400 text-sm hover:underline cursor-pointer">
+            {(post.tags || post.mentions) && (
+              <div className="flex flex-wrap gap-2 text-sm">
+                {post.tags?.map((tag, idx) => (
+                  <span key={idx} className="text-sky-400 hover:text-sky-300 transition-colors font-semibold cursor-pointer">
                     {tag}
                   </span>
                 ))}
-              </div>
-            )}
-
-            {/* Mentions */}
-            {post.mentions && post.mentions.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-1">
-                {post.mentions.map((mention, idx) => (
-                  <span key={idx} className="text-purple-400 text-sm hover:underline cursor-pointer">
+                {post.mentions?.map((mention, idx) => (
+                  <span key={idx} className="text-purple-400 hover:text-purple-300 transition-colors font-semibold cursor-pointer">
                     {mention}
                   </span>
                 ))}
@@ -1114,245 +1121,91 @@ const PostCard = ({ post, onLike, onComment, onShare, onSave, onReact }) => {
             )}
           </div>
 
-          {/* Media Grid */}
           {post.media && post.media.length > 0 && (
-            <div className={`mt-4 grid gap-2 ${
-              post.media.length === 1 ? 'grid-cols-1' :
-              post.media.length === 2 ? 'grid-cols-2' :
-              'grid-cols-2'
+            <div className={`mt-6 grid gap-4 ${
+              post.media.length === 1 ? 'grid-cols-1' : 'grid-cols-2'
             }`}>
               {post.media.map((media, idx) => (
-                <motion.div
+                <div
                   key={idx}
-                  className={`relative rounded-xl overflow-hidden cursor-pointer ${
-                    post.media.length === 3 && idx === 2 ? 'col-span-2' : ''
+                  className={`relative rounded-2xl overflow-hidden group/media ${
+                    post.media.length === 3 && idx === 0 ? 'row-span-2 h-full' : 'h-64'
                   }`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                 >
-                  {media.type === 'image' ? (
-                    <img 
-                      src={media.url} 
-                      alt={media.caption}
-                      className="w-full h-48 object-cover"
-                    />
-                  ) : (
-                    <div className="relative h-48">
-                      <img 
-                        src={media.thumbnail} 
-                        alt={media.caption}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                        <div className="w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center">
-                          <Play className="w-6 h-6 text-white ml-1" />
-                        </div>
-                      </div>
-                      <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs text-white">
-                        {media.duration}
+                  <img 
+                    src={media.type === 'image' ? media.url : media.thumbnail} 
+                    alt={media.caption}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover/media:scale-105"
+                  />
+                  {media.type === 'video' && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                      <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20">
+                        <Play className="w-6 h-6 text-white fill-white ml-1" />
                       </div>
                     </div>
                   )}
-                  {media.caption && (
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2">
-                      <p className="text-xs text-white">{media.caption}</p>
-                    </div>
-                  )}
-                </motion.div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                    <p className="text-xs text-white font-medium">{media.caption}</p>
+                  </div>
+                </div>
               ))}
             </div>
           )}
 
-          {/* Link Preview */}
-          {post.link && (
-            <motion.div 
-              className="mt-4 bg-black/50 rounded-xl border border-gray-700 overflow-hidden cursor-pointer"
-              whileHover={{ scale: 1.01 }}
-            >
-              <div className="p-4">
-                <p className="text-xs text-gray-400 mb-1">rwandaboxing.rw</p>
-                <h4 className="font-semibold text-white mb-1">{post.link.title}</h4>
-                <p className="text-sm text-gray-400">{post.link.description}</p>
-              </div>
-            </motion.div>
-          )}
-
-          {/* Stats */}
-          <div className="flex items-center gap-4 mt-4 text-sm text-gray-500">
-            <div className="flex items-center gap-1">
-              <Eye size={16} />
-              <span>{formatNumber(post.stats.views)}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Heart size={16} className={isLiked ? "text-red-400 fill-current" : ""} />
-              <span>{formatNumber(localLikes)}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <MessageCircle size={16} />
-              <span>{formatNumber(post.stats.comments)}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Share2 size={16} />
-              <span>{formatNumber(post.stats.shares)}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Bookmark size={16} className={isSaved ? "text-yellow-400 fill-current" : ""} />
-              <span>{formatNumber(post.stats.saves)}</span>
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-800">
-            {/* Reaction Button */}
-            <div className="relative">
+          <div className="flex items-center justify-between mt-8 pt-6 border-t border-white/5">
+            <div className="flex items-center gap-6">
               <motion.button
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
-                  isLiked ? 'text-blue-400 bg-blue-500/10' : 'text-gray-400 hover:text-blue-400 hover:bg-gray-800'
-                }`}
+                className={`flex items-center gap-2 text-sm font-bold transition-colors ${isLiked ? 'text-sky-400' : 'text-gray-500 hover:text-sky-400'}`}
                 whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 onMouseEnter={() => setShowReactions(true)}
                 onMouseLeave={() => setShowReactions(false)}
-                onClick={() => {
-                  if (!isLiked) {
-                    handleReaction('like');
-                  }
-                }}
+                onClick={() => !isLiked && handleReaction('like')}
               >
-                {selectedReaction ? (
-                  reactions.find(r => r.type === selectedReaction)?.icon
-                ) : (
-                  <ThumbsUp size={20} />
-                )}
-                <span>Like</span>
+                {selectedReaction ? reactions.find(r => r.type === selectedReaction)?.icon : <Heart size={20} className={isLiked ? "fill-current" : ""} />}
+                <span>{formatNumber(localLikes)}</span>
+                
+                <AnimatePresence>
+                  {showReactions && !isLiked && (
+                    <motion.div
+                      className="absolute bottom-full left-0 mb-4 flex gap-1 p-2 bg-white/10 backdrop-blur-xl rounded-full border border-white/10"
+                      initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.8 }}
+                    >
+                      {reactions.map((reaction) => (
+                        <motion.button
+                          key={reaction.type}
+                          className="p-2.5 rounded-full hover:bg-white/10 transition-colors"
+                          whileHover={{ scale: 1.3 }}
+                          onClick={(e) => { e.stopPropagation(); handleReaction(reaction.type); }}
+                        >
+                          {reaction.icon}
+                        </motion.button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.button>
 
-              {/* Reaction Picker */}
-              <AnimatePresence>
-                {showReactions && !isLiked && (
-                  <motion.div
-                    className="absolute bottom-full left-0 mb-2 flex gap-1 p-2 bg-gray-800 rounded-full border border-gray-700"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    onMouseEnter={() => setShowReactions(true)}
-                    onMouseLeave={() => setShowReactions(false)}
-                  >
-                    {reactions.map((reaction) => (
-                      <motion.button
-                        key={reaction.type}
-                        className={`p-2 rounded-full hover:bg-gray-700 transition-colors ${reaction.color}`}
-                        whileHover={{ scale: 1.2 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={() => handleReaction(reaction.type)}
-                      >
-                        {reaction.icon}
-                      </motion.button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <button className="flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-sky-400 transition-colors">
+                <MessageCircle size={20} />
+                <span>{formatNumber(post.stats.comments)}</span>
+              </button>
+              
+              <button className="flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-sky-400 transition-colors">
+                <Share2 size={20} />
+                <span>{formatNumber(post.stats.shares)}</span>
+              </button>
             </div>
 
-            {/* Comment Button */}
             <motion.button
-              className="flex items-center gap-2 px-4 py-2 text-gray-400 hover:text-green-400 rounded-lg hover:bg-gray-800 transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setShowComments(!showComments)}
-            >
-              <MessageCircle size={20} />
-              <span>Comment</span>
-            </motion.button>
-
-            {/* Share Button */}
-            <motion.button
-              className="flex items-center gap-2 px-4 py-2 text-gray-400 hover:text-purple-400 rounded-lg hover:bg-gray-800 transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => onShare(post)}
-            >
-              <Share2 size={20} />
-              <span>Share</span>
-            </motion.button>
-
-            {/* Save Button */}
-            <motion.button
-              className={`p-2 rounded-lg transition-all ${
-                isSaved ? 'text-yellow-400 bg-yellow-500/10' : 'text-gray-400 hover:text-yellow-400 hover:bg-gray-800'
-              }`}
+              className={`p-2 rounded-xl transition-all ${isSaved ? 'text-yellow-400 bg-yellow-500/10' : 'text-gray-500 hover:text-yellow-400 hover:bg-white/5'}`}
               whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => {
-                setIsSaved(!isSaved);
-                onSave?.(post.id);
-              }}
+              onClick={() => setIsSaved(!isSaved)}
             >
-              <Bookmark size={20} className={isSaved ? "fill-current" : ""} />
+              <Bookmark size={22} className={isSaved ? "fill-current" : ""} />
             </motion.button>
           </div>
-
-          {/* Comments Section */}
-          <AnimatePresence>
-            {showComments && (
-              <motion.div
-                className="mt-4 pt-4 border-t border-gray-800"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-              >
-                {/* Comment Input */}
-                <div className="flex gap-3">
-                  <img 
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                    alt="Your avatar"
-                    className="w-8 h-8 rounded-full"
-                  />
-                  <div className="flex-1">
-                    <input
-                      type="text"
-                      placeholder="Write a comment..."
-                      value={commentText}
-                      onChange={(e) => setCommentText(e.target.value)}
-                      className="w-full px-4 py-2 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
-                    />
-                  </div>
-                  <motion.button
-                    className="px-4 py-2 bg-sky-600 text-white rounded-lg font-semibold hover:bg-sky-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    disabled={!commentText.trim()}
-                  >
-                    Post
-                  </motion.button>
-                </div>
-
-                {/* Sample Comments */}
-                <div className="mt-4 space-y-3">
-                  <div className="flex gap-3">
-                    <img 
-                      src="https://images.unsplash.com/photo-1494790108777-466d9cd5d0e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                      alt="Commenter"
-                      className="w-8 h-8 rounded-full"
-                    />
-                    <div className="flex-1">
-                      <div className="bg-gray-800/50 rounded-lg p-3">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-semibold text-white text-sm">Marie Uwase</span>
-                          <span className="text-gray-500 text-xs">2h</span>
-                        </div>
-                        <p className="text-gray-300 text-sm">Congratulations team Rwanda! So proud of our boxers! 🥊🇷🇼</p>
-                      </div>
-                      <div className="flex gap-4 mt-1 ml-2">
-                        <button className="text-xs text-gray-500 hover:text-sky-400">Like</button>
-                        <button className="text-xs text-gray-500 hover:text-sky-400">Reply</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </div>
     </motion.div>
@@ -1751,482 +1604,183 @@ const PressKit = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white relative overflow-hidden lg:pt-20 sm:pt-10">
+    <div className="flex flex-col min-h-screen bg-[#020617] text-white selection:bg-sky-500/30 selection:text-sky-200">
+      <Navbar />
+
       {/* Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-500 via-blue-500 to-purple-500 z-50"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-sky-500 to-transparent z-[100]"
         style={{ scaleX, transformOrigin: "0%" }}
       />
 
-      {/* Enhanced animated background */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-sky-900"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-sky-900/20 via-transparent to-transparent"></div>
-        <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-sky-500/10 to-transparent"></div>
-        
-        {/* Animated particles */}
-        {[...Array(30)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-sky-500/20 rounded-full"
-            animate={{
-              x: [Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000)],
-              y: [Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000), Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000)],
-              scale: [0, 1, 0],
-              opacity: [0, 0.5, 0]
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        ))}
-      </div>
+      {/* Hero Section - Advanced Cinematic Design */}
+      <section className="relative pt-32 pb-24 overflow-hidden">
+        {/* Abstract Background Elements */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[60%] bg-sky-500/10 blur-[120px] rounded-full animate-pulse" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[60%] bg-blue-600/10 blur-[120px] rounded-full" />
+        </div>
 
-      <Navbar />
-
-      {/* Top bar with notifications */}
-      <div className="sticky top-0 z-40 bg-black/50 backdrop-blur-xl border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <Newspaper className="w-5 h-5 text-sky-400" />
-            <span className="text-sm font-semibold text-sky-400">RBF MEDIA CENTER</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <NotificationCenter 
-              notifications={notificationList} 
-              onDismiss={handleDismissNotification}
-            />
-            <motion.button
-              className="p-2 bg-sky-500/20 rounded-xl border border-sky-500/30 text-sky-400 hover:bg-sky-500/30 transition-all flex items-center gap-2"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="max-w-4xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 mb-8"
             >
-              <Megaphone className="w-4 h-4" />
-              <span className="text-sm font-medium hidden sm:inline">Media Kit</span>
-            </motion.button>
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+              </span>
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-sky-400">Media Center Alpha</span>
+            </motion.div>
+
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8"
+            >
+              THE HEART OF <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-white to-sky-400 bg-[length:200%_auto] animate-gradient">RWANDAN BOXING</span>
+            </motion.h1>
+
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-gray-400 max-w-2xl leading-relaxed mb-12 font-medium"
+            >
+              Experience the adrenaline, the stories, and the legacy. Your definitive source for official news, 
+              community insights, and media assets from the Rwanda Boxing Federation.
+            </motion.p>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-wrap gap-4"
+            >
+              <button className="px-8 py-4 bg-sky-500 hover:bg-sky-400 text-white rounded-2xl font-bold transition-all shadow-xl shadow-sky-500/20 flex items-center gap-2 group">
+                Access Press Kit
+                <Download size={20} className="group-hover:translate-y-1 transition-transform" />
+              </button>
+              <button className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-2xl font-bold transition-all border border-white/10 backdrop-blur-md">
+                Live Coverage
+              </button>
+            </motion.div>
           </div>
-        </div>
-      </div>
-
-      {/* Hero Section with live updates */}
-      <section className="relative py-20 text-center z-10 overflow-hidden">
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-sky-600/20 via-transparent to-purple-600/20"
-          animate={{
-            x: ["-100%", "100%"],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-        
-        <div className="max-w-5xl mx-auto relative z-10 px-6">
-          <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-sky-500/20 to-purple-500/20 backdrop-blur-sm px-6 py-3 rounded-full border border-sky-500/30 mb-6"
-          >
-            <Sparkles className="w-5 h-5 text-sky-400" />
-            <span className="text-sky-300 font-semibold">LIVE UPDATES • 24/7 COVERAGE</span>
-          </motion.div>
-          
-          <h1 className="text-5xl sm:text-7xl font-black mb-6">
-            <span className="bg-gradient-to-r from-white via-sky-300 to-purple-300 bg-clip-text text-transparent">
-              Rwanda Boxing
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-sky-400 to-purple-400 bg-clip-text text-transparent">
-              Community Hub
-            </span>
-          </h1>
-          
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
-            Join the conversation, share your passion, and stay connected with the 
-            Rwandan boxing community. Get the latest news, exclusive content, and 
-            interact with fellow fans.
-          </p>
-
-          {/* Live stats ticker */}
-          <motion.div 
-            className="flex flex-wrap justify-center gap-6 text-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <div className="flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full border border-gray-800">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-gray-300">LIVE: Press Conference</span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full border border-gray-800">
-              <Users className="w-4 h-4 text-sky-400" />
-              <span className="text-gray-300">4.2K online now</span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full border border-gray-800">
-              <MessageCircle className="w-4 h-4 text-purple-400" />
-              <span className="text-gray-300">2.3K new posts today</span>
-            </div>
-          </motion.div>
         </div>
       </section>
 
-      {/* Advertisement banners */}
-      <section className="px-6 max-w-7xl mx-auto w-full relative z-10 mb-8">
-        <div className="grid md:grid-cols-3 gap-4">
-          {advertisements.map((ad) => (
-            <AdvertisementBanner key={ad.id} ad={ad} />
-          ))}
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <main className="flex-grow py-8 px-6 max-w-7xl mx-auto w-full relative z-10">
-        {/* Enhanced Tabs Navigation */}
-        <motion.div 
-          className="flex flex-wrap justify-center gap-2 mb-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          <div className="flex flex-wrap gap-2 bg-black/50 backdrop-blur-sm p-2 rounded-2xl border border-gray-800">
-            {[
-              { id: "posts", label: "Community Posts", icon: <MessageCircle className="w-4 h-4" />, count: posts.length },
-              { id: "news", label: "News Feed", icon: <Newspaper className="w-4 h-4" />, count: newsContent.length },
-              { id: "newsletters", label: "Newsletters", icon: <Mail className="w-4 h-4" />, count: newsletters.length },
-              { id: "press", label: "Press Kit", icon: <FileText className="w-4 h-4" />, count: pressResources.length },
-              { id: "partners", label: "Partners", icon: <Users className="w-4 h-4" />, count: mediaPartners.length }
-            ].map((tab) => (
-              <motion.button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold transition-all relative ${
-                  activeTab === tab.id
-                    ? "bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-lg shadow-sky-500/25"
-                    : "text-gray-400 hover:text-white hover:bg-gray-800"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {tab.icon}
-                {tab.label}
-                <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                  activeTab === tab.id ? "bg-white/20" : "bg-gray-700"
-                }`}>
-                  {tab.count}
-                </span>
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Enhanced Search and Filters */}
-        <motion.div 
-          className="flex flex-col lg:flex-row gap-4 mb-8 bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-gray-800"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <div className="relative flex-1">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-            <input
-              type="text"
-              placeholder="Search posts, news, articles..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-black/50 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 backdrop-blur-sm transition-all"
-            />
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <div className="relative min-w-[150px]">
-              <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-              <select
-                value={
-                  activeTab === 'posts' ? postFilter :
-                  activeTab === 'news' ? selectedCategory : 
-                  resourceFilter
-                }
-                onChange={(e) => {
-                  if (activeTab === 'posts') setPostFilter(e.target.value);
-                  else if (activeTab === 'news') setSelectedCategory(e.target.value);
-                  else setResourceFilter(e.target.value);
-                }}
-                className="w-full pl-10 pr-8 py-3 bg-black/50 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 appearance-none"
-              >
-                {(activeTab === 'posts' ? postCategories : 
-                  activeTab === 'news' ? categories : 
-                  resourceCategories).map(cat => (
-                  <option key={cat} value={cat}>{cat}</option>
-                ))}
-              </select>
-            </div>
-
-            {activeTab === 'news' && (
-              <div className="relative min-w-[150px]">
-                <Layers className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-                <select
-                  value={selectedContentType}
-                  onChange={(e) => setSelectedContentType(e.target.value)}
-                  className="w-full pl-10 pr-8 py-3 bg-black/50 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 appearance-none"
+      {/* Navigation & Search - Clean Glassmorphism */}
+      <section className="sticky top-20 z-50 px-6 mb-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="p-2 bg-white/[0.02] backdrop-blur-2xl rounded-[2rem] border border-white/5 shadow-2xl flex flex-col md:flex-row items-center gap-2">
+            <div className="flex flex-wrap gap-1 p-1 w-full md:w-auto">
+              {[
+                { id: "posts", label: "Community", icon: <Users size={16} /> },
+                { id: "news", label: "Newsroom", icon: <Newspaper size={16} /> },
+                { id: "newsletters", label: "Insights", icon: <TrendingUp size={16} /> },
+                { id: "press", label: "Resources", icon: <Layers size={16} /> },
+                { id: "partners", label: "Network", icon: <Share2 size={16} /> }
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold transition-all ${
+                    activeTab === tab.id 
+                      ? "bg-white text-black shadow-xl" 
+                      : "text-gray-400 hover:text-white hover:bg-white/5"
+                  }`}
                 >
-                  {contentTypes.map(type => (
-                    <option key={type} value={type}>{type}</option>
-                  ))}
-                </select>
-              </div>
-            )}
+                  {tab.icon}
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+            
+            <div className="h-8 w-[1px] bg-white/10 hidden md:block mx-4" />
 
-            <div className="flex gap-2">
-              <motion.button
-                onClick={() => setViewMode("grid")}
-                className={`p-3 rounded-xl border transition-all ${
-                  viewMode === "grid" 
-                    ? "bg-sky-500/20 border-sky-500 text-sky-400" 
-                    : "bg-black/50 border-gray-700 text-gray-400 hover:border-sky-500/50"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Grid3X3 size={20} />
-              </motion.button>
-              <motion.button
-                onClick={() => setViewMode("list")}
-                className={`p-3 rounded-xl border transition-all ${
-                  viewMode === "list" 
-                    ? "bg-sky-500/20 border-sky-500 text-sky-400" 
-                    : "bg-black/50 border-gray-700 text-gray-400 hover:border-sky-500/50"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <List size={20} />
-              </motion.button>
+            <div className="relative flex-1 w-full px-2 md:px-0">
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+              <input
+                type="text"
+                placeholder="Search the media center..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-14 pr-6 py-4 bg-transparent text-white placeholder-gray-500 focus:outline-none font-medium"
+              />
+            </div>
+
+            <div className="hidden lg:flex items-center gap-2 pr-4">
+              <NotificationCenter 
+                notifications={notificationList} 
+                onDismiss={handleDismissNotification}
+              />
             </div>
           </div>
-        </motion.div>
+        </div>
+      </section>
 
-        {/* Tab Content */}
+      <main className="max-w-7xl mx-auto px-6 pb-24 w-full relative z-10">
         <AnimatePresence mode="wait">
           {activeTab === "posts" && (
             <motion.div
               key="posts"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="grid lg:grid-cols-12 gap-8"
             >
-              <div className="grid lg:grid-cols-3 gap-6">
-                {/* Main Feed */}
-                <div className="lg:col-span-2">
-                  {/* Post Composer */}
-                  <PostComposer onPost={(content) => console.log('New post:', content)} />
-
-                  {/* Posts Feed */}
-                  {filteredPosts.length === 0 ? (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="text-center py-20 bg-black/50 backdrop-blur-sm rounded-2xl border border-gray-800"
-                    >
-                      <MessageCircle className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-                      <h3 className="text-2xl font-bold text-white mb-2">No Posts Found</h3>
-                      <p className="text-gray-400">Be the first to share something!</p>
-                    </motion.div>
-                  ) : (
-                    <div className="space-y-4">
-                      {filteredPosts.map((post) => (
-                        <PostCard
-                          key={post.id}
-                          post={post}
-                          onLike={handlePostLike}
-                          onComment={(id) => console.log('Comment on:', id)}
-                          onShare={handleShare}
-                          onSave={handlePostSave}
-                          onReact={handlePostReact}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Sidebar */}
-                <div>
-                  <TrendingSidebar topics={trendingTopics} users={suggestedUsers} />
-                </div>
+              <div className="lg:col-span-8 space-y-8">
+                <PostComposer onPost={(content) => console.log('New post:', content)} />
+                {filteredPosts.map((post) => (
+                  <PostCard
+                    key={post.id}
+                    post={post}
+                    onLike={handlePostLike}
+                    onShare={handleShare}
+                    onSave={handlePostSave}
+                    onReact={handlePostReact}
+                  />
+                ))}
               </div>
+              <aside className="lg:col-span-4 space-y-8">
+                <TrendingSidebar topics={trendingTopics} users={suggestedUsers} />
+              </aside>
             </motion.div>
           )}
 
           {activeTab === "news" && (
             <motion.div
               key="news"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="space-y-12"
             >
-              {/* Featured Article */}
               {filteredContent.find(item => item.type === "featured") && (
-                <div className="mb-8">
-                  <FeaturedArticle 
-                    article={filteredContent.find(item => item.type === "featured")}
-                    onReadMore={setSelectedArticle}
-                    onShare={handleShare}
-                  />
-                </div>
+                <FeaturedArticle 
+                  article={filteredContent.find(item => item.type === "featured")}
+                  onReadMore={setSelectedArticle}
+                  onShare={handleShare}
+                />
               )}
-
-              {/* Results Header */}
-              <div className="mb-6 flex flex-wrap justify-between items-center">
-                <div>
-                  <p className="text-gray-400">
-                    Showing <span className="text-white font-semibold">{filteredContent.length}</span> articles
-                    {selectedCategory !== "All" && ` in ${selectedCategory}`}
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <button className="text-sm text-gray-400 hover:text-sky-400 transition-colors flex items-center gap-1">
-                    <TrendingUp size={16} />
-                    Trending
-                  </button>
-                  <button className="text-sm text-gray-400 hover:text-sky-400 transition-colors flex items-center gap-1">
-                    <Clock size={16} />
-                    Latest
-                  </button>
-                  <button className="text-sm text-gray-400 hover:text-sky-400 transition-colors flex items-center gap-1">
-                    <Flame size={16} />
-                    Popular
-                  </button>
-                </div>
-              </div>
-
-              {/* Content Grid */}
-              {filteredContent.length === 0 ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-20 bg-black/50 backdrop-blur-sm rounded-2xl border border-gray-800"
-                >
-                  <Newspaper className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-white mb-2">No Content Found</h3>
-                  <p className="text-gray-400">Try adjusting your search or filter criteria.</p>
-                </motion.div>
-              ) : (
-                <div className={`grid gap-6 ${
-                  viewMode === "grid" ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-1"
-                }`}>
-                  {filteredContent
-                    .filter(item => item.type !== "featured")
-                    .map((item) => (
-                      <NewsCard
-                        key={item.id}
-                        item={item}
-                        onClick={item.type === "video" ? handleVideoPlay : setSelectedArticle}
-                        onLike={handleLike}
-                        isLiked={likedItems.has(item.id)}
-                        onBookmark={handleBookmark}
-                        isBookmarked={bookmarkedItems.has(item.id)}
-                      />
-                    ))}
-                </div>
-              )}
-            </motion.div>
-          )}
-
-          {activeTab === "newsletters" && (
-            <motion.div
-              key="newsletters"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="grid lg:grid-cols-3 gap-6">
-                {/* Newsletter List */}
-                <div className="lg:col-span-2">
-                  <h2 className="text-2xl font-bold text-white mb-6">Newsletter Archive</h2>
-                  
-                  {filteredNewsletters.length === 0 ? (
-                    <div className="text-center py-12 bg-black/50 backdrop-blur-sm rounded-2xl border border-gray-800">
-                      <Mail className="w-12 h-12 text-gray-600 mx-auto mb-3" />
-                      <p className="text-gray-400">No newsletters found</p>
-                    </div>
-                  ) : (
-                    <div className="space-y-4">
-                      {filteredNewsletters.map((newsletter) => (
-                        <motion.div
-                          key={newsletter.id}
-                          className="bg-gradient-to-br from-gray-900 to-black rounded-xl border border-gray-800 p-4 hover:border-sky-500/50 transition-all cursor-pointer"
-                          whileHover={{ scale: 1.02, x: 5 }}
-                        >
-                          <div className="flex gap-4">
-                            <img 
-                              src={newsletter.image} 
-                              alt={newsletter.title}
-                              className="w-24 h-24 rounded-lg object-cover"
-                            />
-                            <div className="flex-1">
-                              <h3 className="font-bold text-white mb-1">{newsletter.title}</h3>
-                              <p className="text-sm text-gray-400 mb-2">{newsletter.description}</p>
-                              <div className="flex flex-wrap gap-2 mb-2">
-                                {newsletter.topics.map((topic, idx) => (
-                                  <span key={idx} className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded-full">
-                                    {topic}
-                                  </span>
-                                ))}
-                              </div>
-                              <div className="flex items-center gap-4 text-xs text-gray-500">
-                                <span>{newsletter.date}</span>
-                                <div className="flex items-center gap-1">
-                                  <Eye size={12} />
-                                  <span>{newsletter.readCount} reads</span>
-                                </div>
-                              </div>
-                            </div>
-                            <motion.button
-                              className="px-4 py-2 bg-sky-600 text-white rounded-lg text-sm font-semibold hover:bg-sky-700 transition-colors self-center"
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                            >
-                              Read
-                            </motion.button>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Newsletter Signup Sidebar */}
-                <div>
-                  <NewsletterSignup />
-                  
-                  {/* Topics Cloud */}
-                  <motion.div
-                    className="mt-6 bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-gray-800 p-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <h3 className="font-bold text-white mb-4">Popular Topics</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {["Championships", "Olympics", "Training", "Interviews", "Results", "Development", "Youth", "International", "Rankings", "Events"].map((topic) => (
-                        <motion.span
-                          key={topic}
-                          className="px-3 py-1.5 bg-gray-800 text-gray-300 text-sm rounded-full hover:bg-sky-600 hover:text-white transition-colors cursor-pointer"
-                          whileHover={{ scale: 1.1 }}
-                        >
-                          #{topic}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </motion.div>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredContent
+                  .filter(item => item.type !== "featured")
+                  .map((item) => (
+                    <NewsCard
+                      key={item.id}
+                      item={item}
+                      onClick={item.type === "video" ? handleVideoPlay : setSelectedArticle}
+                      onLike={handleLike}
+                      isLiked={likedItems.has(item.id)}
+                      onBookmark={handleBookmark}
+                      isBookmarked={bookmarkedItems.has(item.id)}
+                    />
+                  ))}
               </div>
             </motion.div>
           )}
@@ -2234,90 +1788,47 @@ const PressKit = () => {
           {activeTab === "press" && (
             <motion.div
               key="press"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-              <div className="grid lg:grid-cols-3 gap-6">
-                {/* Press Resources */}
-                <div className="lg:col-span-2">
-                  <h2 className="text-2xl font-bold text-white mb-6">Press Resources</h2>
-                  
-                  <div className={`grid gap-4 ${
-                    viewMode === "grid" ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"
-                  }`}>
-                    {filteredResources.map((resource) => (
-                      <ResourceCard
-                        key={resource.id}
-                        resource={resource}
-                      />
-                    ))}
-                  </div>
-                </div>
+              {filteredResources.map((resource) => (
+                <ResourceCard key={resource.id} resource={resource} />
+              ))}
+            </motion.div>
+          )}
 
-                {/* Media Partners Sidebar */}
-                <div>
-                  <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-gray-800 p-6">
-                    <h3 className="font-bold text-white mb-4">Media Partners</h3>
-                    <div className="space-y-4">
-                      {mediaPartners.map((partner) => (
-                        <motion.div
-                          key={partner.id}
-                          className="flex items-center gap-3 p-3 bg-black/50 rounded-xl border border-gray-800 hover:border-sky-500/50 transition-all cursor-pointer"
-                          whileHover={{ x: 5 }}
-                        >
-                          <img 
-                            src={partner.logo} 
-                            alt={partner.name}
-                            className="w-12 h-12 rounded-lg object-cover bg-gray-800"
-                          />
-                          <div>
-                            <h4 className="font-semibold text-white text-sm">{partner.name}</h4>
-                            <p className="text-xs text-gray-400">{partner.type}</p>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Contact Card */}
-                  <motion.div 
-                    className="mt-6 bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-gray-800 p-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+          {activeTab === "newsletters" && (
+            <motion.div
+              key="newsletters"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="space-y-8"
+            >
+              <div className="max-w-3xl mx-auto">
+                <NewsletterSignup />
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {newsletters.map((newsletter) => (
+                  <motion.div
+                    key={newsletter.id}
+                    className="bg-white/[0.03] rounded-[2rem] border border-white/5 overflow-hidden group hover:border-sky-500/30 transition-all duration-500"
+                    whileHover={{ y: -10 }}
                   >
-                    <h3 className="font-bold text-white mb-4">Media Contact</h3>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <Mail className="w-5 h-5 text-sky-400" />
-                        <a href="mailto:media@rwandaboxing.rw" className="text-gray-300 hover:text-sky-400 text-sm transition-colors">
-                          media@rwandaboxing.rw
-                        </a>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <Phone className="w-5 h-5 text-green-400" />
-                        <p className="text-gray-300 text-sm">+250 788 123 456</p>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <MapPin className="w-5 h-5 text-red-400" />
-                        <p className="text-gray-300 text-sm">RBF Headquarters, Kigali</p>
-                      </div>
+                    <div className="relative h-48 overflow-hidden">
+                      <img src={newsletter.image} alt={newsletter.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                      <span className="absolute bottom-4 left-4 text-[10px] font-bold uppercase tracking-widest text-sky-400">{newsletter.date}</span>
                     </div>
-                    
-                    <div className="mt-4 pt-4 border-t border-gray-800">
-                      <p className="text-xs text-gray-500 mb-3">For press accreditation:</p>
-                      <motion.button
-                        className="w-full px-4 py-2 bg-sky-600 text-white rounded-lg text-sm font-semibold hover:bg-sky-700 transition-colors"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        Apply for Media Pass
-                      </motion.button>
+                    <div className="p-8">
+                      <h3 className="text-xl font-bold text-white mb-4 group-hover:text-sky-300 transition-colors">{newsletter.title}</h3>
+                      <p className="text-sm text-gray-400 mb-6 leading-relaxed">{newsletter.description}</p>
+                      <button className="w-full py-3 bg-white/5 hover:bg-white text-gray-300 hover:text-black rounded-xl font-bold transition-all border border-white/10">Read Archive</button>
                     </div>
                   </motion.div>
-                </div>
+                ))}
               </div>
             </motion.div>
           )}
@@ -2325,153 +1836,46 @@ const PressKit = () => {
           {activeTab === "partners" && (
             <motion.div
               key="partners"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-8"
             >
-              <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-white mb-3">Our Media Partners</h2>
-                <p className="text-gray-400 max-w-2xl mx-auto">
-                  Collaborating with leading media organizations to bring you comprehensive coverage of Rwandan boxing.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {mediaPartners.map((partner, index) => (
-                  <motion.div
-                    key={partner.id}
-                    className="bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-gray-800 p-6 text-center hover:border-sky-500/50 transition-all cursor-pointer"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ y: -5, scale: 1.05 }}
-                  >
-                    <img 
-                      src={partner.logo} 
-                      alt={partner.name}
-                      className="w-20 h-20 mx-auto mb-4 rounded-full object-cover bg-gray-800"
-                    />
-                    <h3 className="font-bold text-white mb-1">{partner.name}</h3>
-                    <p className="text-sm text-sky-400">{partner.type}</p>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Partnership CTA */}
-              <motion.div 
-                className="mt-12 bg-gradient-to-r from-sky-600/20 to-purple-600/20 rounded-2xl border border-gray-800 p-8 text-center"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-2xl font-bold text-white mb-3">Become a Media Partner</h3>
-                <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-                  Join our network of media partners and get exclusive access to events, interviews, and press resources.
-                </p>
-                <motion.button
-                  className="px-8 py-3 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-xl font-semibold hover:from-sky-600 hover:to-blue-700 transition-all"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Apply for Partnership
-                </motion.button>
-              </motion.div>
+              {mediaPartners.map((partner) => (
+                <div key={partner.id} className="bg-white/[0.02] border border-white/5 rounded-[2rem] p-8 text-center hover:border-sky-500/30 transition-all duration-500 group">
+                  <div className="w-20 h-20 mx-auto mb-6 relative">
+                    <img src={partner.logo} alt={partner.name} className="w-full h-full rounded-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                    <div className="absolute inset-0 rounded-full border border-white/10 group-hover:border-sky-500/50 transition-colors" />
+                  </div>
+                  <h3 className="font-bold text-white mb-2">{partner.name}</h3>
+                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">{partner.type}</p>
+                </div>
+              ))}
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* Newsletter Section */}
-        <motion.section 
-          className="mt-16 bg-gradient-to-br from-sky-900/20 via-transparent to-purple-900/20 rounded-3xl border border-gray-800 p-8"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="max-w-3xl mx-auto text-center">
-            <MailOpen className="w-12 h-12 text-sky-400 mx-auto mb-4" />
-            <h2 className="text-3xl font-bold text-white mb-3">Stay Updated</h2>
-            <p className="text-gray-300 mb-6">
-              Subscribe to our newsletter for the latest news, exclusive content, and media alerts.
-            </p>
-            
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-black/50 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
-              />
-              <motion.button
-                type="submit"
-                className="px-6 py-3 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-xl font-semibold hover:from-sky-600 hover:to-blue-700 transition-all flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Send size={18} />
-                Subscribe
-              </motion.button>
-            </form>
-            
-            <p className="text-xs text-gray-500 mt-3">
-              By subscribing, you agree to our Privacy Policy and consent to receive updates.
-            </p>
-          </div>
-        </motion.section>
       </main>
 
-      {/* Scroll to Top Button */}
-      <AnimatePresence>
-        {showScrollTop && (
-          <motion.button
-            className="fixed bottom-8 right-8 p-3 bg-sky-600 text-white rounded-full shadow-lg shadow-sky-500/25 hover:bg-sky-700 transition-colors z-50"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={scrollToTop}
-          >
-            <ChevronRight className="w-6 h-6 rotate-[-90deg]" />
-          </motion.button>
-        )}
-      </AnimatePresence>
-
-      {/* Video Modal */}
-      <AnimatePresence>
-        {showVideoModal && currentVideo && (
-          <VideoModal
-            videoUrl={currentVideo.videoUrl}
-            onClose={() => setShowVideoModal(false)}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Article Modal */}
-      <AnimatePresence>
-        {selectedArticle && (
-          <ArticleModal
-            article={selectedArticle}
-            onClose={() => setSelectedArticle(null)}
-            onShare={handleShare}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Share Modal */}
-      <AnimatePresence>
-        {shareModalOpen && sharedItem && (
-          <ShareModal
-            item={sharedItem}
-            onClose={() => setShareModalOpen(false)}
-            onCopy={handleCopyLink}
-            copied={copied}
-          />
-        )}
-      </AnimatePresence>
-
       <Footer />
+
+      {/* Modals & Overlays */}
+      <AnimatePresence>
+        {showVideoModal && currentVideo && <VideoModal videoUrl={currentVideo.videoUrl} onClose={() => setShowVideoModal(false)} />}
+        {selectedArticle && <ArticleModal article={selectedArticle} onClose={() => setSelectedArticle(null)} onShare={handleShare} />}
+        {shareModalOpen && sharedItem && <ShareModal item={sharedItem} onClose={() => setShareModalOpen(false)} onCopy={handleCopyLink} copied={copied} />}
+      </AnimatePresence>
+
+      <style jsx>{`
+        @keyframes gradient {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-gradient {
+          background-size: 200% auto;
+          animation: gradient 5s linear infinite;
+        }
+      `}</style>
     </div>
   );
 };

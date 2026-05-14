@@ -20,7 +20,11 @@ import {
   Bookmark,
   Grid3X3,
   List,
-  Star // Fixed: Added Star import
+  Star,
+  ArrowRight,
+  TrendingUp,
+  Share,
+  Maximize2
 } from "lucide-react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
@@ -185,241 +189,158 @@ const Gallery = () => {
     setBookmarkedPosts(newBookmarked);
   };
 
-  const particles = Array.from({ length: 30 });
 
   return (
     <>
       <Navbar />
 
-      <section className="relative min-h-screen bg-black text-white overflow-hidden">
-        {/* Enhanced Background Particles */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-sky-900" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-sky-900/20 via-transparent to-transparent" />
-          
-          {particles.map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full bg-gradient-to-r from-sky-500/30 to-blue-500/30 blur-xl"
-              style={{
-                width: `${8 + Math.random() * 20}px`,
-                height: `${8 + Math.random() * 20}px`,
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, 30 + Math.random() * 30, 0],
-                x: [0, 20 + Math.random() * 20, 0],
-                opacity: [0.1, 0.8, 0.1],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 12 + Math.random() * 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: Math.random() * 5,
-              }}
-            />
-          ))}
+      <section className="relative min-h-screen bg-[#050505] text-white selection:bg-sky-500/30">
+        {/* Minimalist Ambient Background */}
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-sky-500/5 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px]" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
-          {/* Enhanced Section Header */}
-          <motion.div
-            className="text-center mb-16"
-            initial={{ y: -20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-24 w-full">
+          {/* Professional Header */}
+          <div className="mb-16">
             <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="inline-flex items-center gap-3 bg-sky-500/20 backdrop-blur-sm px-6 py-3 rounded-full border border-sky-500/30 mb-6"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-2 mb-4"
             >
-              <Image className="w-5 h-5 text-sky-400" />
-              <span className="text-sky-300 font-semibold">MEDIA GALLERY</span>
+              <div className="h-[1px] w-8 bg-sky-500" />
+              <span className="text-[10px] font-bold text-sky-500 uppercase tracking-[0.2em]">Media Archive</span>
             </motion.div>
+            
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+              <div className="max-w-2xl">
+                <motion.h1 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-4xl md:text-6xl font-bold tracking-tight mb-4"
+                >
+                  Visual <span className="text-white/40 font-light italic">Storytelling</span>
+                </motion.h1>
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="text-sm text-white/40 leading-relaxed max-w-lg"
+                >
+                  Capturing the intensity, technical mastery, and cultural heritage of Rwandan boxing through professional cinematography.
+                </motion.p>
+              </div>
 
-            <h1 className="text-5xl sm:text-7xl font-black bg-gradient-to-r from-white via-gray-300 to-gray-400 bg-clip-text text-transparent mb-6">
-              Boxing Gallery
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Immerse yourself in the world of Rwandan boxing through our curated collection of championship moments, training sessions, and behind-the-scenes content.
-            </p>
-          </motion.div>
+              {/* Minimalist Search */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="relative w-full md:w-80"
+              >
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+                <input
+                  type="text"
+                  placeholder="Filter by title, tag..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-white/[0.03] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-sky-500/50 transition-all"
+                />
+              </motion.div>
+            </div>
+          </div>
 
-          {/* Enhanced Search and Filters Section */}
-          <motion.div 
-            className="flex flex-col lg:flex-row gap-6 mb-12 bg-black/50 backdrop-blur-xl p-8 rounded-2xl shadow-2xl border border-gray-800"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            {/* Search Bar */}
-            <div className="relative flex-1">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-              <input
-                type="text"
-                placeholder="Search posts, tags, or descriptions..."
-                className="w-full pl-12 pr-4 py-4 bg-black/50 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 backdrop-blur-sm transition-all"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
+          {/* Clean Controls Bar */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-12 py-4 border-y border-white/5">
+            <div className="flex flex-wrap items-center gap-2">
+              {filters.map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all ${
+                    filter === f 
+                      ? "bg-sky-500 text-white" 
+                      : "text-white/40 hover:text-white/60 hover:bg-white/5"
+                  }`}
+                >
+                  {f}
+                </button>
+              ))}
             </div>
 
-            {/* Filters Group */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="relative">
-                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold text-white/20 uppercase tracking-widest">Sort By</span>
                 <select
-                  value={categoryFilter}
-                  onChange={(e) => setCategoryFilter(e.target.value)}
-                  className="pl-10 pr-8 py-4 bg-black/50 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 appearance-none"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="bg-transparent text-[10px] font-bold text-white uppercase focus:outline-none cursor-pointer"
                 >
-                  {categories.map(cat => (
-                    <option key={cat} value={cat}>{cat}</option>
-                  ))}
+                  <option className="bg-[#0A0A0A]" value="newest">Latest</option>
+                  <option className="bg-[#0A0A0A]" value="popular">Most Liked</option>
+                  <option className="bg-[#0A0A0A]" value="views">Most Views</option>
                 </select>
               </div>
 
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-4 bg-black/50 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 appearance-none"
-              >
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-                <option value="popular">Most Liked</option>
-                <option value="views">Most Views</option>
-              </select>
+              <div className="h-4 w-[1px] bg-white/10" />
 
-              <div className="flex gap-2">
-                <motion.button
+              <div className="flex items-center gap-2">
+                <button 
                   onClick={() => setViewMode("grid")}
-                  className={`p-3 rounded-xl border transition-all ${
-                    viewMode === "grid" 
-                      ? "bg-sky-500/20 border-sky-500 text-sky-400" 
-                      : "bg-black/50 border-gray-700 text-gray-400 hover:border-sky-500/50"
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  className={`p-1.5 transition-colors ${viewMode === "grid" ? "text-sky-500" : "text-white/20 hover:text-white/40"}`}
                 >
-                  <Grid3X3 size={20} />
-                </motion.button>
-                <motion.button
+                  <Grid3X3 size={16} />
+                </button>
+                <button 
                   onClick={() => setViewMode("list")}
-                  className={`p-3 rounded-xl border transition-all ${
-                    viewMode === "list" 
-                      ? "bg-sky-500/20 border-sky-500 text-sky-400" 
-                      : "bg-black/50 border-gray-700 text-gray-400 hover:border-sky-500/50"
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  className={`p-1.5 transition-colors ${viewMode === "list" ? "text-sky-500" : "text-white/20 hover:text-white/40"}`}
                 >
-                  <List size={20} />
-                </motion.button>
+                  <List size={16} />
+                </button>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Type Filter Buttons */}
-          <motion.div 
-            className="flex flex-wrap justify-center gap-3 mb-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            {filters.map((f) => (
-              <motion.button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={`flex items-center gap-3 px-6 py-3 font-semibold rounded-xl transition-all duration-300 ${
-                  filter === f
-                    ? "bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-lg shadow-sky-500/25 scale-105"
-                    : "bg-black/50 border border-gray-700 text-gray-300 hover:bg-sky-500/20 hover:text-sky-400 hover:border-sky-500/50"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {filterIcons[f]}
-                {f}
-              </motion.button>
-            ))}
-          </motion.div>
-
-          {/* Results Count */}
-          <motion.div 
-            className="mb-8 flex justify-between items-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <p className="text-gray-400">
-              Showing <span className="text-white font-semibold">{filteredPosts.length}</span> posts
-              {categoryFilter !== "All" && ` in ${categoryFilter}`}
-            </p>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
-              <Eye size={16} />
-              <span>Total Views: {filteredPosts.reduce((sum, post) => sum + post.views, 0).toLocaleString()}</span>
-            </div>
-          </motion.div>
-
-          {/* Enhanced Posts Grid/List */}
+          {/* Editorial Bento Grid */}
           <AnimatePresence mode="wait">
             {filteredPosts.length === 0 ? (
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-20"
-              >
-                <div className="text-6xl mb-4">📷</div>
-                <h3 className="text-2xl font-bold text-white mb-2">No Posts Found</h3>
-                <p className="text-gray-400">Try adjusting your search or filter criteria.</p>
-              </motion.div>
-            ) : viewMode === "grid" ? (
-              <motion.div
-                key="grid-view"
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
+                className="text-center py-20"
               >
-                {filteredPosts.map((post, idx) => (
-                  <GalleryCard 
-                    key={post.id} 
-                    post={post} 
-                    index={idx}
-                    onSelect={setSelected}
-                    onLike={toggleLike}
-                    onBookmark={toggleBookmark}
-                    isLiked={likedPosts.has(post.id)}
-                    isBookmarked={bookmarkedPosts.has(post.id)}
-                  />
-                ))}
+                <p className="text-white/20 text-sm font-medium tracking-widest uppercase">No Visuals Found</p>
               </motion.div>
             ) : (
               <motion.div
-                key="list-view"
-                className="space-y-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
+                key={viewMode}
+                className={viewMode === "grid" 
+                  ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[250px]" 
+                  : "flex flex-col gap-4"}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
               >
                 {filteredPosts.map((post, idx) => (
-                  <GalleryListItem 
-                    key={post.id} 
-                    post={post} 
-                    index={idx}
-                    onSelect={setSelected}
-                    onLike={toggleLike}
-                    onBookmark={toggleBookmark}
-                    isLiked={likedPosts.has(post.id)}
-                    isBookmarked={bookmarkedPosts.has(post.id)}
-                  />
+                  viewMode === "grid" ? (
+                    <GalleryCard 
+                      key={post.id} 
+                      post={post} 
+                      onSelect={setSelected}
+                      className={
+                        idx % 7 === 0 ? "lg:col-span-2 lg:row-span-2" : 
+                        idx % 7 === 3 ? "lg:col-span-2" : ""
+                      }
+                    />
+                  ) : (
+                    <GalleryListItem 
+                      key={post.id} 
+                      post={post} 
+                      onSelect={setSelected}
+                    />
+                  )
                 ))}
               </motion.div>
             )}
@@ -446,163 +367,71 @@ const Gallery = () => {
   );
 };
 
-// Enhanced Gallery Card Component
-const GalleryCard = ({ post, index, onSelect, onLike, onBookmark, isLiked, isBookmarked }) => {
+// Advanced Gallery Card Component
+const GalleryCard = ({ post, onSelect, className = "" }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
-      className="relative group cursor-pointer"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className={`relative group cursor-pointer h-full ${className}`}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
+      onClick={() => onSelect(post)}
     >
-      {/* Background Glow */}
-      {post.featured && (
-        <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-yellow-500/20 to-amber-500/20 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500"></div>
-      )}
-      
-      <div className={`relative bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl border ${
-        post.featured ? 'border-yellow-500/50' : 'border-gray-800'
-      } overflow-hidden transition-all duration-500 group-hover:border-sky-500/50 group-hover:shadow-2xl group-hover:shadow-sky-500/20`}>
-        
-        {/* Featured Badge */}
-        {post.featured && (
-          <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-yellow-500 to-amber-600 text-white text-xs font-bold backdrop-blur-sm">
-            <Star size={12} />
-            <span>Featured</span>
-          </div>
-        )}
-
-        {/* Media Container */}
-        <div 
-          className="relative h-80 overflow-hidden cursor-pointer"
-          onClick={() => onSelect(post)}
-        >
+      <div className="relative h-full w-full bg-[#0A0A0A] rounded-xl overflow-hidden border border-white/5 transition-all duration-500 group-hover:border-white/20 shadow-2xl">
+        <div className="absolute inset-0 z-0">
           {post.type === "image" ? (
             <motion.img
               src={post.image}
               alt={post.title}
-              className="w-full h-full object-cover transition-transform duration-700"
-              animate={{ scale: isHovered ? 1.1 : 1 }}
+              className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
             />
           ) : (
-            <div className="relative w-full h-full">
-              <video
-                src={post.src}
-                muted
-                loop
-                className="w-full h-full object-cover"
-              />
-              <motion.div
-                className="absolute inset-0 bg-black/40 flex items-center justify-center"
-                animate={{ opacity: isHovered ? 0 : 1 }}
-              >
-                <Play className="w-16 h-16 text-white opacity-80" />
-              </motion.div>
-            </div>
-          )}
-          
-          {/* Overlay with Actions */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"
-            animate={{ opacity: isHovered ? 1 : 0 }}
-          >
-            <div className="absolute bottom-4 left-4 right-4">
-              <div className="flex justify-between items-center">
-                <motion.button
-                  className="p-2 bg-black/60 backdrop-blur-sm rounded-lg text-white hover:bg-sky-500 transition-all"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={(e) => { e.stopPropagation(); onSelect(post); }}
-                >
-                  <ZoomIn size={20} />
-                </motion.button>
-                <div className="flex gap-2">
-                  <motion.button
-                    className={`p-2 rounded-lg backdrop-blur-sm border transition-all ${
-                      isLiked 
-                        ? "bg-red-500/20 border-red-500 text-red-400" 
-                        : "bg-black/60 border-gray-600 text-gray-400 hover:border-red-500 hover:text-red-400"
-                    }`}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={(e) => { e.stopPropagation(); onLike(post.id); }}
-                  >
-                    <Heart size={20} className={isLiked ? "fill-current" : ""} />
-                  </motion.button>
-                  <motion.button
-                    className={`p-2 rounded-lg backdrop-blur-sm border transition-all ${
-                      isBookmarked 
-                        ? "bg-yellow-500/20 border-yellow-500 text-yellow-400" 
-                        : "bg-black/60 border-gray-600 text-gray-400 hover:border-yellow-500 hover:text-yellow-400"
-                    }`}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={(e) => { e.stopPropagation(); onBookmark(post.id); }}
-                  >
-                    <Bookmark size={20} className={isBookmarked ? "fill-current" : ""} />
-                  </motion.button>
+            <div className="relative h-full w-full">
+              <video src={post.src} muted loop className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center">
+                  <Play size={24} className="text-white fill-current translate-x-0.5" />
                 </div>
               </div>
             </div>
-          </motion.div>
-
-          {/* Video Duration */}
-          {post.type === "video" && (
-            <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm px-2 py-1 rounded text-xs text-white font-semibold">
-              {post.duration}
-            </div>
           )}
         </div>
 
-        {/* Content */}
-        <div className="p-6">
-          <div className="flex items-start justify-between mb-3">
-            <h3 className="text-lg font-bold text-white group-hover:text-sky-300 transition-colors flex-1 pr-4 line-clamp-2">
+        {/* Dynamic Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500 z-10" />
+
+        {/* Metadata Content */}
+        <div className="absolute inset-0 z-20 p-6 flex flex-col justify-end transform transition-transform duration-500">
+          <motion.div 
+            initial={false}
+            animate={{ y: isHovered ? 0 : 10, opacity: isHovered ? 1 : 0.8 }}
+            className="space-y-2"
+          >
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 bg-sky-500 text-[8px] font-black text-white rounded uppercase tracking-[0.2em]">
+                {post.category}
+              </span>
+              <span className="text-[9px] font-bold text-white/40 uppercase tracking-widest flex items-center gap-1">
+                <Calendar size={10} /> {new Date(post.date).getFullYear()}
+              </span>
+            </div>
+            <h3 className="text-lg font-bold text-white leading-tight group-hover:text-sky-300 transition-colors">
               {post.title}
             </h3>
-            <span className="px-2 py-1 bg-sky-500/20 text-sky-400 text-xs rounded-full border border-sky-500/30 whitespace-nowrap">
-              {post.category}
-            </span>
-          </div>
-
-          <p className="text-gray-400 text-sm mb-4 line-clamp-2">
-            {post.description}
-          </p>
-
-          {/* Meta Information */}
-          <div className="flex items-center justify-between text-sm text-gray-500">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1">
-                <Calendar size={14} />
-                <span>{new Date(post.date).toLocaleDateString()}</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Eye size={14} />
-                <span>{post.views}</span>
-              </div>
+            
+            <div className="flex items-center gap-4 text-[9px] font-black text-white/20 uppercase tracking-[0.2em]">
+              <span className="flex items-center gap-1.5"><Eye size={12} className="text-sky-500/50" /> {post.views}</span>
+              <span className="flex items-center gap-1.5"><Heart size={12} className="text-red-500/50" /> {post.likes}</span>
             </div>
-            <div className="flex items-center gap-1">
-              <Heart size={14} className={isLiked ? "text-red-400 fill-current" : ""} />
-              <span>{post.likes + (isLiked ? 1 : 0)}</span>
-            </div>
-          </div>
+          </motion.div>
+        </div>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1 mt-3">
-            {post.tags.slice(0, 3).map((tag, idx) => (
-              <span key={idx} className="px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded-full">
-                #{tag}
-              </span>
-            ))}
-            {post.tags.length > 3 && (
-              <span className="px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded-full">
-                +{post.tags.length - 3}
-              </span>
-            )}
+        {/* Advanced View Indicator */}
+        <div className="absolute top-4 right-4 z-30 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-2 group-hover:translate-x-0">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-2xl rounded-lg border border-white/20">
+            <span className="text-[8px] font-black text-white uppercase tracking-widest">Explore</span>
+            <Maximize2 size={12} className="text-white/60" />
           </div>
         </div>
       </div>
@@ -610,264 +439,138 @@ const GalleryCard = ({ post, index, onSelect, onLike, onBookmark, isLiked, isBoo
   );
 };
 
-// Gallery List Item Component for List View
-const GalleryListItem = ({ post, index, onSelect, onLike, onBookmark, isLiked, isBookmarked }) => {
+// Advanced Gallery List Item Component
+const GalleryListItem = ({ post, onSelect }) => {
   return (
     <motion.div
-      className="flex gap-6 bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-gray-800 p-6 hover:border-sky-500/50 transition-all duration-300 group cursor-pointer"
-      initial={{ opacity: 0, x: -50 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="flex items-center gap-6 p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all group cursor-pointer"
       onClick={() => onSelect(post)}
     >
-      {/* Thumbnail */}
-      <div className="relative w-48 h-32 rounded-xl overflow-hidden flex-shrink-0">
-        {post.type === "image" ? (
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          />
-        ) : (
-          <div className="relative w-full h-full">
-            <video
-              src={post.src}
-              muted
-              loop
-              className="w-full h-full object-cover"
-            />
-            <Play className="absolute inset-0 m-auto w-8 h-8 text-white opacity-70" />
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 border border-white/10">
+        <img src={post.image} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+      </div>
+      
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 mb-1">
+          <span className="text-[9px] font-bold text-sky-500 uppercase tracking-widest">{post.category}</span>
+          <div className="w-1 h-1 rounded-full bg-white/10" />
+          <span className="text-[9px] font-medium text-white/40 uppercase tracking-widest">{new Date(post.date).toLocaleDateString()}</span>
+        </div>
+        <h3 className="text-base font-bold text-white truncate mb-1">{post.title}</h3>
+        <p className="text-xs text-white/40 truncate">{post.description}</p>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 min-w-0">
-        <div className="flex items-start justify-between mb-2">
-          <h3 className="text-xl font-bold text-white group-hover:text-sky-300 transition-colors line-clamp-2 flex-1 pr-4">
-            {post.title}
-          </h3>
-          <div className="flex gap-2">
-            <motion.button
-              className={`p-2 rounded-lg transition-all ${
-                isLiked ? "text-red-400" : "text-gray-400 hover:text-red-400"
-              }`}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={(e) => { e.stopPropagation(); onLike(post.id); }}
-            >
-              <Heart size={18} className={isLiked ? "fill-current" : ""} />
-            </motion.button>
-            <motion.button
-              className={`p-2 rounded-lg transition-all ${
-                isBookmarked ? "text-yellow-400" : "text-gray-400 hover:text-yellow-400"
-              }`}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={(e) => { e.stopPropagation(); onBookmark(post.id); }}
-            >
-              <Bookmark size={18} className={isBookmarked ? "fill-current" : ""} />
-            </motion.button>
-          </div>
+      <div className="flex items-center gap-6 px-6 border-l border-white/5">
+        <div className="flex flex-col items-center">
+          <span className="text-lg font-black text-white leading-none">{post.views}</span>
+          <span className="text-[8px] font-bold text-white/20 uppercase tracking-widest">Views</span>
         </div>
-
-        <p className="text-gray-400 mb-3 line-clamp-2">
-          {post.description}
-        </p>
-
-        <div className="flex items-center justify-between text-sm text-gray-500">
-          <div className="flex items-center gap-4">
-            <span className="px-2 py-1 bg-sky-500/20 text-sky-400 rounded-full text-xs">
-              {post.category}
-            </span>
-            <div className="flex items-center gap-1">
-              <Calendar size={14} />
-              <span>{new Date(post.date).toLocaleDateString()}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Eye size={14} />
-              <span>{post.views} views</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1">
-              <Heart size={14} className={isLiked ? "text-red-400 fill-current" : ""} />
-              <span>{post.likes + (isLiked ? 1 : 0)}</span>
-            </div>
-            {post.type === "video" && (
-              <div className="flex items-center gap-1">
-                <Clock size={14} />
-                <span>{post.duration}</span>
-              </div>
-            )}
-          </div>
-        </div>
+        <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-sky-500 group-hover:translate-x-1 transition-all" />
       </div>
     </motion.div>
   );
 };
 
-// Enhanced Modal Component
-const GalleryModal = ({ post, onClose, onLike, onBookmark, isLiked, isBookmarked }) => {
+// Advanced Gallery Modal Component (Lightbox)
+const GalleryModal = ({ post, onClose }) => {
   return (
     <motion.div
-      className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-[#050505]/95 z-[100] backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
     >
       <motion.div
-        className="relative w-full max-w-6xl bg-gradient-to-br from-gray-900 to-black rounded-3xl border border-gray-800 shadow-2xl overflow-hidden"
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
+        className="relative w-full max-w-6xl h-full flex flex-col md:flex-row bg-[#0A0A0A] rounded-2xl border border-white/10 overflow-hidden shadow-2xl"
+        initial={{ scale: 0.95, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.95, opacity: 0, y: 20 }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header with Close Button */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-800 bg-black/50 backdrop-blur-sm">
-          <h2 className="text-2xl font-bold text-white">{post.title}</h2>
-          <div className="flex items-center gap-3">
-            <motion.button
-              className="p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={(e) => { e.stopPropagation(); onLike(post.id); }}
-            >
-              <Heart size={20} className={isLiked ? "text-red-400 fill-current" : ""} />
-            </motion.button>
-            <motion.button
-              className="p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={(e) => { e.stopPropagation(); onBookmark(post.id); }}
-            >
-              <Bookmark size={20} className={isBookmarked ? "text-yellow-400 fill-current" : ""} />
-            </motion.button>
-            <motion.button
-              className="p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Share2 size={20} />
-            </motion.button>
-            <motion.button
-              className="p-2 text-gray-400 hover:text-white hover:bg-red-500/20 rounded-lg transition-all"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={onClose}
-            >
-              <X size={20} />
-            </motion.button>
-          </div>
+        {/* Main Media View */}
+        <div className="flex-1 relative bg-black flex items-center justify-center p-4">
+          {post.type === "image" ? (
+            <img src={post.image} className="max-w-full max-h-full object-contain rounded shadow-2xl" alt={post.title} />
+          ) : (
+            <video src={post.src} controls autoPlay className="max-w-full max-h-full rounded" />
+          )}
+
+          {/* Floating Close Button */}
+          <button 
+            onClick={onClose}
+            className="absolute top-4 right-4 p-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10 text-white/40 hover:text-white hover:bg-white/10 transition-all"
+          >
+            <X size={20} />
+          </button>
         </div>
 
-        {/* Content */}
-        <div className="max-h-[80vh] overflow-y-auto">
-          <div className="p-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Media Section */}
-              <div className="relative">
-                {post.type === "image" ? (
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-auto rounded-2xl shadow-2xl"
-                  />
-                ) : (
-                  <video
-                    src={post.src}
-                    controls
-                    autoPlay
-                    className="w-full h-auto rounded-2xl shadow-2xl"
-                  />
-                )}
+        {/* Sidebar Info Panel */}
+        <div className="w-full md:w-80 bg-[#0D0D0D] border-l border-white/5 flex flex-col h-full">
+          <div className="p-6 border-b border-white/5">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="px-2 py-0.5 bg-sky-500 text-[9px] font-black text-white rounded uppercase tracking-[0.2em]">
+                {post.category}
+              </span>
+              <span className="text-[10px] font-medium text-white/40 flex items-center gap-1">
+                <Clock size={12} /> {new Date(post.date).toLocaleDateString()}
+              </span>
+            </div>
+            <h2 className="text-xl font-bold text-white leading-tight mb-4">{post.title}</h2>
+            <p className="text-xs text-white/40 leading-relaxed font-light mb-6">
+              {post.description}
+            </p>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-3 bg-white/[0.02] border border-white/5 rounded-xl">
+                <span className="block text-[8px] font-bold text-white/20 uppercase mb-1">Views</span>
+                <span className="text-sm font-black text-white">{post.views.toLocaleString()}</span>
               </div>
-
-              {/* Details Section */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-sky-400 mb-2">Description</h3>
-                  <p className="text-gray-300 leading-relaxed">{post.description}</p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-400 mb-1">Category</h4>
-                    <p className="text-white">{post.category}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-400 mb-1">Date</h4>
-                    <p className="text-white">{new Date(post.date).toLocaleDateString()}</p>
-                  </div>
-                  {post.photographer && (
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-400 mb-1">Photographer</h4>
-                      <p className="text-white flex items-center gap-1">
-                        <User size={14} />
-                        {post.photographer}
-                      </p>
-                    </div>
-                  )}
-                  {post.location && (
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-400 mb-1">Location</h4>
-                      <p className="text-white">{post.location}</p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Stats */}
-                <div className="flex gap-6 py-4 border-y border-gray-800">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white">{post.views}</div>
-                    <div className="text-sm text-gray-400">Views</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white">{post.likes + (isLiked ? 1 : 0)}</div>
-                    <div className="text-sm text-gray-400">Likes</div>
-                  </div>
-                  {post.type === "video" && (
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-white">{post.duration}</div>
-                      <div className="text-sm text-gray-400">Duration</div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Tags */}
-                <div>
-                  <h4 className="text-sm font-semibold text-gray-400 mb-2">Tags</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-gray-800 text-gray-300 text-sm rounded-full border border-gray-700">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex gap-3 pt-4">
-                  <motion.button
-                    className="flex-1 px-6 py-3 bg-sky-600 text-white rounded-xl hover:bg-sky-700 transition-all flex items-center justify-center gap-2"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Download size={18} />
-                    Download
-                  </motion.button>
-                  <motion.button
-                    className="px-6 py-3 border border-gray-600 text-gray-300 rounded-xl hover:border-sky-400 hover:text-sky-400 transition-all"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Share2 size={18} />
-                  </motion.button>
-                </div>
+              <div className="p-3 bg-white/[0.02] border border-white/5 rounded-xl">
+                <span className="block text-[8px] font-bold text-white/20 uppercase mb-1">Appreciation</span>
+                <span className="text-sm font-black text-white">{post.likes.toLocaleString()}</span>
               </div>
             </div>
+          </div>
+
+          <div className="p-6 flex-1 overflow-y-auto custom-scrollbar">
+            <section className="mb-8">
+              <h4 className="text-[10px] font-bold text-sky-500 uppercase tracking-[0.2em] mb-4">Metadata</h4>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-white/30">Photographer</span>
+                  <span className="text-white/80 font-medium">{post.photographer || "Staff Media"}</span>
+                </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-white/30">Location</span>
+                  <span className="text-white/80 font-medium">{post.location || "Arena"}</span>
+                </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-white/30">Format</span>
+                  <span className="text-white/80 font-medium uppercase">{post.type}</span>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h4 className="text-[10px] font-bold text-sky-500 uppercase tracking-[0.2em] mb-4">Keywords</h4>
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag, i) => (
+                  <span key={i} className="px-2 py-1 bg-white/[0.03] border border-white/5 rounded text-[9px] font-bold text-white/40 uppercase tracking-wider">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          <div className="p-6 mt-auto border-t border-white/5 flex items-center justify-between gap-4">
+            <button className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-sky-500 hover:bg-sky-600 rounded-lg text-xs font-bold text-white transition-all">
+              <Download size={14} /> Download
+            </button>
+            <button className="p-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-white/60 hover:text-white transition-all">
+              <Share2 size={16} />
+            </button>
           </div>
         </div>
       </motion.div>
